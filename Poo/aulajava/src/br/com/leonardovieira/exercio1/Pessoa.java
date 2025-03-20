@@ -10,4 +10,9 @@ public class Pessoa {
         
     }
 
+    public void falar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'falar'");
+    }
+
 }
