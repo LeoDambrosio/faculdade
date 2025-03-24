@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 #include <stdio.h>
 
 int main() {
@@ -39,29 +37,51 @@ int main() {
         }
         printf("\n");
     }
-
-=======
-#include <stdio.h>
-#include <stdlib.h>
-
-// Função para multiplicação de matrizes
-void multiplicaMatrizes(int **A, int **B, int **C, int linA, int colA, int colB) {
-    for (int i = 0; i < linA; i++)
-        for (int j = 0; j < colB; j++) {
-            C[i][j] = 0;
-            for (int k = 0; k < colA; k++)
-                C[i][j] += A[i][k] * B[k][j];
-        }
 }
 
-// Função para exibir a matriz
-void exibeMatriz(int **M, int linhas, int colunas) {
-    for (int i = 0; i < linhas; i++) {
-        for (int j = 0; j < colunas; j++)
-            printf("%4d ", M[i][j]);
+//Multiplicacao de Matrize
+#include <stdio.h>
+
+int main() {
+   
+    int matriz_A[6][6];
+    int matriz_B[6][6];
+    int matriz_resultado[6][6] = {0};
+   
+    printf("Digite os valores da matriz A (6x6):\n");
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            printf("Matriz A[%d][%d]: ", i, j);
+            scanf("%d", &matriz_A[i][j]);
+        }
+    }
+
+    printf("\nDigite os valores da matriz B (6x6):\n");
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            printf("Matriz B[%d][%d]: ", i, j);
+            scanf("%d", &matriz_B[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            for (int k = 0; k < 6; k++) {
+                matriz_resultado[i][j] += matriz_A[i][k] * matriz_B[k][j];
+            }
+        }
+    }
+
+    printf("\nMatriz Resultante (A x B):\n");
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) {
+            printf("%d\t", matriz_resultado[i][j]);
+        }
         printf("\n");
     }
 }
+
+#include <stdio.h>
 
 int main() {
     int linA, colA, linB, colB;
@@ -104,6 +124,6 @@ int main() {
     for (int i = 0; i < linA; i++) free(C[i]);
     free(A); free(B); free(C);
     
->>>>>>> 925766eb00c346df9eb3770fbd10808539a9ea9c
     return 0;
 }
+
