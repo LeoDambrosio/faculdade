@@ -1,12 +1,19 @@
 package br.com.leonardovieira.realacionamento;
 
 public class Pessoa {
-    public String nome;
 
-    public int idade;
+    private String nome;
 
-   public void falar(){
-        System.out.println(this.nome + " está falando.");
-        System.out.println(this.nome + " tem " + this.idade + " anos.");
+    public Pessoa(String nome) {
+        this.nome = nome;
     }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    String getNome() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
