@@ -5,16 +5,25 @@ import java.util.List;
 
 public class Departamento {
 
-        private String nome;
-        private List<Funcionario> funcionario;
+    private String nome;
+    private List<Funcionario> funcionarios;
 
-        public Departamento(String nome) {
-            this.funcionario = new ArrayList<>();
-            this.nome = nome;
-        }
+    public Departamento(String nome) {
+        this.funcionarios = new ArrayList<>();
+        this.nome = nome;
+    }
 
-        public static void main(String[] args) {
-            
-        }
+    public void adicionarFuncionario(Funcionario funcionario){
+        funcionarios.add(funcionario);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
 
 }
+

@@ -12,8 +12,4 @@ public class Pessoa {
         return this.nome;
     }
 
-    String getNome() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }
