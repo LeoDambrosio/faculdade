@@ -34,47 +34,53 @@ create table filme_categoria(
 )
 
 --Insira 5 registros na tabela filme.
-insert into filme (descricao) values ('Um Sonho de Liberdade'), ('Pantera Negra'), ('Tropa de Elite'), ('O Auto da Compadecida'),('Inception');
+insert into filme (descricao,duracao) values ('Um Sonho de Liberdade', '02:22'),
+('Pantera Negra', '02:14'),
+('Tropa de Elite', '01:55'),
+('O Auto da Compadecida', '01:44'),
+('Inception', '02:28');
+
+select*from filme
 
 --Insira 10 atores na tabela ator.
-insert into ator (nome,sobrenome) values ('Morgan','Freeman'),
-('Viola','Davis'),
-('Wagner','Moura'),
-('Denzel','Washington'),
-('Mariana','Ximenes'),
-('Idris','Elba'),
-('Fernanda','Montenegro'),
-('Regina','King'),
-('Antônio','Fagundes'),
-('Lupita','Nyong’o');
-
-update ator
-set idade = null
-where idade like '30';
+insert into ator (nome,sobrenome,idade) values ('Morgan', 'Freeman', '86'),
+('Viola', 'Davis', '58'),
+('Wagner', 'Moura', '47'),
+('Denzel', 'Washington', '69'),
+('Mariana', 'Ximenes', '42'),
+('Idris', 'Elba', '51'),
+('Fernanda', 'Montenegro', '94'),
+('Regina', 'King', '53'),
+('Antônio', 'Fagundes', '75'),
+('Lupita', 'Nyong’o', '41');
 
 select*from ator
 	
 --Insira 3 categorias de filmes.
-insert into categoria (genero,censura) values ('Ação','14'), ('Drama','10'), ('Comédia','10');
+insert into categoria (genero,censura) values ('Ação','16 anos'), ('Drama','livre'), ('Comédia','livre');
 
 --Todo o filme deve ter ao menos uma categoria vinculada.
 insert into filme_categoria (id_filme, id_categoria) values (1, 2),(2, 1), (3, 1), (4, 3), (5, 2);
-
+select*from categoria
 select*from filme_categoria
 	
 --Todo o filme deve ter ao menos uma categoria vinculada.
-insert into filme_ator (id_filme, id_ator) values (1, 1), (2, 1), (3, 1), (2, 2), (4, 2), (5, 2), (3, 3), (6, 3), (7, 3),
-(4, 4), (8, 4), (9, 4), 
-(5, 5), (9, 5), (10, 5);
+insert into filme_ator (id_filme, id_ator) values (1, 1), (1, 2), (1, 3), 
+(2, 2), (2, 4), (2, 5), 
+(3, 3), (3, 6), (3, 7), 
+(4, 4), (4, 8), (4, 9), 
+(5, 5), (5, 9), (5, 10);
 
 select*from filme_ator
 
 --Atualize a censura das categorias com o nome de “X”, para 14 anos.
 update categoria 
 set censura = '14 anos'
-where censura like'10';
+where censura like'livre';
 
 select*from categoria
 
-
-
+--Atualize a idade do ator mais velho para 15 anos.
+update ator 
+set idade = '15'
+where idade like '94';
