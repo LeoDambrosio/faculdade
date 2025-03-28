@@ -3,6 +3,41 @@
   "configurations": [
     {
       "type": "java",
+      "name": "FormatarVogaisConsoantes",
+      "request": "launch",
+      "mainClass": "FormatarVogaisConsoantes",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio14",
+      "request": "launch",
+      "mainClass": "exercicio14",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio13",
+      "request": "launch",
+      "mainClass": "exercicio13",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio12",
+      "request": "launch",
+      "mainClass": "exercicio12",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio11",
+      "request": "launch",
+      "mainClass": "exercicio11",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "exercicio9",
       "request": "launch",
       "mainClass": "exercicio9",
