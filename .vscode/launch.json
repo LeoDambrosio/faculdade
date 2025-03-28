@@ -3,6 +3,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "exercicio9",
+      "request": "launch",
+      "mainClass": "exercicio9",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio8",
+      "request": "launch",
+      "mainClass": "exercicio8",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio7",
+      "request": "launch",
+      "mainClass": "exercicio7",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio6",
+      "request": "launch",
+      "mainClass": "exercicio6",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio5",
+      "request": "launch",
+      "mainClass": "exercicio5",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio3",
+      "request": "launch",
+      "mainClass": "exercicio3",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "Principal",
       "request": "launch",
       "mainClass": "Exemplo06.src.br.com.leonardovieira.exercio1.Principal",

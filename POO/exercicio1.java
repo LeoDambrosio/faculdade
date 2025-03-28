@@ -6,6 +6,5 @@ public class exercicio1 {
         Scanner scanner = new Scanner(System.in);
         String nome=scanner.nextLine();
         System.out.println("Olá "+nome);
-        
     }
 }

@@ -83,4 +83,33 @@ select*from categoria
 --Atualize a idade do ator mais velho para 15 anos.
 update ator 
 set idade = '15'
-where idade like '94';
+where idade ='94';
+
+--Atualize as durações de todos os filmes para ’00:00’
+update filme 
+set duracao = '00:00'
+
+--Atualize o nome dos atores que possuem a letra ‘m’ para Błaszczykowski
+update ator 
+set nome = 'Błaszczykowski'
+where nome = 'Mariana';
+
+--Delete todos os atores.
+
+
+
+create table cidade(
+	id_cidade serial primary key,
+	descricao varchar(255),
+	inscricao_estadual int
+)
+select*from cidade
+	
+create table endereco(
+	logradouro varchar(255),
+	numero varchar(255),
+	complemento varchar(255),
+	cep int,
+	descricao varchar(255)
+)	
+select*from endereco
