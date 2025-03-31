@@ -52,10 +52,6 @@ insert into ator (nome,sobrenome,idade) values ('Morgan', 'Freeman', '86'),
 ('Antônio', 'Fagundes', '75'),
 ('Lupita', 'Nyong’o', '41');
 
-update ator
-set idade = null
-where idade like '30';
-
 select*from ator
 	
 --Insira 3 categorias de filmes.
@@ -67,9 +63,11 @@ insert into filme_categoria (id_filme, id_categoria) values (1, 2),(2, 1), (3, 1
 select*from filme_categoria
 	
 --Todo o filme deve ter ao menos uma categoria vinculada.
-insert into filme_ator (id_filme, id_ator) values (1, 1), (2, 1), (3, 1), (2, 2), (4, 2), (5, 2), (3, 3), (6, 3), (7, 3),
-(4, 4), (8, 4), (9, 4), 
-(5, 5), (9, 5), (10, 5);
+insert into filme_ator (id_filme, id_ator) values (1, 1), (1, 2), (1, 3), 
+(2, 2), (2, 4), (2, 5), 
+(3, 3), (3, 6), (3, 7), 
+(4, 4), (4, 8), (4, 9), 
+(5, 5), (5, 9), (5, 10);
 
 select*from filme_ator
 
@@ -83,7 +81,9 @@ select*from categoria
 --Atualize as durações de todos os filmes para ’00:00’
 update filme
 set duracao = '00:00';
-]
+
+select*from filme
+	
 --Atualize o nome dos atores que possuem a letra ‘m’ para Błaszczykowski
 update ator
 set nome = 'Błaszczykowski'
@@ -99,6 +99,11 @@ id_cidade serial primary key,
 descricao varchar (255),
 inscricao_estadual int
 );
+
+--Insira na tabela cidade 3 registros, um para cada endereço.
+insert into cidade (descricao, inscricao_estadual) values ('Cascavel', 123456789), 
+	('Toledo', 888888888),
+	('Guairra', 777777777);
 
 create table endereco(
 id_endereco serial primary key,
@@ -117,9 +122,6 @@ insert into endereco (logradouro, numero, complemento, cep, descricao, id_cidade
 		   ('Rua Recife', '2283', 'Centro', 85810031, 'Senac - Instituição de Ensino', '1'),
 		   ('A. Toledo', '432', 'Centro', 85810230, 'Estação de Compras', '1');
 
---Insira na tabela cidade 3 registros, um para cada endereço.
-insert into cidade (descricao, inscricao_estadual) 
-	values ('Cascavel', 123456789), ('Toledo', 888888888), ('Guairra', 777777777);
 	
 --Insira na tabela CATEGORIA_FILME ligações entre os filmes existentes na tabela FILME com as categorias existentes na tabela CATEGORIA. Caso o filme pertença a uma categoria (aventura, por exemplo) que não esteja cadastrada na tabela, faça a inserção.
 insert into filme_categoria (id_filme, id_categoria) 
