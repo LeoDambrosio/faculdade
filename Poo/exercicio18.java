@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class FormatarVogaisConsoantes {
+public class exercicio18 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
