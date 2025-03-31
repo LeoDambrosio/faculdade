@@ -107,10 +107,10 @@ create table cidade (
 id_cidade serial primary key,
 descricao varchar (255),
 inscricao_estadual int
-);
+)
 
 --Insira na tabela cidade 3 registros, um para cada endereço.
-insert into cidade (descricao, inscricao_estadual) values ('Cascavel', 123456789), 
+insert into cidade (descricao, inscricao_estadual) values ('Cascavel', 666666666), 
 	('Toledo', 888888888),
 	('Guairra', 777777777);
 
@@ -123,7 +123,7 @@ cep int,
 descricao varchar (255),
 id_cidade int,
 constraint id_cidade foreign key (id_cidade) references cidade (id_cidade)
-);
+)
 
 --Insira registros de 3 endereços, um com o seu endereço residencial, outro com o endereço do Senac e um terceiro com o endereço do “Shopping” JL:
 insert into endereco (logradouro, numero, complemento, cep, descricao, id_cidade)
@@ -131,6 +131,7 @@ insert into endereco (logradouro, numero, complemento, cep, descricao, id_cidade
 		   ('Rua Recife', '2283', 'Centro', 85810031, 'Senac - Instituição de Ensino', '1'),
 		   ('A. Toledo', '432', 'Centro', 85810230, 'Estação de Compras', '1');
 
+select*from endereco
 	
 --Insira na tabela CATEGORIA_FILME ligações entre os filmes existentes na tabela FILME com as categorias existentes na tabela CATEGORIA. Caso o filme pertença a uma categoria (aventura, por exemplo) que não esteja cadastrada na tabela, faça a inserção.
 insert into filme_categoria (id_filme, id_categoria) 
