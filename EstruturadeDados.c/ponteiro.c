@@ -24,7 +24,7 @@ int main() {
 
     *ptr = 50;
     printf("Valor armazenado: %d\n", *ptr);
-
+ 
     free(ptr);  // Libera a memória alocada
     return 0;
 }

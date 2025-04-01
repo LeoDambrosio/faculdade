@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "exercicio18",
+      "request": "launch",
+      "mainClass": "exercicio18",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "FormatarVogaisConsoantes",
       "request": "launch",
       "mainClass": "FormatarVogaisConsoantes",

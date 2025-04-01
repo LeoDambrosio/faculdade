@@ -21,10 +21,8 @@ public class exercicio18 {
         
         for (char c : texto.toCharArray()) {
             if (vogais.indexOf(c) != -1) {
-                // É vogal - converte para maiúsculo
                 sb.append(Character.toUpperCase(c));
             } else {
-                // É consoante - converte para minúsculo
                 sb.append(Character.toLowerCase(c));
             }
         }

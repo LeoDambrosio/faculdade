@@ -122,7 +122,7 @@ complemento varchar (255),
 cep int,
 descricao varchar (255),
 id_cidade int,
-constraint id_cidade foreign key (id_cidade) references cidade (id_cidade)
+constraint fk_cidade foreign key (id_cidade) references cidade (id_cidade)
 )
 
 --Insira registros de 3 endereços, um com o seu endereço residencial, outro com o endereço do Senac e um terceiro com o endereço do “Shopping” JL:
