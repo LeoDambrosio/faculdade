@@ -21,7 +21,7 @@ insert into filme (descricao, titulo, taxa, obs) values ('Mafia, poder e traicao
 ('A origem do vilao.', 'Coringa', '12.50', 'Retrato sombrio e psicologico'),  
 ('Suspense e psicopatia.', 'O Silencio dos Inocentes', '10.99', 'Thriller inesquecivel'),  
 ('Romance e tragedia no navio.', 'Titanic', '11.75', 'Fenomeno de bilheteria');  
- 
+
 select * from filme
 	
 select *,(2*taxa) from filme 
@@ -32,5 +32,3 @@ select * from filme order by titulo desc
 select * from filme order by titulo asc
 
 select * from filme where titulo like '%Cavaleiro%';
-
-

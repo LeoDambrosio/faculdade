@@ -1,50 +1,38 @@
-#include <stdio.h>
 
-// Definindo a estrutura Ponto para armazenar as coordenadas X e Y
-struct Ponto {
-    int x;
-    int y;
-};
+#include <stdlib.h> /* malloc, free, exit */
+#include <stdio.h> /* printf */
+#include <math.h> /* sqrt */
+#include "ponto.h"
 
-// Função para exibir os pontos armazenados
-void exibirPontos(struct Ponto pontos[], int n) {
-    for (int i = 0; i < n; i++) {
-        printf("Ponto %d: X = %d, Y = %d\n", i+1, pontos[i].x, pontos[i].y);
-    }
+struct ponto {
+float x;
+float y;
 }
 
-// Função para adicionar um novo ponto à tabela de pontos
-void adicionarPonto(struct Ponto pontos[], int *n, int x, int y) {
-    pontos[*n].x = x;
-    pontos[*n].y = y;
-    (*n)++;
+Ponto* cria (float x, float y) {
+Ponto* p = (Ponto*) malloc(sizeof(Ponto));
+if (p == NULL) {
+printf("Memória insuficiente!\n");
+exit(1);
+}
+p->x = x;
+p->y = y;
+return p;
 }
 
-int main() {
-    // Tamanho máximo para o array de pontos
-    int maxPontos = 10;
-
-    // Criando um array para armazenar os pontos
-    struct Ponto pontos[maxPontos];
-
-    // Número de pontos atualmente armazenados
-    int numPontos = 0;
-
-    // Adicionando alguns pontos à tabela
-    adicionarPonto(pontos, &numPontos, 1, 2);
-    adicionarPonto(pontos, &numPontos, 3, 4);
-    adicionarPonto(pontos, &numPontos, 5, 6);
-
-    // Exibindo os pontos armazenados
-    printf("Pontos atuais:\n");
-    exibirPontos(pontos, numPontos);
-
-    // Adicionando mais um ponto
-    adicionarPonto(pontos, &numPontos, 7, 8);
-
-    // Exibindo os pontos após a adição
-    printf("\nApós adicionar um novo ponto:\n");
-    exibirPontos(pontos, numPontos);
-
-    return 0;
+void libera (Ponto* p) {
+free(p);
+}
+void acessa (Ponto* p, float* x, float* y) {
+*x = p->x;
+*y = p->y;
+}
+void atribui (Ponto* p, float x, float y) {
+p->x = x;
+p->y = y;
+}
+float distancia (Ponto* p1, Ponto* p2) {
+float dx = p2->x –p1->x;
+floatdy= p2->y –p1->y;
+return sqrt(dx*dx + dy*dy);
 }
