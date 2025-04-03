@@ -22,7 +22,42 @@ insert into filme (descricao, titulo, taxa, obs) values ('Mafia, poder e traicao
 ('Suspense e psicopatia.', 'O Silencio dos Inocentes', '10.99', 'Thriller inesquecivel'),  
 ('Romance e tragedia no navio.', 'Titanic', '11.75', 'Fenomeno de bilheteria');  
 
-select * from filme
+create table ator(
+	id_ator serial primary key,
+	nome varchar(255),
+	sobrenome varchar(255),
+	idade int
+)
+
+create table filme_ator(
+	id serial primary key,
+	id_ator int,
+	id_filme int,
+	constraint fk_ator foreign key(id_ator) references ator(id_ator),
+	constraint fk_filme foreign key(id_filme) references filme(id_filme)
+)
+
+insert into ator (nome, sobrenome, idade) values ('Leonardo', 'DiCaprio', 49),  
+('Robert', 'Downey Jr.', 59),  
+('Johnny', 'Depp', 61),  
+('Will', 'Smith', 55),  
+('Brad', 'Pitt', 60),  
+('Tom', 'Cruise', 62),  
+('Denzel', 'Washington', 69),  
+('Keanu', 'Reeves', 60),  
+('Samuel', 'L. Jackson', 76),  
+('Morgan', 'Freeman', 87),  
+('Al', 'Pacino', 84),  
+('Robert', 'De Niro', 80),  
+('Christian', 'Bale', 50),  
+('Joaquin', 'Phoenix', 49),  
+('Tom', 'Hanks', 68);
+
+insert into filme_ator (id_ator,id_filme) values (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),
+	(7,7),(8,8),(9,9),(10,10),(11,11),
+	(12,12),(13,13),(14,14),(15,15);
+
+select * from filme_ator
 	
 select *,(2*taxa) from filme 
 	
@@ -32,3 +67,20 @@ select * from filme order by titulo desc
 select * from filme order by titulo asc
 
 select * from filme where titulo like '%Cavaleiro%';
+
+select sum(taxa) from filme;
+
+select avg(taxa) from filme;
+
+select max(taxa) from filme;
+
+select min(taxa) from filme;
+
+select id_filme, count(id_ator) from filme_ator group by id_filme
+	
+select * from filme where taxa between 5 and 10;
+
+select * from filme_ator limit 10;
+
+select * from filme_ator offset 10;
+
