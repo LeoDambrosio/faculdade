@@ -3,6 +3,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PrincipalAluno",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalAluno",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalRetungulo",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalRetungulo",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalPruduto",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalPruduto",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "Produto",
       "request": "launch",
       "mainClass": "br.com.leonardovieira.poo.exercicio1.Produto",
