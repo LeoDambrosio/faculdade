@@ -1,5 +1,5 @@
 
-package lista2.src.br.com.leonardovieira.exercio1;
+package Lista01.src.br.com.leonardovieira.exercio1;
 
 import java.util.Scanner;
 

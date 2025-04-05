@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Exercicio2",
+      "request": "launch",
+      "mainClass": "Lista01.src.br.com.leonardovieira.exercio2.Exercicio2",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "CadastroAluno",
       "request": "launch",
       "mainClass": "lista2.src.br.com.leonardovieira.exercio11.CadastroAluno",

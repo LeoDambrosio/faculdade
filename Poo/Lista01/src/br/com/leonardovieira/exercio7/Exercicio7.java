@@ -1,4 +1,4 @@
-package lista2.src.br.com.leonardovieira.exercio7;
+package Lista01.src.br.com.leonardovieira.exercio7;
 
 import java.util.Scanner;
 

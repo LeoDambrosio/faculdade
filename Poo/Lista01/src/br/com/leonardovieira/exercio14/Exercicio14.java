@@ -1,4 +1,4 @@
-package lista2.src.br.com.leonardovieira.exercio14;
+package Lista01.src.br.com.leonardovieira.exercio14;
 
 import java.util.Random;
 
