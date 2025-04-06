@@ -3,6 +3,139 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Exercicio2",
+      "request": "launch",
+      "mainClass": "Lista01.src.br.com.leonardovieira.exercio2.Exercicio2",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "CadastroAluno",
+      "request": "launch",
+      "mainClass": "lista2.src.br.com.leonardovieira.exercio11.CadastroAluno",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalAluno",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalAluno",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalRetungulo",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalRetungulo",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalPruduto",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalPruduto",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "Produto",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.Produto",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "Loja",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.Loja",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio18",
+      "request": "launch",
+      "mainClass": "exercicio18",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "FormatarVogaisConsoantes",
+      "request": "launch",
+      "mainClass": "FormatarVogaisConsoantes",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio14",
+      "request": "launch",
+      "mainClass": "exercicio14",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio13",
+      "request": "launch",
+      "mainClass": "exercicio13",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio12",
+      "request": "launch",
+      "mainClass": "exercicio12",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio11",
+      "request": "launch",
+      "mainClass": "exercicio11",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio9",
+      "request": "launch",
+      "mainClass": "exercicio9",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio8",
+      "request": "launch",
+      "mainClass": "exercicio8",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio7",
+      "request": "launch",
+      "mainClass": "exercicio7",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio6",
+      "request": "launch",
+      "mainClass": "exercicio6",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio5",
+      "request": "launch",
+      "mainClass": "exercicio5",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "exercicio3",
+      "request": "launch",
+      "mainClass": "exercicio3",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
       "name": "Principal",
       "request": "launch",
       "mainClass": "Exemplo06.src.br.com.leonardovieira.exercio1.Principal",
