@@ -3,6 +3,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PrincipalTabuada",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio5.PrincipalTabuada",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalLivro",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio4.PrincipalLivro",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalRetungulo",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio3.PrincipalRetungulo",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalContaBancaria",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio2.PrincipalContaBancaria",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalContaBancaria",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalContaBancaria",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "JavaPoo",
+      "request": "launch",
+      "mainClass": "com.mycompany.javapoo.JavaPoo",
+      "projectName": "JavaPoo"
+    },
+    {
+      "type": "java",
       "name": "Exercicio2",
       "request": "launch",
       "mainClass": "Lista01.src.br.com.leonardovieira.exercio2.Exercicio2",

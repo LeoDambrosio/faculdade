@@ -1,4 +1,4 @@
-package br.com.leonardovieira.poo.exercicio1;
+package br.com.leonardovieira.poo.exercicio3;
 
 public class Retangulo {
     private double largura;

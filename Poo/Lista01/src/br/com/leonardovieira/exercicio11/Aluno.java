@@ -28,7 +28,7 @@ public class Aluno {
 
             System.out.print("Digite a nota do aluno: ");
             double nota = scanner.nextDouble();
-            scanner.nextLine(); // Limpa o buffer
+            scanner.nextLine(); 
 
             alunos[i] = new RegistroAluno(nome, nota);
         }
