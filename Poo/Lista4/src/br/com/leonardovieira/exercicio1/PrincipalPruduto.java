@@ -1,9 +1,9 @@
-package br.com.leonardovieira.poo.exercicio1;
+package Lista4.src.br.com.leonardovieira.exercicio1;
 
 public class PrincipalPruduto{
 
     public static void main(String[] args) {
-        Produto produto = new Produto("Notebook", 3500.00, 10);
+        Produto produto = new Produto("Celular", 5000.00, 10);
         produto.exibirDetalhes();
         produto.vender(3);
         produto.exibirDetalhes();
@@ -11,4 +11,3 @@ public class PrincipalPruduto{
         produto.exibirDetalhes();
     }
 }
-

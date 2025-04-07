@@ -1,4 +1,4 @@
-package br.com.leonardovieira.poo.exercicio1;
+package Lista3.src.br.com.leonardovieira.exercicio5;
 
 public class Curso {
     private String nomeCurso;
@@ -10,8 +10,8 @@ public class Curso {
     }
 
     public void exibirCurso() {
-        System.out.println("Curso: " + nomeCurso);
-        System.out.println("Código: " + codigoCurso);
+        System.out.println("\nCurso: " + nomeCurso);
+        System.out.println("Codigo: " + codigoCurso);
     }
 }
 

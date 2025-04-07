@@ -1,4 +1,4 @@
-package br.com.leonardovieira.poo.exercicio1;
+package Lista4.src.br.com.leonardovieira.exercicio1;
 
 public class Produto {
     private String nome;
@@ -27,7 +27,7 @@ public class Produto {
 
     public void exibirDetalhes() {
         System.out.println("Produto: " + this.nome);
-        System.out.println("Preço: R$" + String.format("%.2f", this.preco));
+        System.out.println("Preco: R$" + String.format("%.2f", this.preco));
         System.out.println("Quantidade em Estoque: " + this.quantidadeEmEstoque);
     }
 }
