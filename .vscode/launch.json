@@ -3,6 +3,125 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PrincipalFuncionario",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio6.PrincipalFuncionario",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalConversorTemperatura",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio5.PrincipalConversorTemperatura",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalAluno",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio4.PrincipalAluno",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalCalculadora",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio3.PrincipalCalculadora",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalLojaVeiculos",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio2.PrincipalLojaVeiculos",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalPruduto",
+      "request": "launch",
+      "mainClass": "Lista4.src.br.com.leonardovieira.exercicio1.PrincipalPruduto",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalCadastroAluno",
+      "request": "launch",
+      "mainClass": "Lista3.src.br.com.leonardovieira.exercicio5.PrincipalCadastroAluno",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalRetungulo",
+      "request": "launch",
+      "mainClass": "Lista3.src.br.com.leonardovieira.exercicio4.PrincipalRetungulo",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalPruduto",
+      "request": "launch",
+      "mainClass": "Lista3.src.br.com.leonardovieira.exercicio3.PrincipalPruduto",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalContaBancaria",
+      "request": "launch",
+      "mainClass": "Lista3.src.br.com.leonardovieira.exercicio2.PrincipalContaBancaria",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalCarro",
+      "request": "launch",
+      "mainClass": "Lista3.src.br.com.leonardovieira.exercicio1.PrincipalCarro",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalTabuada",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio5.PrincipalTabuada",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalLivro",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio4.PrincipalLivro",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalRetungulo",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio3.PrincipalRetungulo",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalContaBancaria",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio2.PrincipalContaBancaria",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "PrincipalContaBancaria",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.poo.exercicio1.PrincipalContaBancaria",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "JavaPoo",
+      "request": "launch",
+      "mainClass": "com.mycompany.javapoo.JavaPoo",
+      "projectName": "JavaPoo"
+    },
+    {
+      "type": "java",
       "name": "Exercicio2",
       "request": "launch",
       "mainClass": "Lista01.src.br.com.leonardovieira.exercio2.Exercicio2",
