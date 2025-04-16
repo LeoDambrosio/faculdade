@@ -6,7 +6,7 @@ public class Funcionario {
 
     public Funcionario(String nome) {
         this.nome = nome;
-        totalFuncionarios++; o
+        totalFuncionarios++; 
     }
 
     public String getNome() {
