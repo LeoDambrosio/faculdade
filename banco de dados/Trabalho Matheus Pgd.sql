@@ -4,8 +4,8 @@ create table cliente (
     email varchar(100) not null,
     data_nascimento date,
     data_cadastro date default current_date,
-    observacao text,
-    nova_coluna varchar(100)
+    observacao text
+    
 );
 
 create table pessoa_fisica (
@@ -56,15 +56,17 @@ create table cliente_endereco (
     constraint fk_cliente_endereco_endereco foreign key (id_endereco) references endereco(id_endereco)
 );
 
-create table usuario (
+create table vendedor (
     id_usuario serial primary key,
     nome varchar(100) not null,
     email varchar(100)
 );
 
+alter table vendedor rename to usuario;
+
 create table forma_pagamento (
     id_forma_pagamento serial primary key,
-    tipo varchar(10) check (tipo in ('avista', 'debito', 'credito')) not null
+    tipo varchar(10) check (tipo in ('Avista', 'Debito', 'Credito')) not null
 );
 
 create table produto (
@@ -77,7 +79,7 @@ create table produto (
 create table pedido (
     id_pedido serial primary key,
     numero varchar(20) unique not null,
-    data date not null,
+    data date not null default current_date,
     id_cliente int not null,
     id_endereco_entrega int not null,
     id_forma_pagamento int not null,
@@ -85,12 +87,15 @@ create table pedido (
     valor_total numeric(10,2) check (valor_total >= 0),
     valor_desconto numeric(10,2) check (valor_desconto <= 50.00),
     observacao text not null,
-    prazo_entrega date check (prazo_entrega <= data + interval '30 dias'),
+    prazo_entrega date check (prazo_entrega <= current_date + interval '30 day'),
     constraint fk_pedido_cliente foreign key (id_cliente) references cliente(id_cliente),
     constraint fk_pedido_endereco foreign key (id_endereco_entrega) references endereco(id_endereco),
     constraint fk_pedido_pagamento foreign key (id_forma_pagamento) references forma_pagamento(id_forma_pagamento),
     constraint fk_pedido_usuario foreign key (id_usuario) references usuario(id_usuario)
 );
+
+alter table pedido
+    add constraint chk_observacao_not_empty check (trim(observacao) <> '');
 
 create table pedido_produto (
     id_pedido int not null,
@@ -108,11 +113,14 @@ create table nota_fiscal (
     data_emissao date default current_date,
     constraint fk_nf_pedido foreign key (id_pedido) references pedido(id_pedido)
 );
+select * from nota_fiscal;
 
-insert into cliente (nome, email, data_nascimento, observacao, nova_coluna) values
-('joão da silva', 'joao@email.com', '1985-05-12', 'cliente antigo', 'vip'),
-('maria oliveira', 'maria@email.com', '1990-10-22', 'compra frequentemente', 'gold'),
-('empresa abc ltda', 'contato@abc.com', null, 'cliente empresarial', 'pj');
+alter table cliente add column nova_coluna varchar(100);
+
+insert into cliente (nome, email, data_nascimento, data_cadastro, observacao, nova_coluna) values
+('Joao da Silva', 'joao@email.com', '1985-05-12', '2024-03-01', 'Cliente antigo', 'vip'),
+('Maria Oliveira', 'maria@email.com', '1990-10-22', '2024-03-05', 'Compra frequentemente', 'gold'),
+('Empresa ABC ltda', 'contato@abc.com', null, '2024-03-07', 'Cliente empresarial', 'pj');
 
 insert into pessoa_fisica (id_cliente, cpf) values
 (1, '123.456.789-00'),
@@ -132,9 +140,9 @@ insert into cliente_telefone (id_cliente, id_telefone) values
 (3, 3);
 
 insert into endereco (cep, logradouro, numero, cidade, estado, pais, complemento, bairro, referencia) values
-('01000-000', 'rua a', 123, 'são paulo', 'sp', 'brasil', 'apt 10', 'centro', 'próximo ao mercado'),
-('22000-000', 'avenida b', 456, 'rio de janeiro', 'rj', 'brasil', null, 'copacabana', null),
-('30100-000', 'rua c', 789, 'belo horizonte', 'mg', 'brasil', 'sala 3', 'centro', 'em frente ao banco');
+('01000-000', 'Rua A', 123, 'Sao Paulo', 'SP', 'Brasil', 'Apt 10', 'Centro', 'Proximo ao Mercado'),
+('22000-000', 'Avenida B', 456, 'Rio de Janeiro', 'RJ', 'Brasil', 'Apto 202', 'Copacabana', 'Proximo a Praia'),
+('30100-000', 'Rua C', 789, 'Belo Horizonte', 'MG', 'Brasil', 'Sala 3', 'Centro', 'Em frente ao Banco');
 
 insert into cliente_endereco (id_cliente, id_endereco) values
 (1, 1),
@@ -142,24 +150,24 @@ insert into cliente_endereco (id_cliente, id_endereco) values
 (3, 3);
 
 insert into usuario (nome, email) values
-('vendedor 1', 'vend1@email.com'),
-('vendedor 2', 'vend2@email.com'),
-('vendedor 3', 'vend3@email.com');
+('Vendedor 1', 'vend1@email.com'),
+('Vendedor 2', 'vend2@email.com'),
+('Vendedor 3', 'vend3@email.com');
 
 insert into forma_pagamento (tipo) values
-('avista'),
-('debito'),
-('credito');
+('Avista'),
+('Debito'),
+('Credito');
 
 insert into produto (codigo, descricao, peso) values
-('P001', 'produto a', 0.5),
-('P002', 'produto b', 1.2),
-('P003', 'produto c', 2.0);
+('P001', 'Produto A', 0.5),
+('P002', 'Produto B', 1.2),
+('P003', 'Produto C', 2.0);
 
 insert into pedido (numero, data, id_cliente, id_endereco_entrega, id_forma_pagamento, id_usuario, valor_total, valor_desconto, observacao, prazo_entrega) values
-('PED001', current_date, 1, 1, 1, 1, 100.00, 10.00, 'entregar no horário comercial', current_date + interval '5 days'),
-('PED002', current_date, 2, 2, 2, 2, 200.00, 20.00, 'urgente', current_date + interval '2 days'),
-('PED003', current_date, 3, 3, 3, 3, 300.00, 30.00, 'cliente especial', current_date + interval '7 days');
+('PED001', current_date, 1, 1, 1, 1, 100.00, 10.00, 'Entregar no horario comercial', current_date + interval '5 day'),
+('PED002', current_date, 2, 2, 2, 2, 200.00, 20.00, 'Urgente', current_date + interval '2 day'),
+('PED003', current_date, 3, 3, 3, 3, 300.00, 30.00, 'Cliente especial', current_date + interval '7 day');
 
 insert into pedido_produto (id_pedido, id_produto, quantidade, valor_venda) values
 (1, 1, 2, 25.00),
@@ -170,3 +178,5 @@ insert into nota_fiscal (id_pedido) values
 (1),
 (2),
 (3);
+
+select * from nota_fiscal;
