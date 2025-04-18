@@ -1,25 +1,27 @@
-package agenda;
+package agenda; // Define o pacote onde a classe está localizada
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader; // Para leitura de arquivos
+import java.io.BufferedWriter; // Para escrita em arquivos
+import java.io.File; // Representação de arquivos no sistema
+import java.io.FileReader; // Leitura de arquivos texto
+import java.io.FileWriter; // Escrita em arquivos texto
+import java.io.IOException; // Para tratamento de exceções de I/O
+import java.util.ArrayList; // Lista dinâmica
+import java.util.Comparator; // Comparador para ordenação
+import java.util.List; // Interface de listas
+import java.util.Scanner; // Leitura de entrada do usuário
 
 public class Persistencia {
 
-    private String arquivo;
+    private String arquivo; // Nome do arquivo utilizado pela agenda
 
+    // Construtor que define o nome do arquivo e tenta criá-lo se ainda não existir
     public Persistencia(String nomeArquivo) {
         this.arquivo = nomeArquivo;
         criarArquivo();
     }
 
+    // Método que tenta criar o arquivo
     public void criarArquivo() {
         try {
             File file = new File(arquivo);
@@ -31,6 +33,7 @@ public class Persistencia {
         }
     }
 
+    // Insere um novo contato no arquivo
     public void inserir(Contato contato) {
         try (BufferedWriter buffer = new BufferedWriter(new FileWriter(arquivo, true))) {
             buffer.write(contato.getNome() + ";" + contato.getTelefone() + ";" + contato.getEmail());
@@ -40,6 +43,7 @@ public class Persistencia {
         }
     }
 
+    // Lista todos os contatos presentes no arquivo
     public void listarContatos() {
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
             String linha;
@@ -53,6 +57,7 @@ public class Persistencia {
         }
     }
 
+    // Edita um contato com base no nome
     public void editar(String nome, Contato novo) {
         StringBuilder temp = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
@@ -75,6 +80,7 @@ public class Persistencia {
         }
     }
 
+    // Exclui um contato com base no nome informado
     public void excluir(String nome) {
         StringBuilder temp = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
@@ -96,6 +102,7 @@ public class Persistencia {
         }
     }
 
+    // Verifica se já existe um contato com o mesmo nome
     public boolean contatoJaExiste(String nome) {
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
             String linha;
@@ -111,6 +118,7 @@ public class Persistencia {
         return false;
     }
 
+    // Permite editar separadamente o nome, telefone ou e-mail de um contato
     public void editarCampoSeparado(String nome) {
         Scanner leia = new Scanner(System.in);
         StringBuilder temp = new StringBuilder();
@@ -154,6 +162,7 @@ public class Persistencia {
         }
     }
 
+    // Realiza busca parcial por nome
     public void buscarPorParteDoNome(String termo) {
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
             String linha;
@@ -173,6 +182,7 @@ public class Persistencia {
         }
     }
 
+    // Edita um contato com base no telefone
     public void editarPorTelefone(String telefone, Contato novo) {
         StringBuilder temp = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
@@ -195,6 +205,7 @@ public class Persistencia {
         }
     }
 
+    // Exclui um contato com base no telefone
     public void excluirPorTelefone(String telefone) {
         StringBuilder temp = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
@@ -216,6 +227,7 @@ public class Persistencia {
         }
     }
 
+    // Lista todos os contatos ordenados por nome
     public void listarOrdenado() {
         List<Contato> contatos = new ArrayList<>();
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo))) {
@@ -234,6 +246,7 @@ public class Persistencia {
         }
     }
 
+    // Exporta um backup do arquivo atual para um novo arquivo com prefixo "backup_"
     public void exportarBackup() {
         try (BufferedReader buffer = new BufferedReader(new FileReader(arquivo)); BufferedWriter backup = new BufferedWriter(new FileWriter("backup_" + arquivo))) {
             String linha;
@@ -247,6 +260,7 @@ public class Persistencia {
         }
     }
 
+    // Lista todos os arquivos .txt disponíveis no diretório atual
     public static void listarArquivosAgenda() {
         File pasta = new File(".");
         File[] arquivos = pasta.listFiles((dir, name) -> name.endsWith(".txt"));
