@@ -86,7 +86,7 @@ public class Teste {
                     String tel = leia.nextLine();
                     persistencia.excluirPorTelefone(tel);
                 }
-                case 9 -> persistencia.listarOrdenado();
+                case 9  -> persistencia.listarOrdenado();
                 case 10 -> persistencia.exportarBackup();
                 case 11 -> Persistencia.listarArquivosAgenda();
                 case 12 -> {
