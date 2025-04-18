@@ -41,7 +41,7 @@ public class Principal {
         persistencia.inserir(c); */
 
         //EXEMPLO LISTAR
-        Persistencia persistencia = new Persistencia("agenda.txt");
+        Persistencia persistencia = new Persistencia();
         persistencia.listarContatos();
 
     }
