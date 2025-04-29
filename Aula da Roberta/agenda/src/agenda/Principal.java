@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package agenda;
 
 import java.util.Scanner;
@@ -41,8 +37,8 @@ public class Principal {
         persistencia.inserir(c); */
 
         //EXEMPLO LISTAR
-        Persistencia persistencia = new Persistencia();
-        persistencia.listarContatos();
+        //Persistencia persistencia = new Persistencia();
+        //persistencia.listarContatos();
 
     }
 }

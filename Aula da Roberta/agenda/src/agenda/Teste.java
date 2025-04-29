@@ -75,18 +75,31 @@ public class Teste {
                 case 7 -> {
                     System.out.print("Telefone do contato: ");
                     String tel = leia.nextLine();
-                    Contato novo = new Contato();
-                    System.out.print("Novo nome: "); novo.setNome(leia.nextLine());
-                    System.out.print("Novo telefone: "); novo.setTelefone(leia.nextLine());
-                    System.out.print("Novo email: "); novo.setEmail(leia.nextLine());
-                    persistencia.editarPorTelefone(tel, novo);
+                    Contato novo = new Contato(); 
+                    System.out.print("Deseja alterar o nome? (s/n): ");
+                    if (leia.nextLine().equalsIgnoreCase("s")) {
+                        System.out.print("Novo nome: ");
+                        novo.setNome(leia.nextLine());
+                }
+                    System.out.print("Deseja alterar o telefone? (s/n): ");
+                    if (leia.nextLine().equalsIgnoreCase("s")) {
+                        System.out.print("Novo telefone: ");
+                        novo.setTelefone(leia.nextLine());
+                }
+                    System.out.print("Deseja alterar o email? (s/n): ");
+                    if (leia.nextLine().equalsIgnoreCase("s")) {
+                        System.out.print("Novo email: ");
+                        novo.setEmail(leia.nextLine());
+                }
+                persistencia.editarPorTelefone(tel, novo);
+                System.out.println("Edição concluída.");
                 }
                 case 8 -> {
                     System.out.print("Telefone do contato: ");
                     String tel = leia.nextLine();
                     persistencia.excluirPorTelefone(tel);
                 }
-                case 9 -> persistencia.listarOrdenado();
+                case 9  -> persistencia.listarOrdenado();
                 case 10 -> persistencia.exportarBackup();
                 case 11 -> Persistencia.listarArquivosAgenda();
                 case 12 -> {
