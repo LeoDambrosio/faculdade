@@ -5,6 +5,13 @@
       "type": "java",
       "name": "Principal",
       "request": "launch",
+      "mainClass": "Polimosfismo.src.br.com.leonardovieira.exercicio1.Principal",
+      "projectName": "faculdade_930dee80"
+    },
+    {
+      "type": "java",
+      "name": "Principal",
+      "request": "launch",
       "mainClass": "Lista3.src.br.com.leonardovieira.exercicio6.Principal",
       "projectName": "faculdade_930dee80"
     },
