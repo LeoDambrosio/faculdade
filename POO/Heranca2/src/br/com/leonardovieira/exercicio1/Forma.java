@@ -1,5 +1,3 @@
-package br.com.leonadovieira.exercicio1;
-
 public abstract class Forma {
     public abstract double calcularArea();
 
@@ -8,7 +6,6 @@ public abstract class Forma {
         return "Forma Genérica";
     }
 }
-
 
 class Retangulo extends Forma {
     double lado1, lado2;
@@ -57,11 +54,23 @@ class Circulo extends Forma {
 
     @Override
     public double calcularArea() {
-        return 3.14 * raio * raio; // corrigido: é área, não circunferência
+        return 3.14 * raio * raio;
     }
 
     @Override
     public String toString() {
         return "Círculo com raio " + raio + " - Área: " + calcularArea();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Forma circulo = new Circulo(5.0);
+        Forma triangulo = new Triangulo(4.0, 3.0);
+        Forma retangulo = new Retangulo(6.0, 2.0);
+
+        System.out.println(circulo);
+        System.out.println(triangulo);
+        System.out.println(retangulo);
     }
 }
