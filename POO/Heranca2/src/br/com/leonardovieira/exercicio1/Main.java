@@ -1,4 +1,4 @@
-package heranca2.src.br.com.leonadovieira.exercicio1;
+package br.com.leonadovieira.exercicio1;
 
 public class Main {
     public static void main(String[] args) {

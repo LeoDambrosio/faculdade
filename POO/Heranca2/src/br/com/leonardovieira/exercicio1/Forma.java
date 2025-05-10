@@ -1,4 +1,4 @@
-package heranca2.src.br.com.leonadovieira.exercicio1;
+package br.com.leonadovieira.exercicio1;
 
 public abstract class Forma {
     public abstract double calcularArea();
