@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main2",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio1.Main2",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "JavaPoo",
       "request": "launch",
       "mainClass": "JavaPoo",

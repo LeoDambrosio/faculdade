@@ -1,6 +1,6 @@
 package br.com.leonardovieira.exercicio1;
 
-public class Main {
+public class Main2 {
     public static void main(String[] args) {
         Forma circulo = new Circulo(5.0);
         Forma triangulo = new Triangulo(4.0, 3.0);
