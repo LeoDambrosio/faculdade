@@ -1,7 +1,6 @@
 package br.com.leonardovieira.exercicio1;
 
-public class Gerente {
-    public class Gerente extends Funcionario {
+public class Gerente extends Funcionario {
     private double bonus;
 
     public Gerente(String nome, double salarioBase, double bonus) {
@@ -12,6 +11,5 @@ public class Gerente {
     @Override
     public double calcularSalarioTotal() {
         return salarioBase + bonus;
-        }
     }
 }
