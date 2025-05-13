@@ -3,6 +3,12 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Pricipal",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio2.Pricipal"
+    },
+    {
+      "type": "java",
       "name": "Main2",
       "request": "launch",
       "mainClass": "br.com.leonardovieira.exercicio1.Main2",
