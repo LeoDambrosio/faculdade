@@ -3,6 +3,52 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Pricipal",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio2.Pricipal"
+    },
+    {
+      "type": "java",
+      "name": "Main2",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio1.Main2",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "JavaPoo",
+      "request": "launch",
+      "mainClass": "JavaPoo",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Main$Main",
+      "request": "launch",
+      "mainClass": "Main$Main",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio1.Main",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main"
+    },
+    {
+      "type": "java",
+      "name": "Principal",
+      "request": "launch",
+      "mainClass": "br.com.leonardovieira.exercicio1.Principal"
+    },
+    {
+      "type": "java",
       "name": "Principal",
       "request": "launch",
       "mainClass": "Polimosfismo.src.br.com.leonardovieira.exercicio1.Principal",
