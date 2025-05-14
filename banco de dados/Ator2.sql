@@ -115,28 +115,34 @@ create table genero_filme(
 drop table gereno_filme;
 INSERT INTO genero (nome) VALUES
 ('Comédia'),('Aventura'),('Ação'),('Drama'),('Terror'),('Ficção Científica'),('Romance'),('Animação');
+INSERT INTO genero_filme (id_genero, idfilme) VALUES
+(1, 1);
+INSERT INTO genero_filme  (id_genero, idfilme) VALUES
+(2, 2);
+INSERT INTO genero_filme  (id_genero, idfilme) VALUES
+(3, 3);
 
 --6
-select f.nome as nome_filme, d.nome as nome_diretor, g.nome as genero
+select d.nome as nome_diretor, g.nome as genero, f.nome as filme
 from filme f
 inner join diretor_filme df on f.idfilme = df.idfilme
 inner join diretor d on df.id_diretor = d.id_diretor
 inner join genero_filme fg on f.idfilme = fg.idfilme
 inner join genero g on fg.id_genero = g.id_genero
-order by f.nome, d.nome, g.nome;
-
+order by d.nome, g.nome
+	
 --7
 create table diretor_cache (
-  id serial primary key,
+  id_diretor_cache serial primary key,
   id_diretor int,
   cache int,
-  constraint fk_diretor foreign key (id_diretor) references diretor(id)
+  constraint fk_diretor foreign key (id_diretor) references diretor(id_diretor)
 );
 insert into diretor_cache (id_diretor, cache)
 values (1, 10000), (2, 8000), (3, 9000);
 
 --8
-select f.nome as nome_filme, a.nome as nome_ator
+select a.nome as nome_ator
 from filme f
 cross join ator a;
 
