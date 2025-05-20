@@ -1,7 +1,12 @@
-public class Principal {
-    public static void main(String[] args){
-        Animal a = new Animal();
+package br.com.leonardovieira.Interface.Exemplo1;
 
-        a.mover();
+public class Principal {
+    public static void main(String[] args) {
+        ContaBancaria conta = new ContaBancaria();
+
+        conta.depositar(500);
+        conta.sacar(200);
+        conta.consultarSaldo();
+        conta.gerarRelatorio();
     }
 }

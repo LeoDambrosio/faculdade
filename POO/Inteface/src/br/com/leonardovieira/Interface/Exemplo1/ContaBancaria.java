@@ -1,3 +1,5 @@
+package br.com.leonardovieira.Interface.Exemplo1;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,6 @@ public class ContaBancaria implements OperacoesBancarias, Notificacoes, Relatori
 
     }
 
-    @Override
     public void gerarRelatorio() {
         System.out.println("Relatório de Transações:");
         for (String transacao : historicoTransacoes) {

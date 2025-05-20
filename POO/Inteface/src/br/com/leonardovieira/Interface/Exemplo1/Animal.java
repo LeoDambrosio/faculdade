@@ -1,3 +1,5 @@
+package br.com.leonardovieira.Interface.Exemplo1;
+
 public class Animal implements SerVivo{
      public Animal() {
     }
