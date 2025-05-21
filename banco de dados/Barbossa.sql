@@ -1,0 +1,404 @@
+create table pais (
+    id_pais serial primary key,
+    nome varchar(100),
+    sigla varchar(10)
+);
+
+create table estado (
+    id_estado serial primary key,
+    nome varchar(100),
+    sigla varchar(10),
+    id_pais int,
+    constraint fk_estado_pais foreign key (id_pais) references pais(id_pais)
+);
+
+create table cidade (
+    id_cidade serial primary key,
+    nome varchar(100),
+    inscricaoestadual int,
+    id_estado int,
+    constraint fk_cidade_estado foreign key (id_estado) references estado(id_estado)
+);
+
+create table usuario (
+    id_usuario serial primary key,
+    nome varchar(255),
+    email varchar(255),
+    observacao varchar(255),
+    idnativo bit
+);
+
+create table parceiro (
+    id_parceiro serial primary key,
+    documento int,
+    nome varchar(255),
+    nomefantasia varchar(255),
+    observacao varchar(255),
+    idnativo bit
+);
+
+create table endereco (
+    id_endereco serial primary key,
+    logradouro varchar(255),
+    numero int,
+    cep int,
+    complemento varchar(255),
+    id_usuario int,
+    id_parceiro int,
+    id_cidade int,
+    idnativo bit,
+    constraint fk_endereco_usuario foreign key (id_usuario) references usuario(id_usuario),
+    constraint fk_endereco_parceiro foreign key (id_parceiro) references parceiro(id_parceiro),
+    constraint fk_endereco_cidade foreign key (id_cidade) references cidade(id_cidade)
+);
+
+create table telefone (
+    id_telefone serial primary key,
+    numero int,
+    id_usuario int,
+    id_parceiro int,
+    idnativo bit,
+    constraint fk_telefone_usuario foreign key (id_usuario) references usuario(id_usuario),
+    constraint fk_telefone_parceiro foreign key (id_parceiro) references parceiro(id_parceiro)
+);
+
+create table produto (
+    id_produto serial primary key,
+    codigo int,
+    descricao varchar(255),
+    observacao varchar(255),
+    peso real
+);
+
+create table condicaopagamento (
+    id_condicaopagamento serial primary key,
+    descricao varchar(255),
+    codigo int,
+    observacao varchar(255)
+);
+
+create table tabelapreco (
+    id_tabelapreco serial primary key,
+    descricao varchar(200),
+    descontomaximo reaL,
+    codigo int,
+    iniciovigencia date,
+    fimvigencia date,
+    idnativo bit
+);
+
+create table tabelaprecoproduto (
+    id_tabelaprecoproduto serial primary key,
+    id_tabelapreco int,
+    id_produto int,
+    preco real,
+    constraint fk_tpp_tabela foreign key (id_tabelapreco) references tabelapreco(id_tabelapreco),
+    constraint fk_tpp_produto foreign key (id_produto) references produto(id_produto)
+);
+
+create table pedido (
+    id_pedido serial primary key,
+    numero int,
+    valortotal real,
+    quantidadeprodutos real,
+    observacao varchar(255),
+    id_tabelapreco int,
+    id_condicaopagamento int,
+    id_parceiro int,
+    id_usuario int,
+    data timestamp,
+    constraint fk_pedido_tabelapreco foreign key (id_tabelapreco) references tabelapreco(id_tabelapreco),
+    constraint fk_pedido_pagamento foreign key (id_condicaopagamento) references condicaopagamento(id_condicaopagamento),
+    constraint fk_pedido_parceiro foreign key (id_parceiro) references parceiro(id_parceiro),
+    constraint fk_pedido_usuario foreign key (id_usuario) references usuario(id_usuario)
+);
+
+create table pedidoproduto (
+    id_pedidoproduto serial primary key,
+    id_pedido int,
+    id_produto int,
+    valor real,
+    quantidade real,
+    constraint fk_pedidoproduto_pedido foreign key (id_pedido) references pedido(id_pedido),
+    constraint fk_pedidoproduto_produto foreign key (id_produto) references produto(id_produto)
+);
+
+insert into pais (nome, sigla) values('Brasil', 'BR'),
+	('Argentina', 'AR'),
+	('Estados Unidos', 'US'),
+	('Canadá', 'CA'),
+	('México', 'MX'),
+	('Alemanha', 'DE'),
+	('França', 'FR'),
+	('Reino Unido', 'GB'),
+	('Itália', 'IT'),
+	('Espanha', 'ES'),
+	('Portugal', 'PT'),
+	('Japão', 'JP'),
+	('China', 'CN'),
+	('Coreia do Sul', 'KR'),
+	('Índia', 'IN'),
+	('Austrália', 'AU'),
+	('Nova Zelândia', 'NZ'),
+	('África do Sul', 'ZA'),
+	('Egito', 'EG'),
+	('Rússia', 'RU'),
+	('Suécia', 'SE'),
+	('Noruega', 'NO'),
+	('Finlândia', 'FI'),
+	('Holanda', 'NL'),
+	('Suíça', 'CH');
+
+insert into estado (nome, sigla) values('Acre', 'AC'),
+	('Alagoas', 'AL'),
+	('Amapá', 'AP'),
+	('Amazonas', 'AM'),
+	('Bahia', 'BA'),
+	('Ceará', 'CE'),
+	('Distrito Federal', 'DF'),
+	('Espírito Santo', 'ES'),
+	('Goiás', 'GO'),
+	('Maranhão', 'MA'),
+	('Mato Grosso', 'MT'),
+	('Mato Grosso do Sul', 'MS'),
+	('Minas Gerais', 'MG'),
+	('Pará', 'PA'),
+	('Paraíba', 'PB'),
+	('Paraná', 'PR'),
+	('Pernambuco', 'PE'),
+	('Piauí', 'PI'),
+	('Rio de Janeiro', 'RJ'),
+	('Rio Grande do Norte', 'RN'),
+	('Rio Grande do Sul', 'RS'),
+	('Rondônia', 'RO'),
+	('Roraima', 'RR'),
+	('Santa Catarina', 'SC'),
+	('São Paulo', 'SP'),
+	('Sergipe', 'SE'),
+	('Tocantins', 'TO');
+
+insert into cidade (nome, inscricaoestadual) values('Londrina', '01'),
+	('Maringá', '02'),
+	('Ponta Grossa', '03'),
+	('Cascavel', '04'),
+	('Foz do Iguaçu', '05'),
+	('Guarapuava', '06'),
+	('Paranaguá', '07'),
+	('São José dos Pinhais', '08'),
+	('Colombo', '09'),
+	('Araucária', '10'),
+	('Apucarana', '11'),
+	('Toledo', '12'),
+	('Campo Largo', '13'),
+	('Cianorte', '14'),
+	('Palmas', '15'),
+	('Almirante Tamandaré', '16'),
+	('Araruna', '17'),
+	('Pato Branco', '18'),
+	('União da Vitória', '19'),
+	('Telêmaco Borba', '20'),
+	('Jacarezinho', '21'),
+	('Irati', '22'),
+	('São Mateus do Sul', '23'),
+	('Quatro Barras', '24'),
+	('Curitiba', '25');
+
+insert into usuario (nome, email, observacao) values('Ana Silva', 'ana.silva@email.com', 'Usuária ativa'),
+	('Bruno Souza', 'bruno.souza@email.com', 'Usuário novo'),
+	('Carlos Lima', 'carlos.lima@email.com', 'Inativo'),
+	('Daniela Alves', 'daniela.alves@email.com', 'Administrador'),
+	('Eduardo Mendes', 'eduardo.mendes@email.com', 'Usuário padrão'),
+	('Fernanda Costa', 'fernanda.costa@email.com', 'Usuária ativa'),
+	('Gabriel Rocha', 'gabriel.rocha@email.com', 'Usuário premium'),
+	('Helena Martins', 'helena.martins@email.com', 'Usuária inativa'),
+	('Igor Ferreira', 'igor.ferreira@email.com', 'Usuário novo'),
+	('Juliana Pereira', 'juliana.pereira@email.com', 'Usuária ativa'),
+	('Kleber Santos', 'kleber.santos@email.com', 'Administrador'),
+	('Larissa Almeida', 'larissa.almeida@email.com', 'Usuária padrão'),
+	('Marcelo Oliveira', 'marcelo.oliveira@email.com', 'Usuário ativo'),
+	('Natália Dias', 'natalia.dias@email.com', 'Usuária premium'),
+	('Otávio Carvalho', 'otavio.carvalho@email.com', 'Usuário novo'),
+	('Patrícia Ribeiro', 'patricia.ribeiro@email.com', 'Usuária ativa'),
+	('Quésia Nunes', 'quesia.nunes@email.com', 'Usuária inativa'),
+	('Rafael Barbosa', 'rafael.barbosa@email.com', 'Usuário padrão'),
+	('Sabrina Gonçalves', 'sabrina.goncalves@email.com', 'Usuária ativa'),
+	('Tiago Pinto', 'tiago.pinto@email.com', 'Usuário novo'),
+	('Úrsula Fernandes', 'ursula.fernandes@email.com', 'Usuária premium'),
+	('Vítor Santos', 'vitor.santos@email.com', 'Usuário ativo'),
+	('Wagner Lima', 'wagner.lima@email.com', 'Administrador'),
+	('Xênia Castro', 'xenia.castro@email.com', 'Usuária padrão'),
+	('Yuri Moreira', 'yuri.moreira@email.com', 'Usuário novo');
+
+insert into parceiro (documento, nome, nomefantasia, observacao) values('12.345.678/0001-90', 'Empresa Alpha LTDA', 'Alpha', 'Parceiro estratégico'),
+	('98.765.432/0001-10', 'Beta Comércio SA', 'Beta', 'Fornecedor principal'),
+	('23.456.789/0001-01', 'Gama Serviços ME', 'Gama Serviços', 'Parceiro de logística'),
+	('34.567.890/0001-12', 'Delta Tecnologia Ltda', 'Delta Tech', 'Desenvolvedor de software'),
+	('45.678.901/0001-23', 'Epsilon Distribuidora', 'Epsilon', 'Distribuidor oficial'),
+	('56.789.012/0001-34', 'Zeta Importações', 'Zeta Import', 'Importador exclusivo'),
+	('67.890.123/0001-45', 'Eta Consultoria', 'Eta Consult', 'Consultoria financeira'),
+	('78.901.234/0001-56', 'Teta Construções', 'Teta Construções', 'Construtora parceira'),
+	('89.012.345/0001-67', 'Iota Marketing', 'Iota MKT', 'Agência de marketing'),
+	('90.123.456/0001-78', 'Kappa Transportes', 'Kappa Trans', 'Transportadora'),
+	('01.234.567/0001-89', 'Lambda Engenharia', 'Lambda Eng', 'Engenharia civil'),
+	('12.345.678/0001-11', 'Mu Indústrias', 'Mu Indústria', 'Fornecedor de peças'),
+	('23.456.789/0001-22', 'Nu Saúde', 'Nu Saúde', 'Clínica parceira'),
+	('34.567.890/0001-33', 'Xi Alimentação', 'Xi Foods', 'Fornecedor de alimentos'),
+	('45.678.901/0001-44', 'Omicron Educação', 'Omicron Edu', 'Parceiro educacional'),
+	('56.789.012/0001-55', 'Pi Serviços Gerais', 'Pi Serviços', 'Limpeza e conservação'),
+	('67.890.123/0001-66', 'Rho Segurança', 'Rho Seg', 'Segurança patrimonial'),
+	('78.901.234/0001-77', 'Sigma Telecom', 'Sigma Tel', 'Provedor de internet'),
+	('89.012.345/0001-88', 'Tau Eventos', 'Tau Eventos', 'Organização de eventos'),
+	('90.123.456/0001-99', 'Upsilon Transporte', 'Upsilon Trans', 'Transporte urbano'),
+	('01.234.567/0001-00', 'Phi Automóveis', 'Phi Auto', 'Revenda de veículos'),
+	('12.345.678/0001-21', 'Chi Alimentação', 'Chi Foods', 'Distribuição de alimentos'),
+	('23.456.789/0001-32', 'Psi Tecnologia', 'Psi Tech', 'Desenvolvimento de apps'),
+	('34.567.890/0001-43', 'Omega Serviços', 'Omega Serv', 'Serviços gerais'),
+	('45.678.901/0001-54', 'Alpha Beta Ltda', 'AlphaBeta', 'Parceiro comercial');
+
+insert into endereco (logradouro, numero, cep) values('Rua das Flores', '123', '80000-000'),
+	('Avenida Brasil', '456', '80010-001'),
+	('Rua XV de Novembro', '789', '80020-002'),
+	('Travessa da Paz', '101', '80030-003'),
+	('Alameda das Acácias', '202', '80040-004'),
+	('Rua do Comércio', '303', '80050-005'),
+	('Avenida Paraná', '404', '80060-006'),
+	('Rua São João', '505', '80070-007'),
+	('Avenida Getúlio Vargas', '606', '80080-008'),
+	('Rua dos Andradas', '707', '80090-009'),
+	('Rua Marechal Floriano', '808', '80100-010'),
+	('Rua João Pessoa', '909', '80110-011'),
+	('Avenida Sete de Setembro', '111', '80120-012'),
+	('Rua Barão do Rio Branco', '222', '80130-013'),
+	('Travessa Oliveira', '333', '80140-014'),
+	('Rua Santa Catarina', '444', '80150-015'),
+	('Avenida República', '555', '80160-016'),
+	('Rua Fernando de Noronha', '666', '80170-017'),
+	('Rua Castro Alves', '777', '80180-018'),
+	('Rua Miguel Couto', '888', '80190-019'),
+	('Rua Dom Pedro II', '999', '80200-020'),
+	('Avenida das Américas', '112', '80210-021'),
+	('Rua Vitória Régia', '223', '80220-022'),
+	('Rua Monte Castelo', '334', '80230-023'),
+	('Rua Primavera', '445', '80240-024');
+
+insert into telefone (numero) values('45 91234-5678'),
+	('45 99876-5432'),
+	('45 98765-4321'),
+	('45 97654-3210'),
+	('45 96543-2109'),
+	('45 95432-1098'),
+	('45 94321-0987'),
+	('45 93210-9876'),
+	('45 92109-8765'),
+	('45 91098-7654'),
+	('45 99999-9999'),
+	('45 98888-8888'),
+	('45 97777-7777'),
+	('45 96666-6666'),
+	('45 95555-5555'),
+	('45 94444-4444'),
+	('45 93333-3333'),
+	('45 92222-2222'),
+	('45 91111-1111'),
+	('45 90000-0000'),
+	('45 91212-1212'),
+	('45 92323-2323'),
+	('45 93434-3434'),
+	('45 94545-4545'),
+	('45 95656-5656');
+
+insert into produto (codigo, descricao, observacao) values('P001', 'Camiseta Branca', 'Tamanho M'),
+	('P002', 'Calça Jeans', 'Tamanho 40'),
+	('P003', 'Tênis Esportivo', 'Cor preta'),
+	('P004', 'Jaqueta de Couro', 'Modelo unissex'),
+	('P005', 'Mochila Escolar', 'Capacidade 30L'),
+	('P006', 'Fone de Ouvido', 'Bluetooth 5.0'),
+	('P007', 'Mouse Gamer', 'RGB, 6 botões'),
+	('P008', 'Teclado Mecânico', 'Switch azul'),
+	('P009', 'Monitor LED 24"', 'Full HD'),
+	('P010', 'Notebook 15"', '8GB RAM, SSD 256GB'),
+	('P011', 'Smartphone X', '128GB, Dual Chip'),
+	('P012', 'Copo Térmico', '500ml, inox'),
+	('P013', 'Garrafa de Água', 'Plástico BPA Free'),
+	('P014', 'Caderno Universitário', '100 folhas'),
+	('P015', 'Caneta Esferográfica', 'Azul, ponta fina'),
+	('P016', 'Lápis Preto', 'Grafite HB'),
+	('P017', 'Borracha Escolar', 'Branca, macia'),
+	('P018', 'Mochila Executiva', 'Com porta USB'),
+	('P019', 'Relógio Digital', 'Resistente à água'),
+	('P020', 'Caixa de Som Bluetooth', '10W, portátil'),
+	('P021', 'Carregador Turbo', '20W, USB-C'),
+	('P022', 'Cabo USB', '1 metro, tipo C'),
+	('P023', 'Pendrive 64GB', 'USB 3.0'),
+	('P024', 'HD Externo 1TB', 'Portátil, USB 3.1'),
+	('P025', 'Webcam Full HD', 'Com microfone');
+
+insert into condicaopagamento (descricao, codigo) values('À vista no boleto', 'CP01'),
+	('À vista no cartão', 'CP02'),
+	('2x sem juros', 'CP03'),
+	('3x sem juros', 'CP04'),
+	('4x sem juros', 'CP05'),
+	('5x sem juros', 'CP06'),
+	('6x sem juros', 'CP07'),
+	('7x com juros', 'CP08'),
+	('8x com juros', 'CP09'),
+	('9x com juros', 'CP10'),
+	('10x com juros', 'CP11'),
+	('30 dias', 'CP12'),
+	('30/60 dias', 'CP13'),
+	('30/60/90 dias', 'CP14'),
+	('Cheque pré-datado', 'CP15'),
+	('Pix à vista', 'CP16'),
+	('Depósito bancário', 'CP17'),
+	('Cartão de débito', 'CP18'),
+	('Crédito 14 dias', 'CP19'),
+	('Crédito 30 dias', 'CP20'),
+	('Crédito 45 dias', 'CP21'),
+	('Crédito 60 dias', 'CP22'),
+	('Crédito 90 dias', 'CP23'),
+	('Parcelado no boleto', 'CP24'),
+	('Parcelado com entrada', 'CP25');
+
+insert into tabelapreco (descricao, descontomaximo, codigo, iniciovigencia, fimvigencia) values('Tabela Padrão', '5%', 'TP001', '2025-01-01', '2025-12-31'),
+	('Promoção Verão', '10%', 'TP002', '2025-01-15', '2025-03-31'),
+	('Liquidação Inverno', '15%', 'TP003', '2025-06-01', '2025-08-31'),
+	('Feira de Negócios', '12%', 'TP004', '2025-05-10', '2025-05-20'),
+	('Tabela VIP', '8%', 'TP005', '2025-01-01', '2025-12-31'),
+	('Desconto Atacado', '20%', 'TP006', '2025-01-01', '2025-12-31'),
+	('Black Friday', '25%', 'TP007', '2025-11-25', '2025-11-30'),
+	('Cyber Monday', '22%', 'TP008', '2025-12-01', '2025-12-01'),
+	('Natal Premiado', '18%', 'TP009', '2025-12-10', '2025-12-25'),
+	('Ano Novo', '10%', 'TP010', '2025-12-26', '2026-01-05'),
+	('Clientes Ouro', '7%', 'TP011', '2025-01-01', '2025-12-31'),
+	('Clientes Prata', '5%', 'TP012', '2025-01-01', '2025-12-31'),
+	('Clientes Bronze', '3%', 'TP013', '2025-01-01', '2025-12-31'),
+	('Tabela Regional Sul', '6%', 'TP014', '2025-02-01', '2025-08-31'),
+	('Tabela Regional Norte', '6%', 'TP015', '2025-02-01', '2025-08-31'),
+	('Tabela Regional Leste', '6%', 'TP016', '2025-02-01', '2025-08-31'),
+	('Tabela Regional Oeste', '6%', 'TP017', '2025-02-01', '2025-08-31'),
+	('Tabela Escolar', '9%', 'TP018', '2025-01-05', '2025-03-15'),
+	('Tabela Universitária', '11%', 'TP019', '2025-02-01', '2025-06-30'),
+	('Feirão de Fábrica', '17%', 'TP020', '2025-07-01', '2025-07-15'),
+	('Revenda Parceira', '13%', 'TP021', '2025-01-01', '2025-12-31'),
+	('Tabela Varejo', '5%', 'TP022', '2025-01-01', '2025-12-31'),
+	('Tabela E-commerce', '7%', 'TP023', '2025-01-01', '2025-12-31'),
+	('Tabela Corporativa', '10%', 'TP024', '2025-01-01', '2025-12-31'),
+	('Tabela Especial', '15%', 'TP025', '2025-03-01', '2025-09-30');
+
+insert into tabelaprecoproduto (preco) values('19.90'), ('29.99'), ('39.50'), ('49.00'), ('59.99'), ('24.75'), ('34.20'), ('44.90'), ('54.10'), ('64.80'), ('15.00'), ('25.99'),
+	('35.40'), ('45.60'), ('55.55'), ('12.90'), ('22.22'), ('32.32'), ('42.42'), ('52.52'), ('18.49'), ('28.59'), ('38.69'), ('48.79'), ('58.89');
+
+insert into pedido 
+--Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
+
+select 
+    u.nome as nome_usuario,
+    u.email,
+    e.logradouro,
+    e.numero,
+    e.cep,
+    e.complemento,
+    t.numero as telefone
+from usuario u
+left join endereco e on u.id_usuario = e.id_usuario
+left join telefone t on u.id_usuario = t.id_usuario;
