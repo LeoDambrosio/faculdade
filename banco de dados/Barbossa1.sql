@@ -487,4 +487,9 @@ select
     t.numero as telefone
 from usuario u
 left join endereco e on u.id_usuario = e.id_usuario
+<<<<<<< HEAD
 left join telefone t on u.id_usuario = t.id_usuario;
+=======
+left join telefone t on u.id_usuario = t.id_usuario;
+
+>>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956

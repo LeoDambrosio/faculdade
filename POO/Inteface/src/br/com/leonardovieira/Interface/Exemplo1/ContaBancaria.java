@@ -44,6 +44,7 @@ public class ContaBancaria implements OperacoesBancarias, Notificacoes, Relatori
 
     }
 
+    @Override
     public void gerarRelatorio() {
         System.out.println("Relatório de Transações:");
         for (String transacao : historicoTransacoes) {
