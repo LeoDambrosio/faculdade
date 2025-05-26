@@ -19,7 +19,7 @@ create table cidade (
     id_estado int,
     constraint fk_cidade_estado foreign key (id_estado) references estado(id_estado)
 );
-
+drop table cidade;
 create table usuario (
     id_usuario serial primary key,
     nome varchar(255),
@@ -30,7 +30,7 @@ create table usuario (
 
 create table parceiro (
     id_parceiro serial primary key,
-    documento varchar(200),
+    documento int,
     nome varchar(255),
     nomefantasia varchar(255),
     observacao varchar(255),
@@ -54,7 +54,7 @@ create table endereco (
 
 create table telefone (
     id_telefone serial primary key,
-    numero bigint,
+    numero int,
     id_usuario int,
     id_parceiro int,
     idnativo bit,
@@ -73,9 +73,12 @@ create table produto (
 create table condicaopagamento (
     id_condicaopagamento serial primary key,
     descricao varchar(255),
-    codigo varchar(200),
+    codigo int,
     observacao varchar(255)
 );
+
+alter table condicaopagamento
+alter column codigo type varchar(200);
 
 create table tabelapreco (
     id_tabelapreco serial primary key,
@@ -258,6 +261,9 @@ INSERT INTO parceiro (id_parceiro, documento, nome, nomefantasia, observacao, id
 (24, '34567890000143', 'Omega Serviços', 'Omega Serv', 'Serviços gerais', B'1'),
 (25, '45678901000154', 'Alpha Beta Ltda', 'AlphaBeta', 'Parceiro comercial', B'0');
 
+ALTER TABLE parceiro
+ALTER COLUMN documento TYPE varchar(200);
+
 INSERT INTO endereco (id_endereco, logradouro, numero, cep, complemento, id_usuario, id_parceiro, id_cidade, idnativo) VALUES
 (1, 'Rua das Flores', 123, 80000000, 'Casa', 1, NULL, 1, B'1'),
 (2, 'Avenida Brasil', 456, 80010001, 'Apto 101', 2, NULL, 2, B'1'),
@@ -311,6 +317,9 @@ INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VA
 (23, '41934343434', NULL, 11, B'0'),
 (24, '41945454545', NULL, 12, B'0'),
 (25, '41956565656', NULL, 13, B'0');
+
+alter table telefone
+alter column numero type varchar(200);
 
 INSERT INTO produto (id_produto, codigo, descricao, observacao, peso) VALUES
 (1, 1001, 'Camiseta Branca', 'Tamanho M', 0.2),
@@ -474,22 +483,19 @@ INSERT INTO pedidoproduto (id_pedidoproduto, id_pedido, id_produto, valor, quant
 (24, 24, 24, 33.33, 4),
 (25, 25, 25, 70.00, 1);
 
---1)Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, 
---seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
---não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
-select 
-    u.nome as nome_usuario,
-    u.email,
-    e.logradouro,
-    e.numero,
-    e.cep,
-    e.complemento,
-    t.numero as telefone
-from usuario u
-left join endereco e on u.id_usuario = e.id_usuario
-<<<<<<< HEAD
-left join telefone t on u.id_usuario = t.id_usuario;
-=======
-left join telefone t on u.id_usuario = t.id_usuario;
+--3 – Crie uma query para trazer todas as tabelas de preço ativas, que
+--estão vigentes que possua algum produto associado a tal tabela que
+--seja com um peso maior que X e que tenha sido utilizado em um
+--pedido para o parceiro X.
 
->>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956
+select distinct tp.*
+from tabela_preco tp
+inner join tabela_preco_produto tpp on tp.id = tpp.tabela_preco_id
+inner join produto p on p.id = tpp.produto_id
+inner join item_pedido ip on ip.produto_id = p.id
+inner join pedido ped on ped.id = ip.pedido_id
+where tp.status = 'ativo'
+  and tp.data_inicio <= current_date
+  and (tp.data_fim is null or tp.data_fim >= current_date)
+  and p.peso > :peso_minimo
+  and ped.parceiro_id = :parceiro_id;

@@ -494,9 +494,16 @@ select
     pa.nome as pais,
     pa.sigla as sigla_pais
 from parceiro p
+<<<<<<< HEAD
+inner join endereco ed on p.id_parceiro = ed.id_parceiro
+inner join cidade c on ed.id_cidade = c.id_cidade
+inner join estado e on c.id_estado = e.id_estado
+inner join pais pa on e.id_pais = pa.id_pais;
+=======
 join endereco ed on p.id_parceiro = ed.id_parceiro
 join cidade c on ed.id_cidade = c.id_cidade
 join estado e on c.id_estado = e.id_estado
 join pais pa on e.id_pais = pa.id_pais;
+>>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956
 
 select * from endereco where id_parceiro is not null;

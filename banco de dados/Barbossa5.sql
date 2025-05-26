@@ -19,7 +19,7 @@ create table cidade (
     id_estado int,
     constraint fk_cidade_estado foreign key (id_estado) references estado(id_estado)
 );
-
+drop table cidade;
 create table usuario (
     id_usuario serial primary key,
     nome varchar(255),
@@ -30,7 +30,7 @@ create table usuario (
 
 create table parceiro (
     id_parceiro serial primary key,
-    documento varchar(200),
+    documento int,
     nome varchar(255),
     nomefantasia varchar(255),
     observacao varchar(255),
@@ -54,7 +54,7 @@ create table endereco (
 
 create table telefone (
     id_telefone serial primary key,
-    numero bigint,
+    numero int,
     id_usuario int,
     id_parceiro int,
     idnativo bit,
@@ -73,9 +73,12 @@ create table produto (
 create table condicaopagamento (
     id_condicaopagamento serial primary key,
     descricao varchar(255),
-    codigo varchar(200),
+    codigo int,
     observacao varchar(255)
 );
+
+alter table condicaopagamento
+alter column codigo type varchar(200);
 
 create table tabelapreco (
     id_tabelapreco serial primary key,
@@ -258,6 +261,9 @@ INSERT INTO parceiro (id_parceiro, documento, nome, nomefantasia, observacao, id
 (24, '34567890000143', 'Omega Serviços', 'Omega Serv', 'Serviços gerais', B'1'),
 (25, '45678901000154', 'Alpha Beta Ltda', 'AlphaBeta', 'Parceiro comercial', B'0');
 
+ALTER TABLE parceiro
+ALTER COLUMN documento TYPE varchar(200);
+
 INSERT INTO endereco (id_endereco, logradouro, numero, cep, complemento, id_usuario, id_parceiro, id_cidade, idnativo) VALUES
 (1, 'Rua das Flores', 123, 80000000, 'Casa', 1, NULL, 1, B'1'),
 (2, 'Avenida Brasil', 456, 80010001, 'Apto 101', 2, NULL, 2, B'1'),
@@ -311,6 +317,9 @@ INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VA
 (23, '41934343434', NULL, 11, B'0'),
 (24, '41945454545', NULL, 12, B'0'),
 (25, '41956565656', NULL, 13, B'0');
+
+alter table telefone
+alter column numero type varchar(200);
 
 INSERT INTO produto (id_produto, codigo, descricao, observacao, peso) VALUES
 (1, 1001, 'Camiseta Branca', 'Tamanho M', 0.2),
@@ -474,22 +483,90 @@ INSERT INTO pedidoproduto (id_pedidoproduto, id_pedido, id_produto, valor, quant
 (24, 24, 24, 33.33, 4),
 (25, 25, 25, 70.00, 1);
 
---1)Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, 
---seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
---não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
-select 
-    u.nome as nome_usuario,
-    u.email,
-    e.logradouro,
-    e.numero,
-    e.cep,
-    e.complemento,
-    t.numero as telefone
-from usuario u
-left join endereco e on u.id_usuario = e.id_usuario
-<<<<<<< HEAD
-left join telefone t on u.id_usuario = t.id_usuario;
-=======
-left join telefone t on u.id_usuario = t.id_usuario;
+--5 – Juquinha está trabalhando na empresa Umbrella Corporation no
+--setor de TI. Existe um chamado que foi enviado para Juquinha que a
+--equipe de venda solicita a criação de uma nova tabela no banco de
+--dados. Tal tabela deverá abrigar as informações de nota fiscal. A
+--tabela de nota fiscal deverá se relacionar com a pedido, parceiro e
+--endereço. Deverá conter as seguintes informações: Número da NF;
+--chave de acesso; data de emissão; valor total; valor do icms; base do
+--cálculo do icms; valor do pis, valor do confins; nome da
+--transportadora; cnpj da transportadora; telefone da transportadora;
+--endereço da transportadora. Juquinha pediu ajuda para Jaiminho, seu
+--encarregado, e ele deu uma dica para Juquinha, para ele criar uma
+--tabela para a transportadora e relacionar os endereços e telefones as
+--tabelas existentes.
+--5 – Crie os comandos sql para criar toda a estrutura necessária, toda a
+--DDL incluindo as alterações nas tabelas existentes. Também deverá
+--ser criado 5 registros completos para transportadoras, com seus
+--telefones e endereços vinculados e 25 registros para as notas ficais.
 
->>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956
+create table transportadora (
+    id_transportadora serial primary key,
+    nome varchar(100),
+    cnpj varchar(18)unique
+);
+
+alter table endereco add column id_transportadora integer;
+alter table telefone add column id_transportadora integer;
+
+alter table endereco
+    add constraint fk_endereco_transportadora
+    foreign key (id_transportadora) references transportadora(id);
+
+alter table telefone
+    add constraint fk_telefone_transportadora
+    foreign key (id_transportadora) references transportadora(id);
+
+create table nota_fiscal (
+    id_nota_fiscal serial primary key,
+    numero_nf varchar(20),
+    chave_acesso varchar(60)unique,
+    data_emissao date,
+    valor_total decimal(10,2),
+    valor_icms decimal(10,2),
+    base_icms decimal(10,2),
+    valor_pis decimal(10,2),
+    valor_cofins decimal(10,2),
+    id_pedido int,
+    id_parceiro int,
+    id_endereco int,
+    id_transportadora int,
+    constraint fk_nota_pedido foreign key (id_pedido) references pedido(id),
+    constraint fk_nota_parceiro foreign key (id_parceiro) references parceiro(id),
+    constraint fk_nota_endereco foreign key (id_endereco) references endereco(id),
+    constraint fk_nota_transportadora foreign key (id_transportadora) references transportadora(id)
+);
+
+insert into transportadora (nome, cnpj) values
+('raccoon express', '12.345.678/0001-01'),
+('nemesis logística', '23.456.789/0001-02'),
+('stars freight', '34.567.890/0001-03'),
+('red queen cargas', '45.678.901/0001-04'),
+('hive transportes', '56.789.012/0001-05');
+
+insert into endereco (logradouro, numero, bairro, cep, id_cidade, id_transportadora) values
+('rua alfa', '100', 'centro', '12345-000', 1, 1),
+('rua beta', '200', 'jardins', '23456-111', 2, 2),
+('rua gama', '300', 'industrial', '34567-222', 3, 3),
+('rua delta', '400', 'comercial', '45678-333', 4, 4),
+('rua épsilon', '500', 'residencial', '56789-444', 5, 5);
+
+insert into telefone (ddd, numero, id_transportadora) values
+(11, '998877665', 1),
+(21, '987654321', 2),
+(31, '976543210', 3),
+(41, '965432109', 4),
+(51, '954321098', 5);
+
+insert into nota_fiscal (
+    numero_nf, chave_acesso, data_emissao, valor_total, valor_icms,
+    base_icms, valor_pis, valor_cofins, id_pedido, id_parceiro, id_endereco, id_transportadora
+)
+select
+    'nf' || g.i, 'chave-acesso-' || g.i, current_date - (g.i % 5),
+    100 + g.i * 10, 10 + g.i, 80 + g.i * 2,
+    2 + g.i * 0.2, 3 + g.i * 0.3,
+    (g.i % 5) + 1, (g.i % 5) + 1, (g.i % 5) + 1, (g.i % 5) + 1
+from generate_series(1, 25) as g(i);
+

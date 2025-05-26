@@ -19,7 +19,7 @@ create table cidade (
     id_estado int,
     constraint fk_cidade_estado foreign key (id_estado) references estado(id_estado)
 );
-
+drop table cidade;
 create table usuario (
     id_usuario serial primary key,
     nome varchar(255),
@@ -30,7 +30,7 @@ create table usuario (
 
 create table parceiro (
     id_parceiro serial primary key,
-    documento varchar(200),
+    documento int,
     nome varchar(255),
     nomefantasia varchar(255),
     observacao varchar(255),
@@ -54,7 +54,7 @@ create table endereco (
 
 create table telefone (
     id_telefone serial primary key,
-    numero bigint,
+    numero int,
     id_usuario int,
     id_parceiro int,
     idnativo bit,
@@ -73,9 +73,12 @@ create table produto (
 create table condicaopagamento (
     id_condicaopagamento serial primary key,
     descricao varchar(255),
-    codigo varchar(200),
+    codigo int,
     observacao varchar(255)
 );
+
+alter table condicaopagamento
+alter column codigo type varchar(200);
 
 create table tabelapreco (
     id_tabelapreco serial primary key,
@@ -258,6 +261,9 @@ INSERT INTO parceiro (id_parceiro, documento, nome, nomefantasia, observacao, id
 (24, '34567890000143', 'Omega Serviços', 'Omega Serv', 'Serviços gerais', B'1'),
 (25, '45678901000154', 'Alpha Beta Ltda', 'AlphaBeta', 'Parceiro comercial', B'0');
 
+ALTER TABLE parceiro
+ALTER COLUMN documento TYPE varchar(200);
+
 INSERT INTO endereco (id_endereco, logradouro, numero, cep, complemento, id_usuario, id_parceiro, id_cidade, idnativo) VALUES
 (1, 'Rua das Flores', 123, 80000000, 'Casa', 1, NULL, 1, B'1'),
 (2, 'Avenida Brasil', 456, 80010001, 'Apto 101', 2, NULL, 2, B'1'),
@@ -311,6 +317,9 @@ INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VA
 (23, '41934343434', NULL, 11, B'0'),
 (24, '41945454545', NULL, 12, B'0'),
 (25, '41956565656', NULL, 13, B'0');
+
+alter table telefone
+alter column numero type varchar(200);
 
 INSERT INTO produto (id_produto, codigo, descricao, observacao, peso) VALUES
 (1, 1001, 'Camiseta Branca', 'Tamanho M', 0.2),
@@ -474,22 +483,88 @@ INSERT INTO pedidoproduto (id_pedidoproduto, id_pedido, id_produto, valor, quant
 (24, 24, 24, 33.33, 4),
 (25, 25, 25, 70.00, 1);
 
---1)Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, 
---seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
---não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
-select 
-    u.nome as nome_usuario,
-    u.email,
-    e.logradouro,
-    e.numero,
-    e.cep,
-    e.complemento,
-    t.numero as telefone
-from usuario u
-left join endereco e on u.id_usuario = e.id_usuario
-<<<<<<< HEAD
-left join telefone t on u.id_usuario = t.id_usuario;
-=======
-left join telefone t on u.id_usuario = t.id_usuario;
+--4 – Juquinha ingressou em uma nova aventura, agora trabalha como DBA
+--na Vault-Tech. Na sua primeira semana na empresa recebeu uma missão de
+--criar um BI na empresa para que os gestores pudessem acompanhar as
+--vendas da empresa. O BI deverá conter as informações abaixo:
+--•Número do pedido; data do pedido; valor total; quantidade de produtos;
+--nome do parceiro; nome fantasia do parcerio; nome do usuário; e-mail do
+--usuário; nome da tabela de preço; nome da condição de pagamento; nome
+--do produto; código do produto; valor de venda do produto; nome do pais
+--do pedido; sigla do estado; telefone do parceiro.
+--•Como Juquinha deve mostrar serviço nesse primeiro serviço ele deverá
+--criar novos inserts para ter no minimo três registros no seu BI caso não
+--tenha dados no banco de dados.   use o primeiro codigo que te mandei para fazer isso.
 
->>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956
+insert into pais (id, nome) values (1, 'brasil');
+
+insert into estado (id, nome, sigla, pais_id) values (1, 'são paulo', 'sp', 1);
+
+insert into cidade (id, nome, estado_id) values (1, 'são paulo', 1);
+
+insert into endereco (id, logradouro, numero, cidade_id) values (1, 'av. paulista', '1000', 1);
+
+insert into parceiro (id, nome, nome_fantasia, endereco_id) values (1, 'empresa alfa', 'alfa', 1);
+
+insert into telefone (id, numero, parceiro_id) values (1, '(11) 99999-0000', 1);
+
+insert into usuario (id, nome, email) values (1, 'juquinha', 'juquinha@vault.com');
+
+insert into condicao_pagamento (id, nome) values (1, 'a vista');
+
+insert into tabela_preco (id, nome, status, data_inicio, data_fim) 
+values (1, 'preço padrão', 'ativo', current_date - 10, null);
+
+insert into produto (id, nome, codigo, peso) values 
+(1, 'produto x', 'x001', 10),
+(2, 'produto y', 'y001', 15);
+
+insert into tabela_preco_produto (id, tabela_preco_id, produto_id, valor) values 
+(1, 1, 1, 100),
+(2, 1, 2, 150);
+
+insert into pedido (id, data_pedido, valor_total, parceiro_id, usuario_id, tabela_preco_id, condicao_pagamento_id) 
+values 
+(1, current_date, 250, 1, 1, 1, 1),
+(2, current_date, 150, 1, 1, 1, 1),
+(3, current_date, 100, 1, 1, 1, 1);
+
+insert into item_pedido (id, pedido_id, produto_id, quantidade, valor_unitario) values 
+(1, 1, 1, 1, 100),
+(2, 1, 2, 1, 150),
+(3, 2, 2, 1, 150),
+(4, 3, 1, 1, 100);
+
+select
+  ped.id as numero_pedido,
+  ped.data_pedido,
+  ped.valor_total,
+  sum(ip.quantidade) as quantidade_produtos,
+  par.nome as nome_parceiro,
+  par.nome_fantasia,
+  u.nome as nome_usuario,
+  u.email as email_usuario,
+  tp.nome as nome_tabela_preco,
+  cp.nome as nome_condicao_pagamento,
+  pr.nome as nome_produto,
+  pr.codigo as codigo_produto,
+  ip.valor_unitario as valor_venda_produto,
+  pai.nome as nome_pais,
+  est.sigla as sigla_estado,
+  tel.numero as telefone_parceiro
+from pedido ped
+inner join item_pedido ip on ped.id = ip.pedido_id
+inner join parceiro par on ped.parceiro_id = par.id
+inner join usuario u on ped.usuario_id = u.id
+inner join tabela_preco tp on ped.tabela_preco_id = tp.id
+inner join condicao_pagamento cp on ped.condicao_pagamento_id = cp.id
+inner join produto pr on ip.produto_id = pr.id
+inner join endereco e on par.endereco_id = e.id
+inner join cidade cid on e.cidade_id = cid.id
+inner join estado est on cid.estado_id = est.id
+inner join pais pai on est.pais_id = pai.id
+left join telefone tel on tel.parceiro_id = par.id
+group by ped.id, ped.data_pedido, ped.valor_total, par.nome, par.nome_fantasia,
+         u.nome, u.email, tp.nome, cp.nome, pr.nome, pr.codigo,
+         ip.valor_unitario, pai.nome, est.sigla, tel.numero;
+
