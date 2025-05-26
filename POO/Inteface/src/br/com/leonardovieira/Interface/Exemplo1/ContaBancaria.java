@@ -44,12 +44,16 @@ public class ContaBancaria implements OperacoesBancarias, Notificacoes, Relatori
 
     }
 
-    @Override
     public void gerarRelatorio() {
         System.out.println("Relatório de Transações:");
         for (String transacao : historicoTransacoes) {
             System.out.println(transacao);
         }
         System.out.println("Saldo atual: " + saldo);
+    }
+
+    @Override
+    public void gerarRelatorios() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
