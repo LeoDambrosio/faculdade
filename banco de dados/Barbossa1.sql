@@ -262,28 +262,32 @@ INSERT INTO endereco (id_endereco, logradouro, numero, cep, complemento, id_usua
 (1, 'Rua das Flores', 123, 80000000, 'Casa', 1, NULL, 1, B'1'),
 (2, 'Avenida Brasil', 456, 80010001, 'Apto 101', 2, NULL, 2, B'1'),
 (3, 'Rua XV de Novembro', 789, 80020002, 'Sala 2', 3, NULL, 3, B'1'),
-(4, 'Travessa da Paz', 101, 80030003, 'Fundos', NULL, 1, 4, B'0'),
-(5, 'Alameda das Acácias', 202, 80040004, 'Bloco B', 4, NULL, 5, B'1'),
-(6, 'Rua do Comércio', 303, 80050005, 'Loja 5', NULL, 2, 6, B'0'),
-(7, 'Avenida Paraná', 404, 80060006, 'Conjunto 7', 5, NULL, 7, B'1'),
-(8, 'Rua São João', 505, 80070007, 'Sobreloja', NULL, 3, 8, B'0'),
-(9, 'Avenida Getúlio Vargas', 606, 80080008, 'Andar 3', 6, NULL, 9, B'1'),
-(10, 'Rua dos Andradas', 707, 80090009, 'Galpão', NULL, 4, 10, B'0'),
-(11, 'Rua Marechal Floriano', 808, 80100010, 'Casa 2', 7, NULL, 11, B'1'),
-(12, 'Rua João Pessoa', 909, 80110011, 'Apto 302', NULL, 5, 12, B'0'),
-(13, 'Avenida Sete de Setembro', 111, 80120012, 'Sala 10', 8, NULL, 13, B'1'),
-(14, 'Rua Barão do Rio Branco', 222, 80130013, 'Loja 1', NULL, 6, 14, B'0'),
-(15, 'Travessa Oliveira', 333, 80140014, 'Fundos', 9, NULL, 15, B'1'),
-(16, 'Rua Santa Catarina', 444, 80150015, 'Apto 201', NULL, 7, 16, B'0'),
-(17, 'Avenida República', 555, 80160016, 'Conjunto 4', 10, NULL, 17, B'1'),
-(18, 'Rua Fernando de Noronha', 666, 80170017, 'Sala 5', NULL, 8, 18, B'0'),
-(19, 'Rua Castro Alves', 777, 80180018, 'Casa', 11, NULL, 19, B'1'),
-(20, 'Rua Miguel Couto', 888, 80190019, 'Galpão 3', NULL, 9, 20, B'0'),
-(21, 'Rua Dom Pedro II', 999, 80200020, 'Apto 501', 12, NULL, 21, B'1'),
-(22, 'Avenida das Américas', 112, 80210021, 'Sala 12', NULL, 10, 22, B'0'),
-(23, 'Rua Vitória Régia', 223, 80220022, 'Casa 3', 13, NULL, 23, B'1'),
-(24, 'Rua Monte Castelo', 334, 80230023, 'Apto 102', NULL, 11, 24, B'0'),
-(25, 'Rua Primavera', 445, 80240024, 'Fundos', 14, NULL, 25, B'1');
+(4, 'Travessa da Paz', 101, 80030003, 'Fundos', 4, NULL, 1, B'0'),
+(5, 'Alameda das Acácias', 202, 80040004, 'Bloco B', 5, NULL, 5, B'1'),
+(6, 'Rua do Comércio', 303, 80050005, 'Loja 5', 6, NULL, 6, B'0'),
+(7, 'Avenida Paraná', 404, 80060006, 'Conjunto 7', 7, NULL, 7, B'1'),
+(8, 'Rua São João', 505, 80070007, 'Sobreloja', 8, NULL, 8, B'0'),
+(9, 'Avenida Getúlio Vargas', 606, 80080008, 'Andar 3', 9, NULL, 9, B'1'),
+(10, 'Rua dos Andradas', 707, 80090009, 'Galpão', 10, NULL, 10, B'0'),
+(11, 'Rua Marechal Floriano', 808, 80100010, 'Casa 2', 11, NULL, 11, B'1'),
+(12, 'Rua João Pessoa', 909, 80110011, 'Apto 302', 12, NULL, 12, B'0'),
+(13, 'Avenida Sete de Setembro', 111, 80120012, 'Sala 10', 13, NULL, 13, B'1'),
+(14, 'Rua Barão do Rio Branco', 222, 80130013, 'Loja 1', 14, NULL, 14, B'0'),
+(15, 'Travessa Oliveira', 333, 80140014, 'Fundos', 15, NULL, 15, B'1'),
+(16, 'Rua Santa Catarina', 444, 80150015, 'Apto 201', 16, NULL, 16, B'0'),
+(17, 'Avenida República', 555, 80160016, 'Conjunto 4', 17, NULL, 17, B'1'),
+(18, 'Rua Fernando de Noronha', 666, 80170017, 'Sala 5', 18, NULL, 18, B'0'),
+(19, 'Rua Castro Alves', 777, 80180018, 'Casa', 19, NULL, 19, B'1'),
+(20, 'Rua Miguel Couto', 888, 80190019, 'Galpão 3', 20, NULL, 20, B'0'),
+(21, 'Rua Dom Pedro II', 999, 80200020, 'Apto 501', 21, NULL, 21, B'1'),
+(22, 'Avenida das Américas', 112, 80210021, 'Sala 12', 22, NULL, 22, B'0'),
+(23, 'Rua Vitória Régia', 223, 80220022, 'Casa 3', 23, NULL, 23, B'1'),
+(24, 'Rua Monte Castelo', 334, 80230023, 'Apto 102', 24, NULL, 24, B'0'),
+(25, 'Rua Primavera', 445, 80240024, 'Fundos', 25, NULL, 25, B'1');
+
+
+delete from endereco;
+
 
 INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VALUES
 (1, '41912345678', 1, NULL, B'1'),
@@ -298,19 +302,19 @@ INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VA
 (10, '41910987654', 10, NULL, B'1'),
 (11, '41999999999', 11, NULL, B'1'),
 (12, '41988888888', 12, NULL, B'1'),
-(13, '41977777777', NULL, 1, B'0'),
-(14, '41966666666', NULL, 2, B'0'),
-(15, '41955555555', NULL, 3, B'0'),
-(16, '41944444444', NULL, 4, B'0'),
-(17, '41933333333', NULL, 5, B'0'),
-(18, '41922222222', NULL, 6, B'0'),
-(19, '41911111111', NULL, 7, B'0'),
-(20, '41900000000', NULL, 8, B'0'),
-(21, '41912121212', NULL, 9, B'0'),
-(22, '41923232323', NULL, 10, B'0'),
-(23, '41934343434', NULL, 11, B'0'),
-(24, '41945454545', NULL, 12, B'0'),
-(25, '41956565656', NULL, 13, B'0');
+(13, '41977777777', 13, NULL, B'0'),
+(14, '41966666666', 14, NULL, B'0'),
+(15, '41955555555', 15, NULL, B'0'),
+(16, '41944444444', 16, NULL, B'0'),
+(17, '41933333333', 17, NULL, B'0'),
+(18, '41922222222', 18, NULL, B'0'),
+(19, '41911111111', 19, NULL, B'0'),
+(20, '41900000000', 20, NULL, B'0'),
+(21, '41912121212', 21, NULL, B'0'),
+(22, '41923232323', 22, NULL, B'0'),
+(23, '41934343434', 23, NULL, B'0'),
+(24, '41945454545', 24, NULL, B'0'),
+(25, '41956565656', 25, NULL, B'0');
 
 INSERT INTO produto (id_produto, codigo, descricao, observacao, peso) VALUES
 (1, 1001, 'Camiseta Branca', 'Tamanho M', 0.2),
@@ -477,19 +481,15 @@ INSERT INTO pedidoproduto (id_pedidoproduto, id_pedido, id_produto, valor, quant
 --1)Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, 
 --seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
 --não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
-select 
-    u.nome as nome_usuario,
+SELECT 
+    u.nome AS nome_usuario,
     u.email,
     e.logradouro,
     e.numero,
     e.cep,
     e.complemento,
-    t.numero as telefone
-from usuario u
-left join endereco e on u.id_usuario = e.id_usuario
-<<<<<<< HEAD
-left join telefone t on u.id_usuario = t.id_usuario;
-=======
-left join telefone t on u.id_usuario = t.id_usuario;
-
->>>>>>> ba25929bfb6b5c3282d293289dae73221c93b956
+    t.numero AS telefone
+FROM 
+    usuario u
+LEFT JOIN endereco e ON u.id_usuario = e.id_usuario
+LEFT JOIN telefone t ON u.id_usuario = t.id_usuario;
