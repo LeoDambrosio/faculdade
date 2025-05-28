@@ -1,7 +1,7 @@
 create table parceiro(
  idparceiro serial primary key,
- documento int not null,
- nome varchar(255) not null,
+ documento int,
+ nome varchar(255),
  nomeFantasia varchar(255),
  observacao varchar(255),
  idnativo bool
@@ -9,67 +9,67 @@ create table parceiro(
 
 create table usuario(
  idusuario serial primary key,
- nome varchar(255) not null,
+ nome varchar(255),
  email varchar(255),
  observacao varchar(255),
- idnativo bool not null
+ idnativo bool
 );
 
 create table telefone(
  idtelefone serial primary key,
- numero int not null,
+ numero int,
  idusuario int,
  idparceiro int,
- idnativo bool not null,
+ idnativo bool,
  constraint fk_idusuario foreign key (idusuario) references usuario(idusuario),
  constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro)
 );
 
 create table tabelaPreco(
  idtabelaPreco serial primary key,
- descricao int not null,
+ descricao int,
  descontoMaximo real,
- codigo int not null,
- inicioVigencia date not null,
- fimVigencia date not null,
- idnativo bool not null
+ codigo int,
+ inicioVigencia date,
+ fimVigencia date,
+ idnativo bool
 );
 
 create table produto(
  idproduto serial primary key,
- codigo int not null,
- descricao varchar(255) not null,
+ codigo int,
+ descricao varchar(255),
  observacao varchar(255),
- peso real not null
+ peso real
 );
 
 create table precoProduto(
  idprecoProduto serial primary key,
- idtabelaPreco int not null,
- idproduto int not null,
- preco real not null,
+ idtabelaPreco int,
+ idproduto int,
+ preco real,
  constraint fk_idtabelaPreco foreign key (idtabelaPreco) references tabelaPreco(idtabelaPreco),
  constraint fk_idproduto foreign key (idproduto) references produto(idproduto)
 );
 
 create table condicaoPagamento(
  idcondicaoPagamento serial primary key,
- descricao varchar(255) not null,
- codigo int not null,
+ descricao varchar(255),
+ codigo int,
  observacao varchar(255)
 );
 
 create table pedido(
  idpedido serial primary key,
- numero int not null,
- valorTotal real not null,
- quantidadeProdutos real not null,
+ numero int,
+ valorTotal real,
+ quantidadeProdutos real,
  observacao varchar(255),
- idtabelaPreco int not null,
- idcondicaoPagamento int not null,
- idparceiro int not null,
- idusuario int not null,
- data time not null,
+ idtabelaPreco int,
+ idcondicaoPagamento int,
+ idparceiro int,
+ idusuario int,
+ data time,
  constraint fk_idtabelaPreco foreign key (idtabelaPreco) references tabelaPreco(idtabelaPreco),
  constraint fk_idcondicaoPagamento foreign key (idcondicaoPagamento) references condicaoPagamento(idcondicaoPagamento),
  constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro),
@@ -78,73 +78,73 @@ create table pedido(
 
 create table pedidoProduto(
  idpedidoProduto serial primary key,
- idpedido int not null,
- idproduto int not null,
- valor real not null,
- quantidade real not null,
+ idpedido int,
+ idproduto int,
+ valor real,
+ quantidade real,
  constraint fk_idpedido foreign key (idpedido) references pedido(idpedido),
  constraint fk_idproduto foreign key (idproduto) references produto(idproduto)
 );
 
 create table pais(
  idpais serial primary key,
- nome varchar(100) not null,
- sigla varchar(10) not null
+ nome varchar(100),
+ sigla varchar(10)
 );
 
 create table estado(
  idestado serial primary key,
- nome varchar(100) not null,
- sigla varchar(10) not null,
- idpais int not null,
+ nome varchar(100),
+ sigla varchar(10),
+ idpais int,
  constraint fk_idpais foreign key (idpais) references pais (idpais)
 );
 
 create table cidade(
  idcidade serial primary key,
- nome varchar(100) not null,
- inscricaoEstadual int not null,
- idestado int not null,
+ nome varchar(100),
+ inscricaoEstadual int,
+ idestado int,
  constraint fk_idestado foreign key (idestado) references estado(idestado)
 );
 
 create table endereco(
  idendereco serial primary key,
- logradouro varchar(255) not null,
- numero int not null,
- cep int not null,
+ logradouro varchar(255),
+ numero int,
+ cep int,
  complemento varchar(255),
  idparceiro int,
  idusuario int,
- idcidade int not null,
- idnativo bool not null,
+ idcidade int,
+ idnativo bool,
  constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro),
  constraint fk_idusuario foreign key (idusuario) references usuario(idusuario),
  constraint fk_idcidade foreign key (idcidade) references cidade(idcidade)
 );
 
-INSERT INTO pais (nome, sigla) 
- VALUES ('Brasil', 'BR'),
+insert into pais (nome, sigla) 
+ values ('Brasil', 'BR'),
  ('Argentina', 'AR'),
  ('Estados Unidos', 'US');
 
-INSERT INTO estado (nome, sigla, idpais) 
- VALUES ('Minas Gerais', 'MG', 1),
+insert into estado (nome, sigla, idpais) 
+ values ('Minas Gerais', 'MG', 1),
  ('Paraná', 'PR', 1),
  ('Rio Grande do Sul', 'RS', 1),
  ('Santa Catarina', 'SC', 1),
  ('São Paulo', 'SP', 1);
 
-INSERT INTO cidade (nome, inscricaoEstadual, idestado) 
-VALUES 
+insert into cidade (nome, inscricaoEstadual, idestado) 
+values 
 ('Viña del Mar', 200001, 1),
 ('Punta del Este', 200004, 2),
 ('Toronto', 200005, 3),
 ('Vancouver', 200007, 4),
 ('Montreal', 200011, 5);
 
-INSERT INTO  parceiro (documento, nome, nomeFantasia, observacao, idnativo)
-VALUES 
+insert into  parceiro (documento, nome, nomeFantasia, observacao, idnativo)
+values 
 (21, 'NextLevel Corp', 'NextLevel', 'Cliente internacional', true),
 (22, 'FusionTech Ltda', 'Fusion', 'Pagamentos via PayPal', true),
 (23, 'GreenWay Eco', 'GreenWay', 'Sede em Toronto', true),
@@ -152,8 +152,8 @@ VALUES
 (25, 'BrightIdeas Inc.', 'BrightIdeas', '', true),
 (21, 'Pixel Studio', 'Pixel', '', false);
 
-INSERT INTO usuario (nome, email, observacao, idnativo)  
-VALUES 
+insert into usuario (nome, email, observacao, idnativo)  
+values 
 ('Lucas Andrade', 'lucas.andrade@email.com', '', true),
 ('Marina Lopes', 'marina.lopes@email.com', '', true),
 ('Thiago Ramos', 'thiago.ramos@email.com', '', false),
@@ -161,8 +161,8 @@ VALUES
 ('Felipe Duarte', 'felipe.duarte@email.com', '', true),
 ('Juliana Pires', 'juliana.pires@email.com', '', true);
 
-INSERT INTO telefone (numero, idusuario, idparceiro, idnativo) 
- VALUES 
+insert into telefone (numero, idusuario, idparceiro, idnativo) 
+ values 
  (999111111, 1, 1, true),
  (999222222, 2, 2, true),
  (999333333, 3, 3, false),
@@ -170,48 +170,48 @@ INSERT INTO telefone (numero, idusuario, idparceiro, idnativo)
  (997666666, 5, 5, true),
  (997777777, 6, 6, true);
 
-INSERT INTO endereco (logradouro, numero, cep, complemento, idparceiro, idusuario, idcidade, idnativo) 
-VALUES 
+insert into endereco (logradouro, numero, cep, complemento, idparceiro, idusuario, idcidade, idnativo) 
+values 
 ('Rua das Oliveiras', 120, 76123111, 'Próximo à praça central', 1, NULL, 1, true),
 ('Av. Libertador', 784, 91500312, 'Sala 5', 2, NULL, 2, true),
 ('Rua dos Bosques', 10, 11000234, 'Fundos', 3, NULL, 3, true),
 ('Rua do Norte', 456, 77889911, 'Perto da biblioteca', 4, NULL, 4, true),
 ('Av. do Comércio', 1010, 88997766, '3º andar', 5, NULL, 5, true);
 
-INSERT INTO tabelaPreco (descricao, descontoMaximo, codigo, inicioVigencia, fimVigencia, idnativo) 
-VALUES 
+insert into tabelaPreco (descricao, descontoMaximo, codigo, inicioVigencia, fimVigencia, idnativo) 
+values 
 (11, 12.00, 2001, '2025-01-01', '2025-12-31', true),
 (12, 5.50, 2002, '2025-01-01', '2025-12-31', true),
 (13, 10.00, 2003, '2025-01-01', '2025-12-31', true),
 (14, 4.25, 2004, '2025-01-01', '2025-12-31', true),
 (15, 7.95, 2005, '2025-01-01', '2025-12-31', true);
 
-INSERT INTO produto (codigo, descricao, observacao, peso) 
-VALUES 
+insert into produto (codigo, descricao, observacao, peso) 
+values 
 (601, 'Notebook', 'Dell', 2.4),
 (602, 'Webcam', 'Logitech', 0.5),
 (603, 'Tablet', 'Samsung', 0.9),
 (604, 'Headset', 'HyperX', 0.75),
 (605, 'HD Externo', 'Seagate', 0.3);
 
-INSERT INTO precoProduto (idtabelaPreco, idproduto, preco) 
-VALUES 
+insert into precoProduto (idtabelaPreco, idproduto, preco) 
+values 
 (1, 1, 2500.00),
 (2, 2, 290.99),
 (3, 3, 1450.75),
 (4, 4, 320.00),
 (5, 5, 560.50);
 
-INSERT INTO condicaoPagamento (descricao, codigo, observacao) 
-VALUES 
+insert into condicaoPagamento (descricao, codigo, observacao) 
+values 
 ('PIX à vista', 10, 'Desconto de 5%'),
 ('Cartão Crédito 1x', 11, 'Sem juros'),
 ('Cartão Crédito 3x', 12, 'Com acréscimo de 5%'),
 ('Boleto bancário', 13, 'Vencimento em 3 dias'),
 ('Transferência', 14, 'Banco Nacional');
 
-INSERT INTO pedido (numero, valorTotal, quantidadeProdutos, observacao, idtabelaPreco, idcondicaoPagamento, idparceiro, idusuario, data) 
- VALUES(1001, 150.75, 3, 'Entrega rápida', 1, 1, 1, 1, '08:30:00'),
+insert into pedido (numero, valorTotal, quantidadeProdutos, observacao, idtabelaPreco, idcondicaoPagamento, idparceiro, idusuario, data) 
+ values(1001, 150.75, 3, 'Entrega rápida', 1, 1, 1, 1, '08:30:00'),
  (1002, 300.50, 5, 'Cliente exigente', 2, 2, 2, 2, '09:15:00'),
  (1003, 50.00, 1, NULL, 3, 3, 3, 3, '10:00:00'),
  (1004, 450.99, 7, 'Urgente', 4, 4, 4, 4, '11:45:00'),
@@ -237,8 +237,8 @@ INSERT INTO pedido (numero, valorTotal, quantidadeProdutos, observacao, idtabela
  (1024, 470.00, 7, NULL, 4, 5, 4, 6, '11:50:00'),
  (1025, 150.00, 3, 'Entregar terça-feira', 5, 1, 5, 1, '13:10:00');
 
-INSERT INTO pedidoProduto (idpedido, idproduto, valor, quantidade) 
-VALUES (1, 1, 120.50, 2),
+insert into pedidoProduto (idpedido, idproduto, valor, quantidade) 
+values (1, 1, 120.50, 2),
  (2, 2, 89.99, 1),
  (3, 3, 345.50, 1),
  (4, 4, 39.90, 3),
@@ -268,41 +268,41 @@ VALUES (1, 1, 120.50, 2),
 --seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
 --não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
 
-SELECT 
-    u.nome AS nome_usuario,
+select 
+    u.nome as nome_usuario,
     u.email,
     e.logradouro,
     e.numero,
     e.cep,
     e.complemento,
-    t.numero AS telefone
-FROM 
+    t.numero as telefone
+from 
     usuario u
-LEFT JOIN endereco e ON u.idusuario = e.idusuario
-LEFT JOIN telefone t ON u.idusuario = t.idusuario;
+left join endereco e on u.idusuario = e.idusuario
+left join telefone t on u.idusuario = t.idusuario;
 
 --2)Crie uma querry semelhante para Parceiro, porém trazendo o
 --nome fantasia do parteiro, acrescido do nome da cidade desse
 --parceiro, o nome do estado e a sua sigla e o nome do pais e sua sigla.
 
-SELECT 
-    p.nomeFantasia AS "Nome Fantasia do Parceiro",
-    c.nome AS "Cidade",
-    est.nome AS "Estado",
-    est.sigla AS "UF",
-    pa.nome AS "País",
-    pa.sigla AS "Sigla País"
-FROM 
+select 
+    p.nomeFantasia as "Nome Fantasia do Parceiro",
+    c.nome as "Cidade",
+    est.nome as "Estado",
+    est.sigla as "UF",
+    pa.nome as "País",
+    pa.sigla as "Sigla País"
+from 
     parceiro p
-left JOIN 
-    endereco en ON p.idparceiro = en.idparceiro
-left JOIN 
-    cidade c ON en.idcidade = c.idcidade
-left JOIN 
-    estado est ON c.idestado = est.idestado
-left JOIN 
-    pais pa ON est.idpais = pa.idpais
-ORDER BY 
+left join 
+    endereco en on p.idparceiro = en.idparceiro
+left join 
+    cidade c on en.idcidade = c.idcidade
+left join 
+    estado est on c.idestado = est.idestado
+left join 
+    pais pa on est.idpais = pa.idpais
+order by 
     p.nomeFantasia;
 
 --3 – Crie uma query para trazer todas as tabelas de preço ativas, que
@@ -310,16 +310,15 @@ ORDER BY
 --seja com um peso maior que X e que tenha sido utilizado em um
 --pedido para o parceiro X.
 
-SELECT DISTINCT tp.*
- FROM tabelaPreco tp
- INNER JOIN precoProduto tpp ON tp.idtabelapreco = tpp.idtabelapreco
- INNER JOIN produto prod ON tpp.idproduto = prod.idproduto
- INNER JOIN pedido p ON tp.idtabelaPreco = p.idtabelaPreco
- --INNER JOIN pedidoProduto pp ON p.idpedido = pp.idpedido AND pp.idproduto = prod.idproduto
-WHERE tp.idnativo = TRUE
- AND CURRENT_DATE BETWEEN tp.inicioVigencia AND tp.fimVigencia
- AND prod.peso < 3
- AND p.idparceiro = 2;
+select distinct tp.*
+ from tabelaPreco tp
+ inner join precoProduto tpp on tp.idtabelapreco = tpp.idtabelapreco
+ inner join produto prod on tpp.idproduto = prod.idproduto
+ inner join pedido p on tp.idtabelaPreco = p.idtabelaPreco
+where tp.idnativo = TRUE
+ and current_date between tp.inicioVigencia and tp.fimVigencia
+ and prod.peso < 3
+ and p.idparceiro = 2;
 select * from pedido;
 select * from produto;
 
@@ -336,7 +335,7 @@ select * from produto;
 --criar novos inserts para ter no minimo três registros no seu BI caso não
 --tenha dados no banco de dados.
 
-SELECT 
+select 
  p.idpedido,
  p.data,
  p.valorTotal,
@@ -354,18 +353,18 @@ SELECT
  pais.sigla,
  est.sigla,
  t.numero
-FROM pedido p
-INNER JOIN parceiro par  ON p.idparceiro = par.idparceiro
-INNER JOIN usuario u  ON p.idusuario = u.idusuario
-INNER JOIN tabelaPreco tp  ON p.idtabelaPreco = tp.idtabelaPreco
-INNER JOIN condicaoPagamento cp ON p.idcondicaoPagamento = cp.idcondicaoPagamento	
-LEFT JOIN pedidoProduto pp  ON p.idpedido = pp.idpedido
-LEFT JOIN produto prod  ON pp.idproduto = prod.idproduto
-LEFT JOIN endereco e ON par.idparceiro = e.idparceiro
-LEFT JOIN cidade c ON e.idcidade = c.idcidade
-LEFT JOIN estado est ON c.idestado = est.idestado
-LEFT JOIN pais pais ON est.idpais = pais.idpais
-LEFT JOIN telefone t ON par.idparceiro = t.idparceiro;
+from pedido p
+inner join parceiro par on p.idparceiro = par.idparceiro
+inner join usuario u  on p.idusuario = u.idusuario
+inner join tabelaPreco tp  on p.idtabelaPreco = tp.idtabelaPreco
+inner join condicaoPagamento cp on p.idcondicaoPagamento = cp.idcondicaoPagamento	
+left join pedidoProduto pp on p.idpedido = pp.idpedido
+left join produto prod on pp.idproduto = prod.idproduto
+left join endereco e on par.idparceiro = e.idparceiro
+left join cidade c on e.idcidade = c.idcidade
+left join estado est on c.idestado = est.idestado
+left join pais pais on est.idpais = pais.idpais
+left join telefone t on par.idparceiro = t.idparceiro;
 
 --5 – Juquinha está trabalhando na empresa Umbrella Corporation no
 --setor de TI. Existe um chamado que foi enviado para Juquinha que a
@@ -385,65 +384,49 @@ LEFT JOIN telefone t ON par.idparceiro = t.idparceiro;
 --ser criado 5 registros completos para transportadoras, com seus
 --telefones e endereços vinculados e 25 registros para as notas ficais.
 
-CREATE TABLE transportadora (
-    id_transportadora SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    cnpj VARCHAR(18) NOT NULL UNIQUE
+create table transportadora (
+    id_transportadora serial primary key,
+    nome varchar(100),
+    cnpj varchar(18) unique
 );
 
-ALTER TABLE telefone
-ADD COLUMN id_transportadora INT,
-ADD CONSTRAINT fk_telefone_transportadora FOREIGN KEY (id_transportadora)
-REFERENCES transportadora(id_transportadora);
+alter table telefone
+add column id_transportadora int,
+add constraint fk_telefone_transportadora foreign key (id_transportadora) references transportadora(id_transportadora);
 
-ALTER TABLE endereco
-ADD COLUMN id_transportadora INT,
-ADD CONSTRAINT fk_endereco_transportadora FOREIGN KEY (id_transportadora)
-REFERENCES transportadora(id_transportadora);
+alter table endereco
+add column id_transportadora int,
+add constraint fk_endereco_transportadora foreign key (id_transportadora) references transportadora(id_transportadora);
 
-CREATE TABLE nota_fiscal (
-    id_nota_fiscal SERIAL PRIMARY KEY,
-    numero_nf VARCHAR(20) NOT NULL,
-    chave_acesso VARCHAR(50) NOT NULL UNIQUE,
-    data_emissao DATE NOT NULL,
-    valor_total DECIMAL(10, 2) NOT NULL,
-    valor_icms DECIMAL(10, 2),
-    base_calculo_icms DECIMAL(10, 2),
-    valor_pis DECIMAL(10, 2),
-    valor_cofins DECIMAL(10, 2),
-    idpedido INT NOT NULL,
-    idparceiro INT NOT NULL,
-    idendereco INT NOT NULL,
-    id_transportadora INT NOT NULL,
-    CONSTRAINT fkpedido FOREIGN KEY (idpedido) REFERENCES pedido(idpedido),
-    CONSTRAINT fkparceiro FOREIGN KEY (idparceiro) REFERENCES parceiro(idparceiro),
-    CONSTRAINT fkendereco FOREIGN KEY (idendereco) REFERENCES endereco(idendereco),
-    CONSTRAINT fk_transportadora FOREIGN KEY (id_transportadora) REFERENCES transportadora(id_transportadora)
+create table nota_fiscal (
+    id_nota_fiscal serial primary key,
+    numero_nf varchar(20),
+    chave_acesso varchar(50) unique,
+    data_emissao date,
+    valor_total decimal(10, 2),
+    valor_icms decimal(10, 2),
+    base_calculo_icms decimal(10, 2),
+    valor_pis decimal(10, 2),
+    valor_cofins decimal(10, 2),
+    idpedido int,
+    idparceiro int,
+    idendereco int,
+    id_transportadora int,
+    constraint fkpedido foreign key (idpedido) references pedido(idpedido),
+    constraint fkparceiro foreign key (idparceiro) references parceiro(idparceiro),
+    constraint fkendereco foreign key (idendereco) references endereco(idendereco),
+    constraint fk_transportadora foreign key (id_transportadora) references transportadora(id_transportadora)
 );
 
-INSERT INTO transportadora (nome, cnpj) VALUES
+insert into transportadora (nome, cnpj) values
 ('TransRapido', '12.345.678/0001-01'),
 ('Expresso do Sul', '98.765.432/0001-02'),
 ('Nordeste Cargas', '11.222.333/0001-03'),
 ('RodoFrete Brasil', '22.333.444/0001-04'),
 ('Carga Certa', '33.444.555/0001-05');
 
-INSERT INTO telefone (numero, id_transportadora) VALUES
-('1188887777', 1),
-('1177776666', 2),
-('1188885555', 3),
-('1177774444', 4),
-('1166673333', 5);
-select * from transportadora;
-INSERT INTO endereco (logradouro, numero, bairro, cidade, estado, cep, id_transportadora) VALUES
-('Rua A', '100', 'Centro', 'São Paulo', 'SP', '01000-000', 1),
-('Rua B', '200', 'Vila Nova', 'Rio de Janeiro', 'RJ', '20000-000', 2),
-('Rua C', '300', 'Boa Vista', 'Salvador', 'BA', '40000-000', 3),
-('Rua D', '400', 'Industrial', 'Belo Horizonte', 'MG', '30000-000', 4),
-('Rua E', '500', 'Comercial', 'Curitiba', 'PR', '80000-000', 5);
-
-INSERT INTO nota_fiscal (numero_nf, chave_acesso, data_emissao, valor_total, valor_icms, base_calculo_icms,
-valor_pis, valor_cofins, id_pedido, id_parceiro, id_endereco, id_transportadora) VALUES
+insert into nota_fiscal (numero_nf, chave_acesso, data_emissao, valor_total, valor_icms, base_calculo_icms,
+valor_pis, valor_cofins, id_pedido, id_parceiro, id_endereco, id_transportadora) values
 ('NF001', '1000000001', '2025-05-01', 1000.00, 180.00, 1000.00, 15.00, 30.00, 1, 1, 1, 1),
 ('NF002', '1000000002', '2025-05-02', 1500.00, 270.00, 1500.00, 22.50, 45.00, 2, 2, 2, 2),
 ('NF003', '1000000003', '2025-05-03', 2000.00, 360.00, 2000.00, 30.00, 60.00, 3, 3, 3, 3),
