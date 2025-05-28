@@ -285,10 +285,6 @@ INSERT INTO endereco (id_endereco, logradouro, numero, cep, complemento, id_usua
 (24, 'Rua Monte Castelo', 334, 80230023, 'Apto 102', 24, NULL, 24, B'0'),
 (25, 'Rua Primavera', 445, 80240024, 'Fundos', 25, NULL, 25, B'1');
 
-
-delete from endereco;
-
-
 INSERT INTO telefone (id_telefone, numero, id_usuario, id_parceiro, idnativo) VALUES
 (1, '41912345678', 1, NULL, B'1'),
 (2, '41998765432', 2, NULL, B'1'),
