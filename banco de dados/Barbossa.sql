@@ -1,454 +1,472 @@
-create table pais (
-    id_pais serial primary key,
-    nome varchar(100),
-    sigla varchar(10)
+create table parceiro(
+ idparceiro serial primary key,
+ documento int not null,
+ nome varchar(255) not null,
+ nomeFantasia varchar(255),
+ observacao varchar(255),
+ idnativo bool
 );
 
-create table estado (
-    id_estado serial primary key,
-    nome varchar(100),
-    sigla varchar(10),
-    id_pais int,
-    constraint fk_estado_pais foreign key (id_pais) references pais(id_pais)
+create table usuario(
+ idusuario serial primary key,
+ nome varchar(255) not null,
+ email varchar(255),
+ observacao varchar(255),
+ idnativo bool not null
 );
 
-create table cidade (
-    id_cidade serial primary key,
-    nome varchar(100),
-    inscricaoestadual int,
-    id_estado int,
-    constraint fk_cidade_estado foreign key (id_estado) references estado(id_estado)
+create table telefone(
+ idtelefone serial primary key,
+ numero int not null,
+ idusuario int,
+ idparceiro int,
+ idnativo bool not null,
+ constraint fk_idusuario foreign key (idusuario) references usuario(idusuario),
+ constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro)
 );
 
-create table usuario (
-    id_usuario serial primary key,
-    nome varchar(255),
-    email varchar(255),
-    observacao varchar(255),
-    idnativo bit
+create table tabelaPreco(
+ idtabelaPreco serial primary key,
+ descricao int not null,
+ descontoMaximo real,
+ codigo int not null,
+ inicioVigencia date not null,
+ fimVigencia date not null,
+ idnativo bool not null
 );
 
-create table parceiro (
-    id_parceiro serial primary key,
-    documento int,
-    nome varchar(255),
-    nomefantasia varchar(255),
-    observacao varchar(255),
-    idnativo bit
+create table produto(
+ idproduto serial primary key,
+ codigo int not null,
+ descricao varchar(255) not null,
+ observacao varchar(255),
+ peso real not null
 );
 
-create table endereco (
-    id_endereco serial primary key,
-    logradouro varchar(255),
-    numero int,
-    cep int,
-    complemento varchar(255),
-    id_usuario int,
-    id_parceiro int,
-    id_cidade int,
-    idnativo bit,
-    constraint fk_endereco_usuario foreign key (id_usuario) references usuario(id_usuario),
-    constraint fk_endereco_parceiro foreign key (id_parceiro) references parceiro(id_parceiro),
-    constraint fk_endereco_cidade foreign key (id_cidade) references cidade(id_cidade)
+create table precoProduto(
+ idprecoProduto serial primary key,
+ idtabelaPreco int not null,
+ idproduto int not null,
+ preco real not null,
+ constraint fk_idtabelaPreco foreign key (idtabelaPreco) references tabelaPreco(idtabelaPreco),
+ constraint fk_idproduto foreign key (idproduto) references produto(idproduto)
 );
 
-create table telefone (
-    id_telefone serial primary key,
-    numero int,
-    id_usuario int,
-    id_parceiro int,
-    idnativo bit,
-    constraint fk_telefone_usuario foreign key (id_usuario) references usuario(id_usuario),
-    constraint fk_telefone_parceiro foreign key (id_parceiro) references parceiro(id_parceiro)
+create table condicaoPagamento(
+ idcondicaoPagamento serial primary key,
+ descricao varchar(255) not null,
+ codigo int not null,
+ observacao varchar(255)
 );
 
-create table produto (
-    id_produto serial primary key,
-    codigo int,
-    descricao varchar(255),
-    observacao varchar(255),
-    peso real
+create table pedido(
+ idpedido serial primary key,
+ numero int not null,
+ valorTotal real not null,
+ quantidadeProdutos real not null,
+ observacao varchar(255),
+ idtabelaPreco int not null,
+ idcondicaoPagamento int not null,
+ idparceiro int not null,
+ idusuario int not null,
+ data time not null,
+ constraint fk_idtabelaPreco foreign key (idtabelaPreco) references tabelaPreco(idtabelaPreco),
+ constraint fk_idcondicaoPagamento foreign key (idcondicaoPagamento) references condicaoPagamento(idcondicaoPagamento),
+ constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro),
+ constraint fk_idusuario foreign key (idusuario) references usuario(idusuario)
 );
 
-create table condicaopagamento (
-    id_condicaopagamento serial primary key,
-    descricao varchar(255),
-    codigo int,
-    observacao varchar(255)
+create table pedidoProduto(
+ idpedidoProduto serial primary key,
+ idpedido int not null,
+ idproduto int not null,
+ valor real not null,
+ quantidade real not null,
+ constraint fk_idpedido foreign key (idpedido) references pedido(idpedido),
+ constraint fk_idproduto foreign key (idproduto) references produto(idproduto)
 );
 
-create table tabelapreco (
-    id_tabelapreco serial primary key,
-    descricao varchar(200),
-    descontomaximo reaL,
-    codigo int,
-    iniciovigencia date,
-    fimvigencia date,
-    idnativo bit
+create table pais(
+ idpais serial primary key,
+ nome varchar(100) not null,
+ sigla varchar(10) not null
 );
 
-create table tabelaprecoproduto (
-    id_tabelaprecoproduto serial primary key,
-    id_tabelapreco int,
-    id_produto int,
-    preco real,
-    constraint fk_tpp_tabela foreign key (id_tabelapreco) references tabelapreco(id_tabelapreco),
-    constraint fk_tpp_produto foreign key (id_produto) references produto(id_produto)
+create table estado(
+ idestado serial primary key,
+ nome varchar(100) not null,
+ sigla varchar(10) not null,
+ idpais int not null,
+ constraint fk_idpais foreign key (idpais) references pais (idpais)
 );
 
-create table pedido (
-    id_pedido serial primary key,
-    numero int,
-    valortotal real,
-    quantidadeprodutos real,
-    observacao varchar(255),
-    id_tabelapreco int,
-    id_condicaopagamento int,
-    id_parceiro int,
-    id_usuario int,
-    data timestamp,
-    constraint fk_pedido_tabelapreco foreign key (id_tabelapreco) references tabelapreco(id_tabelapreco),
-    constraint fk_pedido_pagamento foreign key (id_condicaopagamento) references condicaopagamento(id_condicaopagamento),
-    constraint fk_pedido_parceiro foreign key (id_parceiro) references parceiro(id_parceiro),
-    constraint fk_pedido_usuario foreign key (id_usuario) references usuario(id_usuario)
+create table cidade(
+ idcidade serial primary key,
+ nome varchar(100) not null,
+ inscricaoEstadual int not null,
+ idestado int not null,
+ constraint fk_idestado foreign key (idestado) references estado(idestado)
 );
 
-create table pedidoproduto (
-    id_pedidoproduto serial primary key,
-    id_pedido int,
-    id_produto int,
-    valor real,
-    quantidade real,
-    constraint fk_pedidoproduto_pedido foreign key (id_pedido) references pedido(id_pedido),
-    constraint fk_pedidoproduto_produto foreign key (id_produto) references produto(id_produto)
+create table endereco(
+ idendereco serial primary key,
+ logradouro varchar(255) not null,
+ numero int not null,
+ cep int not null,
+ complemento varchar(255),
+ idparceiro int,
+ idusuario int,
+ idcidade int not null,
+ idnativo bool not null,
+ constraint fk_idparceiro foreign key (idparceiro) references parceiro(idparceiro),
+ constraint fk_idusuario foreign key (idusuario) references usuario(idusuario),
+ constraint fk_idcidade foreign key (idcidade) references cidade(idcidade)
 );
 
-insert into pais (nome, sigla) values('Brasil', 'BR'),
-	('Argentina', 'AR'),
-	('Estados Unidos', 'US'),
-	('Canadá', 'CA'),
-	('México', 'MX'),
-	('Alemanha', 'DE'),
-	('França', 'FR'),
-	('Reino Unido', 'GB'),
-	('Itália', 'IT'),
-	('Espanha', 'ES'),
-	('Portugal', 'PT'),
-	('Japão', 'JP'),
-	('China', 'CN'),
-	('Coreia do Sul', 'KR'),
-	('Índia', 'IN'),
-	('Austrália', 'AU'),
-	('Nova Zelândia', 'NZ'),
-	('África do Sul', 'ZA'),
-	('Egito', 'EG'),
-	('Rússia', 'RU'),
-	('Suécia', 'SE'),
-	('Noruega', 'NO'),
-	('Finlândia', 'FI'),
-	('Holanda', 'NL'),
-	('Suíça', 'CH');
+INSERT INTO pais (nome, sigla) 
+ VALUES ('Brasil', 'BR'),
+ ('Argentina', 'AR'),
+ ('Estados Unidos', 'US');
 
-insert into estado (nome, sigla) values('Acre', 'AC'),
-	('Alagoas', 'AL'),
-	('Amapá', 'AP'),
-	('Amazonas', 'AM'),
-	('Bahia', 'BA'),
-	('Ceará', 'CE'),
-	('Distrito Federal', 'DF'),
-	('Espírito Santo', 'ES'),
-	('Goiás', 'GO'),
-	('Maranhão', 'MA'),
-	('Mato Grosso', 'MT'),
-	('Mato Grosso do Sul', 'MS'),
-	('Minas Gerais', 'MG'),
-	('Pará', 'PA'),
-	('Paraíba', 'PB'),
-	('Paraná', 'PR'),
-	('Pernambuco', 'PE'),
-	('Piauí', 'PI'),
-	('Rio de Janeiro', 'RJ'),
-	('Rio Grande do Norte', 'RN'),
-	('Rio Grande do Sul', 'RS'),
-	('Rondônia', 'RO'),
-	('Roraima', 'RR'),
-	('Santa Catarina', 'SC'),
-	('São Paulo', 'SP'),
-	('Sergipe', 'SE'),
-	('Tocantins', 'TO');
+INSERT INTO estado (nome, sigla, idpais) 
+ VALUES ('Minas Gerais', 'MG', 1),
+ ('Paraná', 'PR', 1),
+ ('Rio Grande do Sul', 'RS', 1),
+ ('Santa Catarina', 'SC', 1),
+ ('São Paulo', 'SP', 1);
 
-insert into cidade (nome, inscricaoestadual) values('Londrina', '01'),
-	('Maringá', '02'),
-	('Ponta Grossa', '03'),
-	('Cascavel', '04'),
-	('Foz do Iguaçu', '05'),
-	('Guarapuava', '06'),
-	('Paranaguá', '07'),
-	('São José dos Pinhais', '08'),
-	('Colombo', '09'),
-	('Araucária', '10'),
-	('Apucarana', '11'),
-	('Toledo', '12'),
-	('Campo Largo', '13'),
-	('Cianorte', '14'),
-	('Palmas', '15'),
-	('Almirante Tamandaré', '16'),
-	('Araruna', '17'),
-	('Pato Branco', '18'),
-	('União da Vitória', '19'),
-	('Telêmaco Borba', '20'),
-	('Jacarezinho', '21'),
-	('Irati', '22'),
-	('São Mateus do Sul', '23'),
-	('Quatro Barras', '24'),
-	('Curitiba', '25');
+INSERT INTO cidade (nome, inscricaoEstadual, idestado) 
+VALUES 
+('Viña del Mar', 200001, 1),
+('Punta del Este', 200004, 2),
+('Toronto', 200005, 3),
+('Vancouver', 200007, 4),
+('Montreal', 200011, 5);
 
-insert into usuario (nome, email, observacao) values('Ana Silva', 'ana.silva@email.com', 'Usuária ativa'),
-	('Bruno Souza', 'bruno.souza@email.com', 'Usuário novo'),
-	('Carlos Lima', 'carlos.lima@email.com', 'Inativo'),
-	('Daniela Alves', 'daniela.alves@email.com', 'Administrador'),
-	('Eduardo Mendes', 'eduardo.mendes@email.com', 'Usuário padrão'),
-	('Fernanda Costa', 'fernanda.costa@email.com', 'Usuária ativa'),
-	('Gabriel Rocha', 'gabriel.rocha@email.com', 'Usuário premium'),
-	('Helena Martins', 'helena.martins@email.com', 'Usuária inativa'),
-	('Igor Ferreira', 'igor.ferreira@email.com', 'Usuário novo'),
-	('Juliana Pereira', 'juliana.pereira@email.com', 'Usuária ativa'),
-	('Kleber Santos', 'kleber.santos@email.com', 'Administrador'),
-	('Larissa Almeida', 'larissa.almeida@email.com', 'Usuária padrão'),
-	('Marcelo Oliveira', 'marcelo.oliveira@email.com', 'Usuário ativo'),
-	('Natália Dias', 'natalia.dias@email.com', 'Usuária premium'),
-	('Otávio Carvalho', 'otavio.carvalho@email.com', 'Usuário novo'),
-	('Patrícia Ribeiro', 'patricia.ribeiro@email.com', 'Usuária ativa'),
-	('Quésia Nunes', 'quesia.nunes@email.com', 'Usuária inativa'),
-	('Rafael Barbosa', 'rafael.barbosa@email.com', 'Usuário padrão'),
-	('Sabrina Gonçalves', 'sabrina.goncalves@email.com', 'Usuária ativa'),
-	('Tiago Pinto', 'tiago.pinto@email.com', 'Usuário novo'),
-	('Úrsula Fernandes', 'ursula.fernandes@email.com', 'Usuária premium'),
-	('Vítor Santos', 'vitor.santos@email.com', 'Usuário ativo'),
-	('Wagner Lima', 'wagner.lima@email.com', 'Administrador'),
-	('Xênia Castro', 'xenia.castro@email.com', 'Usuária padrão'),
-	('Yuri Moreira', 'yuri.moreira@email.com', 'Usuário novo');
+INSERT INTO  parceiro (documento, nome, nomeFantasia, observacao, idnativo)
+VALUES 
+(21, 'NextLevel Corp', 'NextLevel', 'Cliente internacional', true),
+(22, 'FusionTech Ltda', 'Fusion', 'Pagamentos via PayPal', true),
+(23, 'GreenWay Eco', 'GreenWay', 'Sede em Toronto', true),
+(24, 'Skyline Devs', 'Skyline', '', true),
+(25, 'BrightIdeas Inc.', 'BrightIdeas', '', true),
+(21, 'Pixel Studio', 'Pixel', '', false);
 
-insert into parceiro (documento, nome, nomefantasia, observacao) values('12.345.678/0001-90', 'Empresa Alpha LTDA', 'Alpha', 'Parceiro estratégico'),
-	('98.765.432/0001-10', 'Beta Comércio SA', 'Beta', 'Fornecedor principal'),
-	('23.456.789/0001-01', 'Gama Serviços ME', 'Gama Serviços', 'Parceiro de logística'),
-	('34.567.890/0001-12', 'Delta Tecnologia Ltda', 'Delta Tech', 'Desenvolvedor de software'),
-	('45.678.901/0001-23', 'Epsilon Distribuidora', 'Epsilon', 'Distribuidor oficial'),
-	('56.789.012/0001-34', 'Zeta Importações', 'Zeta Import', 'Importador exclusivo'),
-	('67.890.123/0001-45', 'Eta Consultoria', 'Eta Consult', 'Consultoria financeira'),
-	('78.901.234/0001-56', 'Teta Construções', 'Teta Construções', 'Construtora parceira'),
-	('89.012.345/0001-67', 'Iota Marketing', 'Iota MKT', 'Agência de marketing'),
-	('90.123.456/0001-78', 'Kappa Transportes', 'Kappa Trans', 'Transportadora'),
-	('01.234.567/0001-89', 'Lambda Engenharia', 'Lambda Eng', 'Engenharia civil'),
-	('12.345.678/0001-11', 'Mu Indústrias', 'Mu Indústria', 'Fornecedor de peças'),
-	('23.456.789/0001-22', 'Nu Saúde', 'Nu Saúde', 'Clínica parceira'),
-	('34.567.890/0001-33', 'Xi Alimentação', 'Xi Foods', 'Fornecedor de alimentos'),
-	('45.678.901/0001-44', 'Omicron Educação', 'Omicron Edu', 'Parceiro educacional'),
-	('56.789.012/0001-55', 'Pi Serviços Gerais', 'Pi Serviços', 'Limpeza e conservação'),
-	('67.890.123/0001-66', 'Rho Segurança', 'Rho Seg', 'Segurança patrimonial'),
-	('78.901.234/0001-77', 'Sigma Telecom', 'Sigma Tel', 'Provedor de internet'),
-	('89.012.345/0001-88', 'Tau Eventos', 'Tau Eventos', 'Organização de eventos'),
-	('90.123.456/0001-99', 'Upsilon Transporte', 'Upsilon Trans', 'Transporte urbano'),
-	('01.234.567/0001-00', 'Phi Automóveis', 'Phi Auto', 'Revenda de veículos'),
-	('12.345.678/0001-21', 'Chi Alimentação', 'Chi Foods', 'Distribuição de alimentos'),
-	('23.456.789/0001-32', 'Psi Tecnologia', 'Psi Tech', 'Desenvolvimento de apps'),
-	('34.567.890/0001-43', 'Omega Serviços', 'Omega Serv', 'Serviços gerais'),
-	('45.678.901/0001-54', 'Alpha Beta Ltda', 'AlphaBeta', 'Parceiro comercial');
+INSERT INTO usuario (nome, email, observacao, idnativo)  
+VALUES 
+('Lucas Andrade', 'lucas.andrade@email.com', '', true),
+('Marina Lopes', 'marina.lopes@email.com', '', true),
+('Thiago Ramos', 'thiago.ramos@email.com', '', false),
+('Paula Figueira', 'paula.figueira@email.com', '', true),
+('Felipe Duarte', 'felipe.duarte@email.com', '', true),
+('Juliana Pires', 'juliana.pires@email.com', '', true);
 
-insert into endereco (logradouro, numero, cep) values('Rua das Flores', '123', '80000-000'),
-	('Avenida Brasil', '456', '80010-001'),
-	('Rua XV de Novembro', '789', '80020-002'),
-	('Travessa da Paz', '101', '80030-003'),
-	('Alameda das Acácias', '202', '80040-004'),
-	('Rua do Comércio', '303', '80050-005'),
-	('Avenida Paraná', '404', '80060-006'),
-	('Rua São João', '505', '80070-007'),
-	('Avenida Getúlio Vargas', '606', '80080-008'),
-	('Rua dos Andradas', '707', '80090-009'),
-	('Rua Marechal Floriano', '808', '80100-010'),
-	('Rua João Pessoa', '909', '80110-011'),
-	('Avenida Sete de Setembro', '111', '80120-012'),
-	('Rua Barão do Rio Branco', '222', '80130-013'),
-	('Travessa Oliveira', '333', '80140-014'),
-	('Rua Santa Catarina', '444', '80150-015'),
-	('Avenida República', '555', '80160-016'),
-	('Rua Fernando de Noronha', '666', '80170-017'),
-	('Rua Castro Alves', '777', '80180-018'),
-	('Rua Miguel Couto', '888', '80190-019'),
-	('Rua Dom Pedro II', '999', '80200-020'),
-	('Avenida das Américas', '112', '80210-021'),
-	('Rua Vitória Régia', '223', '80220-022'),
-	('Rua Monte Castelo', '334', '80230-023'),
-	('Rua Primavera', '445', '80240-024');
+INSERT INTO telefone (numero, idusuario, idparceiro, idnativo) 
+ VALUES 
+ (999111111, 1, 1, true),
+ (999222222, 2, 2, true),
+ (999333333, 3, 3, false),
+ (997555555, 4, 4, false),
+ (997666666, 5, 5, true),
+ (997777777, 6, 6, true);
 
-insert into telefone (numero) values('45 91234-5678'),
-	('45 99876-5432'),
-	('45 98765-4321'),
-	('45 97654-3210'),
-	('45 96543-2109'),
-	('45 95432-1098'),
-	('45 94321-0987'),
-	('45 93210-9876'),
-	('45 92109-8765'),
-	('45 91098-7654'),
-	('45 99999-9999'),
-	('45 98888-8888'),
-	('45 97777-7777'),
-	('45 96666-6666'),
-	('45 95555-5555'),
-	('45 94444-4444'),
-	('45 93333-3333'),
-	('45 92222-2222'),
-	('45 91111-1111'),
-	('45 90000-0000'),
-	('45 91212-1212'),
-	('45 92323-2323'),
-	('45 93434-3434'),
-	('45 94545-4545'),
-	('45 95656-5656');
+INSERT INTO endereco (logradouro, numero, cep, complemento, idparceiro, idusuario, idcidade, idnativo) 
+VALUES 
+('Rua das Oliveiras', 120, 76123111, 'Próximo à praça central', 1, NULL, 1, true),
+('Av. Libertador', 784, 91500312, 'Sala 5', 2, NULL, 2, true),
+('Rua dos Bosques', 10, 11000234, 'Fundos', 3, NULL, 3, true),
+('Rua do Norte', 456, 77889911, 'Perto da biblioteca', 4, NULL, 4, true),
+('Av. do Comércio', 1010, 88997766, '3º andar', 5, NULL, 5, true);
 
-insert into produto (codigo, descricao, observacao) values('P001', 'Camiseta Branca', 'Tamanho M'),
-	('P002', 'Calça Jeans', 'Tamanho 40'),
-	('P003', 'Tênis Esportivo', 'Cor preta'),
-	('P004', 'Jaqueta de Couro', 'Modelo unissex'),
-	('P005', 'Mochila Escolar', 'Capacidade 30L'),
-	('P006', 'Fone de Ouvido', 'Bluetooth 5.0'),
-	('P007', 'Mouse Gamer', 'RGB, 6 botões'),
-	('P008', 'Teclado Mecânico', 'Switch azul'),
-	('P009', 'Monitor LED 24"', 'Full HD'),
-	('P010', 'Notebook 15"', '8GB RAM, SSD 256GB'),
-	('P011', 'Smartphone X', '128GB, Dual Chip'),
-	('P012', 'Copo Térmico', '500ml, inox'),
-	('P013', 'Garrafa de Água', 'Plástico BPA Free'),
-	('P014', 'Caderno Universitário', '100 folhas'),
-	('P015', 'Caneta Esferográfica', 'Azul, ponta fina'),
-	('P016', 'Lápis Preto', 'Grafite HB'),
-	('P017', 'Borracha Escolar', 'Branca, macia'),
-	('P018', 'Mochila Executiva', 'Com porta USB'),
-	('P019', 'Relógio Digital', 'Resistente à água'),
-	('P020', 'Caixa de Som Bluetooth', '10W, portátil'),
-	('P021', 'Carregador Turbo', '20W, USB-C'),
-	('P022', 'Cabo USB', '1 metro, tipo C'),
-	('P023', 'Pendrive 64GB', 'USB 3.0'),
-	('P024', 'HD Externo 1TB', 'Portátil, USB 3.1'),
-	('P025', 'Webcam Full HD', 'Com microfone');
+INSERT INTO tabelaPreco (descricao, descontoMaximo, codigo, inicioVigencia, fimVigencia, idnativo) 
+VALUES 
+(11, 12.00, 2001, '2025-01-01', '2025-12-31', true),
+(12, 5.50, 2002, '2025-01-01', '2025-12-31', true),
+(13, 10.00, 2003, '2025-01-01', '2025-12-31', true),
+(14, 4.25, 2004, '2025-01-01', '2025-12-31', true),
+(15, 7.95, 2005, '2025-01-01', '2025-12-31', true);
 
-insert into condicaopagamento (descricao, codigo) values('À vista no boleto', 'CP01'),
-	('À vista no cartão', 'CP02'),
-	('2x sem juros', 'CP03'),
-	('3x sem juros', 'CP04'),
-	('4x sem juros', 'CP05'),
-	('5x sem juros', 'CP06'),
-	('6x sem juros', 'CP07'),
-	('7x com juros', 'CP08'),
-	('8x com juros', 'CP09'),
-	('9x com juros', 'CP10'),
-	('10x com juros', 'CP11'),
-	('30 dias', 'CP12'),
-	('30/60 dias', 'CP13'),
-	('30/60/90 dias', 'CP14'),
-	('Cheque pré-datado', 'CP15'),
-	('Pix à vista', 'CP16'),
-	('Depósito bancário', 'CP17'),
-	('Cartão de débito', 'CP18'),
-	('Crédito 14 dias', 'CP19'),
-	('Crédito 30 dias', 'CP20'),
-	('Crédito 45 dias', 'CP21'),
-	('Crédito 60 dias', 'CP22'),
-	('Crédito 90 dias', 'CP23'),
-	('Parcelado no boleto', 'CP24'),
-	('Parcelado com entrada', 'CP25');
+INSERT INTO produto (codigo, descricao, observacao, peso) 
+VALUES 
+(601, 'Notebook', 'Dell', 2.4),
+(602, 'Webcam', 'Logitech', 0.5),
+(603, 'Tablet', 'Samsung', 0.9),
+(604, 'Headset', 'HyperX', 0.75),
+(605, 'HD Externo', 'Seagate', 0.3);
 
-insert into tabelapreco (descricao, descontomaximo, codigo, iniciovigencia, fimvigencia) values('Tabela Padrão', '5%', 'TP001', '2025-01-01', '2025-12-31'),
-	('Promoção Verão', '10%', 'TP002', '2025-01-15', '2025-03-31'),
-	('Liquidação Inverno', '15%', 'TP003', '2025-06-01', '2025-08-31'),
-	('Feira de Negócios', '12%', 'TP004', '2025-05-10', '2025-05-20'),
-	('Tabela VIP', '8%', 'TP005', '2025-01-01', '2025-12-31'),
-	('Desconto Atacado', '20%', 'TP006', '2025-01-01', '2025-12-31'),
-	('Black Friday', '25%', 'TP007', '2025-11-25', '2025-11-30'),
-	('Cyber Monday', '22%', 'TP008', '2025-12-01', '2025-12-01'),
-	('Natal Premiado', '18%', 'TP009', '2025-12-10', '2025-12-25'),
-	('Ano Novo', '10%', 'TP010', '2025-12-26', '2026-01-05'),
-	('Clientes Ouro', '7%', 'TP011', '2025-01-01', '2025-12-31'),
-	('Clientes Prata', '5%', 'TP012', '2025-01-01', '2025-12-31'),
-	('Clientes Bronze', '3%', 'TP013', '2025-01-01', '2025-12-31'),
-	('Tabela Regional Sul', '6%', 'TP014', '2025-02-01', '2025-08-31'),
-	('Tabela Regional Norte', '6%', 'TP015', '2025-02-01', '2025-08-31'),
-	('Tabela Regional Leste', '6%', 'TP016', '2025-02-01', '2025-08-31'),
-	('Tabela Regional Oeste', '6%', 'TP017', '2025-02-01', '2025-08-31'),
-	('Tabela Escolar', '9%', 'TP018', '2025-01-05', '2025-03-15'),
-	('Tabela Universitária', '11%', 'TP019', '2025-02-01', '2025-06-30'),
-	('Feirão de Fábrica', '17%', 'TP020', '2025-07-01', '2025-07-15'),
-	('Revenda Parceira', '13%', 'TP021', '2025-01-01', '2025-12-31'),
-	('Tabela Varejo', '5%', 'TP022', '2025-01-01', '2025-12-31'),
-	('Tabela E-commerce', '7%', 'TP023', '2025-01-01', '2025-12-31'),
-	('Tabela Corporativa', '10%', 'TP024', '2025-01-01', '2025-12-31'),
-	('Tabela Especial', '15%', 'TP025', '2025-03-01', '2025-09-30');
+INSERT INTO precoProduto (idtabelaPreco, idproduto, preco) 
+VALUES 
+(1, 1, 2500.00),
+(2, 2, 290.99),
+(3, 3, 1450.75),
+(4, 4, 320.00),
+(5, 5, 560.50);
 
-insert into tabelaprecoproduto (preco) values('19.90'), ('29.99'), ('39.50'), ('49.00'), ('59.99'), ('24.75'), ('34.20'), ('44.90'), ('54.10'), ('64.80'), ('15.00'), ('25.99'),
-	('35.40'), ('45.60'), ('55.55'), ('12.90'), ('22.22'), ('32.32'), ('42.42'), ('52.52'), ('18.49'), ('28.59'), ('38.69'), ('48.79'), ('58.89');
+INSERT INTO condicaoPagamento (descricao, codigo, observacao) 
+VALUES 
+('PIX à vista', 10, 'Desconto de 5%'),
+('Cartão Crédito 1x', 11, 'Sem juros'),
+('Cartão Crédito 3x', 12, 'Com acréscimo de 5%'),
+('Boleto bancário', 13, 'Vencimento em 3 dias'),
+('Transferência', 14, 'Banco Nacional');
 
-insert into pedido (numero, valortotal, quantidadeproduto, observacao) values('PED001', '199.90', '3', 'Entrega prevista para 3 dias'),
-('PED002', '349.50', '5', 'Cliente pediu embalagem para presente'),
-('PED003', '79.99', '1', 'Retirada na loja'),
-('PED004', '459.00', '7', 'Frete grátis aplicado'),
-('PED005', '120.00', '2', 'Urgente'),
-('PED006', '230.45', '4', 'Cliente novo'),
-('PED007', '315.80', '6', 'Repetição de pedido anterior'),
-('PED008', '99.90', '1', 'Enviar amostra junto'),
-('PED009', '150.00', '3', 'Data especial'),
-('PED010', '80.50', '2', 'Cupom aplicado'),
-('PED011', '210.00', '5', 'Sem observações'),
-('PED012', '395.25', '6', 'Entrega em horário comercial'),
-('PED013', '57.90', '1', 'Solicitou nota fiscal'),
-('PED014', '678.90', '9', 'Pedido corporativo'),
-('PED015', '45.00', '1', 'Pagamento via Pix'),
-('PED016', '135.75', '2', 'Cliente fidelidade'),
-('PED017', '220.00', '4', 'Devolver produto anterior'),
-('PED018', '89.99', '1', 'Agendar entrega'),
-('PED019', '312.30', '5', 'Conferir disponibilidade'),
-('PED020', '410.00', '6', 'Endereço alterado'),
-('PED021', '99.99', '2', 'Embalagem reciclável'),
-('PED022', '560.10', '7', 'Desconto concedido'),
-('PED023', '248.75', '3', 'Aguardando confirmação de estoque'),
-('PED024', '130.00', '2', 'Entregar no condomínio'),
-('PED025', '275.60', '4', 'Cliente frequente');
+INSERT INTO pedido (numero, valorTotal, quantidadeProdutos, observacao, idtabelaPreco, idcondicaoPagamento, idparceiro, idusuario, data) 
+ VALUES(1001, 150.75, 3, 'Entrega rápida', 1, 1, 1, 1, '08:30:00'),
+ (1002, 300.50, 5, 'Cliente exigente', 2, 2, 2, 2, '09:15:00'),
+ (1003, 50.00, 1, NULL, 3, 3, 3, 3, '10:00:00'),
+ (1004, 450.99, 7, 'Urgente', 4, 4, 4, 4, '11:45:00'),
+ (1005, 120.00, 2, NULL, 5, 5, 5, 5, '13:00:00'),
+ (1006, 89.99, 1, 'Retirar no balcão', 1, 1, 1, 6, '14:30:00'),
+ (1007, 230.49, 4, 'Verificar estoque', 2, 2, 2, 1, '15:10:00'),
+ (1008, 340.90, 6, NULL, 3, 3, 3, 2, '16:45:00'),
+ (1009, 410.10, 8, 'Pagamento adiantado', 4, 4, 4, 3, '17:20:00'),
+ (1010, 75.25, 1, NULL, 5, 1, 5, 4, '08:00:00'),
+ (1011, 520.00, 9, 'Cobrar frete', 1, 2, 1, 5, '09:30:00'),
+ (1012, 180.60, 3, NULL, 2, 3, 2, 6, '10:30:00'),
+ (1013, 250.40, 4, 'Aguardando aprovação', 3, 4, 3, 1, '11:30:00'),
+ (1014, 90.00, 1, NULL, 4, 5, 4, 2, '12:00:00'),
+ (1015, 600.50, 10, 'Entregar sábado', 5, 1, 5, 3, '13:00:00'),
+ (1016, 320.90, 5, NULL, 1, 2, 1, 4, '14:00:00'),
+ (1017, 115.75, 2, 'Nova negociação', 2, 3, 2, 5, '15:00:00'),
+ (1018, 245.90, 3, NULL, 3, 4, 3, 6, '16:00:00'),
+ (1019, 310.40, 6, 'Solicitar NF', 4, 5, 4, 1, '17:00:00'),
+ (1020, 90.00, 1, NULL, 5, 1, 5, 2, '18:00:00'),
+ (1021, 510.10, 8, 'Cliente novo', 1, 2, 1, 3, '08:10:00'),
+ (1022, 200.20, 4, NULL, 2, 3, 2, 4, '09:20:00'),
+ (1023, 130.35, 2, 'Solicitar avaliação', 3, 4, 3, 5, '10:40:00'),
+ (1024, 470.00, 7, NULL, 4, 5, 4, 6, '11:50:00'),
+ (1025, 150.00, 3, 'Entregar terça-feira', 5, 1, 5, 1, '13:10:00');
 
-insert into pedidoproduto (valor, quantidade) values('19.90', '2'),
-('49.99', '1'),
-('35.50', '3'),
-('120.00', '1'),
-('15.75', '4'),
-('89.00', '2'),
-('25.99', '5'),
-('60.00', '1'),
-('99.90', '2'),
-('10.00', '6'),
-('45.45', '2'),
-('30.00', '3'),
-('22.22', '2'),
-('80.80', '1'),
-('17.50', '4'),
-('54.90', '2'),
-('12.00', '5'),
-('100.00', '1'),
-('18.49', '3'),
-('77.77', '2'),
-('65.00', '1'),
-('40.40', '3'),
-('29.90', '2'),
-('33.33', '4'),
-('70.00', '1');
+INSERT INTO pedidoProduto (idpedido, idproduto, valor, quantidade) 
+VALUES (1, 1, 120.50, 2),
+ (2, 2, 89.99, 1),
+ (3, 3, 345.50, 1),
+ (4, 4, 39.90, 3),
+ (5, 5, 150.50, 1),
+ (6, 1, 130.00, 2),
+ (7, 2, 100.00, 2),
+ (8, 3, 320.00, 1),
+ (9, 4, 50.00, 1),
+ (10, 5, 140.00, 2),
+ (11, 1, 110.00, 1),
+ (12, 2, 90.00, 1),
+ (13, 3, 310.00, 2),
+ (14, 4, 44.44, 2),
+ (15, 5, 160.00, 1),
+ (16, 1, 115.00, 3),
+ (17, 2, 85.50, 2),
+ (18, 3, 300.00, 1),
+ (19, 4, 35.90, 1),
+ (20, 5, 155.00, 1),
+ (21, 1, 125.00, 1),
+ (22, 2, 95.00, 1),
+ (23, 3, 330.00, 2),
+ (24, 4, 42.00, 1),
+ (25, 5, 145.00, 1);
 
---Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
-select 
-    u.nome as nome_usuario,
+--1)Crie uma query para retornar todas as informações de usuários do sistema. O retorno deverá ser o nome do usuário, e-mail, 
+--seu logradouro, número, cep e complemento, e por ultimo mais não menos importante, seu número de telefone. Se o usuário 
+--não possuir um telefone ou endereço cadastrado, deverá ser null a informação.
+
+SELECT 
+    u.nome AS nome_usuario,
     u.email,
     e.logradouro,
     e.numero,
     e.cep,
     e.complemento,
-    t.numero as telefone
-from usuario u
-left join endereco e on u.id_usuario = e.id_usuario
-left join telefone t on u.id_usuario = t.id_usuario;
+    t.numero AS telefone
+FROM 
+    usuario u
+LEFT JOIN endereco e ON u.idusuario = e.idusuario
+LEFT JOIN telefone t ON u.idusuario = t.idusuario;
+
+--2)Crie uma querry semelhante para Parceiro, porém trazendo o
+--nome fantasia do parteiro, acrescido do nome da cidade desse
+--parceiro, o nome do estado e a sua sigla e o nome do pais e sua sigla.
+
+SELECT 
+    p.nomeFantasia AS "Nome Fantasia do Parceiro",
+    c.nome AS "Cidade",
+    est.nome AS "Estado",
+    est.sigla AS "UF",
+    pa.nome AS "País",
+    pa.sigla AS "Sigla País"
+FROM 
+    parceiro p
+left JOIN 
+    endereco en ON p.idparceiro = en.idparceiro
+left JOIN 
+    cidade c ON en.idcidade = c.idcidade
+left JOIN 
+    estado est ON c.idestado = est.idestado
+left JOIN 
+    pais pa ON est.idpais = pa.idpais
+ORDER BY 
+    p.nomeFantasia;
+
+--3 – Crie uma query para trazer todas as tabelas de preço ativas, que
+--estão vigentes que possua algum produto associado a tal tabela que
+--seja com um peso maior que X e que tenha sido utilizado em um
+--pedido para o parceiro X.
+
+SELECT DISTINCT tp.*
+ FROM tabelaPreco tp
+ INNER JOIN precoProduto tpp ON tp.idtabelapreco = tpp.idtabelapreco
+ INNER JOIN produto prod ON tpp.idproduto = prod.idproduto
+ INNER JOIN pedido p ON tp.idtabelaPreco = p.idtabelaPreco
+ --INNER JOIN pedidoProduto pp ON p.idpedido = pp.idpedido AND pp.idproduto = prod.idproduto
+WHERE tp.idnativo = TRUE
+ AND CURRENT_DATE BETWEEN tp.inicioVigencia AND tp.fimVigencia
+ AND prod.peso < 3
+ AND p.idparceiro = 2;
+select * from pedido;
+select * from produto;
+
+--4–Juquinha ingressou em uma nova aventura, agora trabalha como DBA
+--na Vault-Tech. Na sua primeira semana na empresa recebeu uma missão de
+--criar um BI na empresa para que os gestores pudessem acompanhar as
+--vendas da empresa. O BI deverá conter as informações abaixo:
+--•Número do pedido; data do pedido; valor total; quantidade de produtos;
+--nome do parceiro; nome fantasia do parcerio; nome do usuário; e-mail do
+--usuário; nome da tabela de preço; nome da condição de pagamento; nome
+--do produto; código do produto; valor de venda do produto; nome do pais
+--do pedido; sigla do estado; telefone do parceiro.
+--•Como Juquinha deve mostrar serviço nesse primeiro serviço ele deverá
+--criar novos inserts para ter no minimo três registros no seu BI caso não
+--tenha dados no banco de dados.
+
+SELECT 
+ p.idpedido,
+ p.data,
+ p.valorTotal,
+ p.quantidadeProdutos,
+ par.nome,
+ par.nomeFantasia,
+ u.nome,
+ u.email,
+ tp.descricao,
+ cp.descricao,
+ prod.descricao,
+ prod.codigo,
+ pp.valor,
+ pais.nome,
+ pais.sigla,
+ est.sigla,
+ t.numero
+FROM pedido p
+INNER JOIN parceiro par  ON p.idparceiro = par.idparceiro
+INNER JOIN usuario u  ON p.idusuario = u.idusuario
+INNER JOIN tabelaPreco tp  ON p.idtabelaPreco = tp.idtabelaPreco
+INNER JOIN condicaoPagamento cp ON p.idcondicaoPagamento = cp.idcondicaoPagamento	
+LEFT JOIN pedidoProduto pp  ON p.idpedido = pp.idpedido
+LEFT JOIN produto prod  ON pp.idproduto = prod.idproduto
+LEFT JOIN endereco e ON par.idparceiro = e.idparceiro
+LEFT JOIN cidade c ON e.idcidade = c.idcidade
+LEFT JOIN estado est ON c.idestado = est.idestado
+LEFT JOIN pais pais ON est.idpais = pais.idpais
+LEFT JOIN telefone t ON par.idparceiro = t.idparceiro;
+
+--5 – Juquinha está trabalhando na empresa Umbrella Corporation no
+--setor de TI. Existe um chamado que foi enviado para Juquinha que a
+--equipe de venda solicita a criação de uma nova tabela no banco de
+--dados. Tal tabela deverá abrigar as informações de nota fiscal. A
+--tabela de nota fiscal deverá se relacionar com a pedido, parceiro e
+--endereço. Deverá conter as seguintes informações: Número da NF;
+--chave de acesso; data de emissão; valor total; valor do icms; base do
+--cálculo do icms; valor do pis, valor do confins; nome da
+--transportadora; cnpj da transportadora; telefone da transportadora;
+--endereço da transportadora. Juquinha pediu ajuda para Jaiminho, seu
+--encarregado, e ele deu uma dica para Juquinha, para ele criar uma
+--tabela para a transportadora e relacionar os endereços e telefones as
+--tabelas existentes.
+--5 – Crie os comandos sql para criar toda a estrutura necessária, toda a
+--DDL incluindo as alterações nas tabelas existentes. Também deverá
+--ser criado 5 registros completos para transportadoras, com seus
+--telefones e endereços vinculados e 25 registros para as notas ficais.
+
+CREATE TABLE transportadora (
+    id_transportadora SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(18) NOT NULL UNIQUE
+);
+
+ALTER TABLE telefone
+ADD COLUMN id_transportadora INT,
+ADD CONSTRAINT fk_telefone_transportadora FOREIGN KEY (id_transportadora)
+REFERENCES transportadora(id_transportadora);
+
+ALTER TABLE endereco
+ADD COLUMN id_transportadora INT,
+ADD CONSTRAINT fk_endereco_transportadora FOREIGN KEY (id_transportadora)
+REFERENCES transportadora(id_transportadora);
+
+CREATE TABLE nota_fiscal (
+    id_nota_fiscal SERIAL PRIMARY KEY,
+    numero_nf VARCHAR(20) NOT NULL,
+    chave_acesso VARCHAR(50) NOT NULL UNIQUE,
+    data_emissao DATE NOT NULL,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    valor_icms DECIMAL(10, 2),
+    base_calculo_icms DECIMAL(10, 2),
+    valor_pis DECIMAL(10, 2),
+    valor_cofins DECIMAL(10, 2),
+    idpedido INT NOT NULL,
+    idparceiro INT NOT NULL,
+    idendereco INT NOT NULL,
+    id_transportadora INT NOT NULL,
+    CONSTRAINT fkpedido FOREIGN KEY (idpedido) REFERENCES pedido(idpedido),
+    CONSTRAINT fkparceiro FOREIGN KEY (idparceiro) REFERENCES parceiro(idparceiro),
+    CONSTRAINT fkendereco FOREIGN KEY (idendereco) REFERENCES endereco(idendereco),
+    CONSTRAINT fk_transportadora FOREIGN KEY (id_transportadora) REFERENCES transportadora(id_transportadora)
+);
+
+INSERT INTO transportadora (nome, cnpj) VALUES
+('TransRapido', '12.345.678/0001-01'),
+('Expresso do Sul', '98.765.432/0001-02'),
+('Nordeste Cargas', '11.222.333/0001-03'),
+('RodoFrete Brasil', '22.333.444/0001-04'),
+('Carga Certa', '33.444.555/0001-05');
+
+INSERT INTO telefone (numero, id_transportadora) VALUES
+('1188887777', 1),
+('1177776666', 2),
+('1188885555', 3),
+('1177774444', 4),
+('1166673333', 5);
+select * from transportadora;
+INSERT INTO endereco (logradouro, numero, bairro, cidade, estado, cep, id_transportadora) VALUES
+('Rua A', '100', 'Centro', 'São Paulo', 'SP', '01000-000', 1),
+('Rua B', '200', 'Vila Nova', 'Rio de Janeiro', 'RJ', '20000-000', 2),
+('Rua C', '300', 'Boa Vista', 'Salvador', 'BA', '40000-000', 3),
+('Rua D', '400', 'Industrial', 'Belo Horizonte', 'MG', '30000-000', 4),
+('Rua E', '500', 'Comercial', 'Curitiba', 'PR', '80000-000', 5);
+
+INSERT INTO nota_fiscal (numero_nf, chave_acesso, data_emissao, valor_total, valor_icms, base_calculo_icms,
+valor_pis, valor_cofins, id_pedido, id_parceiro, id_endereco, id_transportadora) VALUES
+('NF001', '1000000001', '2025-05-01', 1000.00, 180.00, 1000.00, 15.00, 30.00, 1, 1, 1, 1),
+('NF002', '1000000002', '2025-05-02', 1500.00, 270.00, 1500.00, 22.50, 45.00, 2, 2, 2, 2),
+('NF003', '1000000003', '2025-05-03', 2000.00, 360.00, 2000.00, 30.00, 60.00, 3, 3, 3, 3),
+('NF004', '1000000004', '2025-05-04', 2500.00, 450.00, 2500.00, 37.50, 75.00, 4, 4, 4, 4),
+('NF005', '1000000005', '2025-05-05', 3000.00, 540.00, 3000.00, 45.00, 90.00, 5, 5, 5, 5),
+('NF006', '1000000006', '2025-05-06', 1200.00, 216.00, 1200.00, 18.00, 36.00, 1, 2, 1, 2),
+('NF007', '1000000007', '2025-05-07', 1800.00, 324.00, 1800.00, 27.00, 54.00, 2, 3, 2, 3),
+('NF008', '1000000008', '2025-05-08', 2200.00, 396.00, 2200.00, 33.00, 66.00, 3, 4, 3, 4),
+('NF009', '1000000009', '2025-05-09', 2700.00, 486.00, 2700.00, 40.50, 81.00, 4, 5, 4, 5),
+('NF010', '1000000010', '2025-05-10', 3200.00, 576.00, 3200.00, 48.00, 96.00, 5, 1, 5, 1),
+('NF011', '1000000011', '2025-05-11', 1100.00, 198.00, 1100.00, 16.50, 33.00, 1, 3, 1, 3),
+('NF012', '1000000012', '2025-05-12', 1700.00, 306.00, 1700.00, 25.50, 51.00, 2, 4, 2, 4),
+('NF013', '1000000013', '2025-05-13', 2100.00, 378.00, 2100.00, 31.50, 63.00, 3, 5, 3, 5),
+('NF014', '1000000014', '2025-05-14', 2600.00, 468.00, 2600.00, 39.00, 78.00, 4, 1, 4, 1),
+('NF015', '1000000015', '2025-05-15', 3100.00, 558.00, 3100.00, 46.50, 93.00, 5, 2, 5, 2),
+('NF016', '1000000016', '2025-05-16', 1300.00, 234.00, 1300.00, 19.50, 39.00, 1, 4, 1, 4),
+('NF017', '1000000017', '2025-05-17', 1900.00, 342.00, 1900.00, 28.50, 57.00, 2, 5, 2, 5),
+('NF018', '1000000018', '2025-05-18', 2300.00, 414.00, 2300.00, 34.50, 69.00, 3, 1, 3, 1),
+('NF019', '1000000019', '2025-05-19', 2800.00, 504.00, 2800.00, 42.00, 84.00, 4, 2, 4, 2),
+('NF020', '1000000020', '2025-05-20', 3300.00, 594.00, 3300.00, 49.50, 99.00, 5, 3, 5, 3),
+('NF021', '1000000021', '2025-05-21', 1400.00, 252.00, 1400.00, 21.00, 42.00, 1, 5, 1, 5),
+('NF022', '1000000022', '2025-05-22', 1600.00, 288.00, 1600.00, 24.00, 48.00, 2, 1, 2, 1),
+('NF023', '1000000023', '2025-05-23', 2400.00, 432.00, 2400.00, 36.00, 72.00, 3, 2, 3, 2),
+('NF024', '1000000024', '2025-05-24', 2900.00, 522.00, 2900.00, 43.50, 87.00, 4, 3, 4, 3),
+('NF025', '1000000025', '2025-05-25', 3400.00, 612.00, 3400.00, 51.00, 102.00, 5, 4, 5, 4);
+
