@@ -1,4 +1,4 @@
-public class Main {
+public class Main1 {
     public static void main(String[] args) {
         Funcionario engenheiro = new Engenheiro(8000.0);
         Funcionario vendedor = new Vendedor(4000.0);
