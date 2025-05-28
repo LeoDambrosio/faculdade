@@ -4,5 +4,6 @@
         "NetBeansProjects/agenda/src",
         "Aula da Roberta/agenda/src",
         "Poo/Interface01/src/br/com/leonardovieira/exercicio3"
-    ]
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
 }
