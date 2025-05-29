@@ -1,4 +1,4 @@
-public abstract class Funcionario implements {
+public abstract class Funcionario{
     protected double salario;
 
     public Funcionario(double salario){

@@ -1,5 +1,4 @@
-public abstract class Funcionario implements Trabalhador {
-    
+public abstract class Funcionario {
     protected double salario;
 
     public Funcionario(double salario) {
@@ -10,7 +9,9 @@ public abstract class Funcionario implements Trabalhador {
         return salario;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
+    public abstract void trabalhar();
+
+    public abstract void descansar();
 }
+
+
