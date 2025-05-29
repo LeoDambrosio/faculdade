@@ -1,8 +1,7 @@
 public class SeguroDeVida implements Tributavel {
 
     @Override
-    public double calculaTributos() {
-        return 42.0; 
+    public double calcularTributos() {
+        return 42.00; 
     }
-
 }

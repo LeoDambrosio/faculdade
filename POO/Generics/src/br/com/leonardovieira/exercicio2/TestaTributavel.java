@@ -8,11 +8,11 @@ public class TestaTributavel {
         
         System.out.println("Saldo da conta: " + cc.obterSaldo());
         
-        System.out.println("Tributos da conta: " + cc.calculaTributos());
+        System.out.println("Tributos da conta: " + cc.calcularTributos());
         
         SeguroDeVida sv = new SeguroDeVida();
         
-        System.out.println("Tributos do seguro de vida: " + sv.calculaTributos());
+        System.out.println("Tributos do seguro de vida: " + sv.calcularTributos());
         
         System.out.println("\n=== Demonstração de polimorfismo ===");
         Tributavel[] tributaveis = new Tributavel[2];
@@ -20,7 +20,7 @@ public class TestaTributavel {
         tributaveis[1] = sv;
         
         for (Tributavel t : tributaveis) {
-            System.out.println("Tributo: " + t.calculaTributos());
+            System.out.println("Tributo: " + t.calcularTributos());
         }
     }
 }

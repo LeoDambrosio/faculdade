@@ -1,3 +1,4 @@
 public interface Tributavel {
-    double calculaTributos();
+    double calcularTributos();
 }
+
