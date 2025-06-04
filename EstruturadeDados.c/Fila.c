@@ -27,7 +27,7 @@ int filaVazia(Fila *f) {
 
 void enfileirar(Fila *f, char nome[]) {
     if (filaCheia(f)) {
-        printf("Fila cheia! %s não pode entrar agora.\n", nome);
+        printf("Fila cheia! %s nao pode ser adicionado.\n", nome);
         return;
     }
     strcpy(f->pessoas[f->fim].nome, nome);
@@ -44,11 +44,24 @@ Pessoa desenfileirar(Fila *f) {
     return p;
 }
 
-void ocuparAssentos(Fila *fila, char time[]) {
+void mostrarFila(Fila *f, char time[]) {
+    printf("\nFila do Time %s:\n", time);
+    if (filaVazia(f)) {
+        printf("[Fila vazia]\n");
+        return;
+    }
+    int i = f->inicio;
+    for (int c = 0; c < f->total; c++) {
+        printf("%d. %s\n", c + 1, f->pessoas[i].nome);
+        i = (i + 1) % TAM;
+    }
+}
+
+void ocuparAssentos(Fila *f, char time[]) {
     printf("\nEntrada do Time %s:\n", time);
     for (int i = 1; i <= TAM; i++) {
-        if (!filaVazia(fila)) {
-            Pessoa p = desenfileirar(fila);
+        if (!filaVazia(f)) {
+            Pessoa p = desenfileirar(f);
             printf("Assento %d -> %s\n", i, p.nome);
         } else {
             printf("Assento %d -> Vazio\n", i);
@@ -61,30 +74,54 @@ int main() {
     inicializarFila(&filaA);
     inicializarFila(&filaB);
 
-    enfileirar(&filaA, "Ana");
-    enfileirar(&filaA, "Carlos");
-    enfileirar(&filaA, "Beatriz");
-    enfileirar(&filaA, "Daniel");
-    enfileirar(&filaA, "Sofia");
-    enfileirar(&filaA, "Henrique");
-    enfileirar(&filaA, "Larissa");
-    enfileirar(&filaA, "Matheus");
-    enfileirar(&filaA, "Juliana");
-    enfileirar(&filaA, "Rafael");
+    int opcao;
+    char nome[50];
 
-    enfileirar(&filaB, "Joao");
-    enfileirar(&filaB, "Fernanda");
-    enfileirar(&filaB, "Ricardo");
-    enfileirar(&filaB, "Laura");
-    enfileirar(&filaB, "Pedro");
-    enfileirar(&filaB, "Camila");
-    enfileirar(&filaB, "Bruno");
-    enfileirar(&filaB, "Mariana");
-    enfileirar(&filaB, "Gustavo");
-    enfileirar(&filaB, "Isabela");
+    do {
+        printf("\n--- MENU ---\n");
+        printf("1. Adicionar torcedor a Fila A\n");
+        printf("2. Adicionar torcedor a Fila B\n");
+        printf("3. Mostrar filas A e B\n");
+        printf("4. Ocupar assentos e encerrar\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        getchar(); 
 
-    ocuparAssentos(&filaA, "A");
-    ocuparAssentos(&filaB, "B");
+        switch (opcao) {
+            case 1:
+                if (!filaCheia(&filaA)) {
+                    printf("Digite o nome do torcedor do Time A: ");
+                    fgets(nome, sizeof(nome), stdin);
+                    nome[strcspn(nome, "\n")] = '\0'; 
+                    enfileirar(&filaA, nome);
+                } else {
+                    printf("A Fila A ja esta cheia!\n");
+                }
+                break;
+            case 2:
+                if (!filaCheia(&filaB)) {
+                    printf("Digite o nome do torcedor do Time B: ");
+                    fgets(nome, sizeof(nome), stdin);
+                    nome[strcspn(nome, "\n")] = '\0';
+                    enfileirar(&filaB, nome);
+                } else {
+                    printf("A Fila B ja esta cheia!\n");
+                }
+                break;
+            case 3:
+                mostrarFila(&filaA, "A");
+                mostrarFila(&filaB, "B");
+                break;
+            case 4:
+                ocuparAssentos(&filaA, "A");
+                ocuparAssentos(&filaB, "B");
+                printf("\nPrograma encerrado.\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+
+    } while (opcao != 4);
 
     return 0;
 }
