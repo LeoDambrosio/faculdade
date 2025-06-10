@@ -34,7 +34,7 @@ int filaVazia(Fila* fila) {
 void inserirPedido(Fila* fila, char nome[], char descricao[]) {
     No* novo = (No*) malloc(sizeof(No));
     if (novo == NULL) {
-        printf("Erro ao alocar memória!\n");
+        printf("Erro ao alocar memoria!\n");
         return;
     }
 
@@ -51,7 +51,7 @@ void inserirPedido(Fila* fila, char nome[], char descricao[]) {
         fila->fim = novo;
     }
 
-    printf("Pedido #%d de %s adicionado à fila.\n", novo->numeroPedido, nome);
+    printf("Pedido #%d de %s adicionado a fila.\n", novo->numeroPedido, nome);
 }
 
 // Executa o pedido (remove da fila)
@@ -104,7 +104,7 @@ int main() {
     inicializarFila(&fila);
 
     do {
-        printf("\nMenu:\n1 - Novo Pedido\n2 - Preparar Pedido\n3 - Ver Fila\n4 - Sair\nOpção: ");
+        printf("\nMenu:\n1 - Novo Pedido\n2 - Preparar Pedido\n3 - Ver Fila\n4 - Sair\nOpcao: ");
         scanf("%d", &opcao);
         getchar(); // limpa enter
 
@@ -114,7 +114,7 @@ int main() {
                 fgets(nomeCliente, TAM_NOME, stdin);
                 nomeCliente[strcspn(nomeCliente, "\n")] = '\0';
 
-                printf("Descrição do pedido: ");
+                printf("Descricao do pedido: ");
                 fgets(descricaoPedido, TAM_PEDIDO, stdin);
                 descricaoPedido[strcspn(descricaoPedido, "\n")] = '\0';
 
@@ -135,7 +135,7 @@ int main() {
                 break;
 
             default:
-                printf("Opção inválida!\n");
+                printf("Opcao invalida!\n");
         }
 
     } while (opcao != 4);
