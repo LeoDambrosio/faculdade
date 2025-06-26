@@ -1,18 +1,20 @@
-CREATE DATABASE SorveteControl;
+CREATE TABLE funcionario (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100),
+  email VARCHAR(100) UNIQUE NOT NULL,
+  senha VARCHAR(255) NOT NULL,
+  telefone VARCHAR(15)
+);
 
 CREATE TABLE produto (
-    idproduto serial PRIMARY KEY,
-    nome VARCHAR(100),
-    preco NUMERIC(10, 2)
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100),
+  preco DECIMAL(10, 2)
 );
-
-select * from produto;
 
 CREATE TABLE pedido (
-    idpedido SERIAL PRIMARY KEY,
-    nome_cliente VARCHAR(100) NOT NULL,
-    data_pedido DATE DEFAULT CURRENT_DATE,
-    observacao TEXT
+  id SERIAL PRIMARY KEY,
+  id_funcionario INT REFERENCES funcionario(id),
+  data DATE,
+  valor_total DECIMAL(10, 2)
 );
-
-select * from pedido;
