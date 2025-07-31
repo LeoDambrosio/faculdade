@@ -1,9 +1,10 @@
 {
     "java.project.sourcePaths": [
         "Poo/Lista2/src",
+        "Poo/Interface01/src/br/com/leonardovieira/exercicio3",
         "NetBeansProjects/agenda/src",
         "Aula da Roberta/agenda/src",
-        "Poo/Interface01/src/br/com/leonardovieira/exercicio3"
+        "PadroesProjetos"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
