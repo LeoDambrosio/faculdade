@@ -1,6 +1,6 @@
 package br.com.leonardovieira.antipadroes.estruturais;
 
-public class TvComControleBasico {
+public class TVComControleBasico {
     public void ligar(){
         System.out.println("TV Ligada");
     }
