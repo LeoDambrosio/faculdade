@@ -1,12 +1,8 @@
-package br.com.guilhermevillaca.padroes.comportamentais.observer;
+package br.com.leonardovieira.padroes.comportamentais.observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author villaca
- */
 // Classe Produto que implementa Subject
 public class Produto implements Sujeito {
 

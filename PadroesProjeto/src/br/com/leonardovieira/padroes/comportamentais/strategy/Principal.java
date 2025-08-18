@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.strategy;
+package br.com.leonardovieira.padroes.comportamentais.strategy;
 
 /**
  *
- * @author villaca
  *
  * O padrão Strategy define uma família de algoritmos, encapsula cada um deles e
  * os torna intercambiáveis. O padrão permite que o algoritmo varie

@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.visitor_;
+package br.com.leonardovieira.padroes.comportamentais.visitor_;
 
 /**
  *
- * @author guilherme.villaca
  *
  * Explicação: Item (Interface Elemento): A interface Item define o método
  * aceitar, que recebe um objeto Visitante. Cada classe concreta que implementa

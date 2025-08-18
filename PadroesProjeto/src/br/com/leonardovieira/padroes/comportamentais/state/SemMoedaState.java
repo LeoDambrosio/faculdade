@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
-/**
- *
- * @author villaca
- */
+
 // Estado SemMoeda: A máquina está esperando uma moeda
 public class SemMoedaState implements State {
     private MaquinaVenda maquinaVenda;

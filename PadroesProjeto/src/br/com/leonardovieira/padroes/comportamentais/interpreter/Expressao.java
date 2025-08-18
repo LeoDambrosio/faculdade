@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.interpreter;
+package br.com.leonardovieira.padroes.comportamentais.interpreter;
 
 public interface Expressao {
 

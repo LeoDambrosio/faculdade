@@ -1,9 +1,5 @@
-package br.com.guilhermevillaca.padroes.criacionais.abstractfactory;
-
-/**
- *
- * @author villaca
- */
+package br.com.leonardovieira.padroes.criacionais.abstractfactory;
+ 
 public interface Ursinho {
 
     void exibir();

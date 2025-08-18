@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
-/**
- *
- * @author villaca
- */
+
 // Estado SemEstoque: A máquina está sem produtos
 public class SemEstoqueState implements State {
     private MaquinaVenda maquinaVenda;

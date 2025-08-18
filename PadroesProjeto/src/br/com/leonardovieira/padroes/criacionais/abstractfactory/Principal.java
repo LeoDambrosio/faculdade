@@ -1,10 +1,6 @@
-package br.com.guilhermevillaca.padroes.criacionais.abstractfactory;
+package br.com.leonardovieira.padroes.criacionais.abstractfactory;
 
-/**
- *
- * @author villaca
- */
-
+ 
 /*
 
 Padrão de Projeto Abstract Factory

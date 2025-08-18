@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 // Interface para os handlers da cadeia
 interface Handler {

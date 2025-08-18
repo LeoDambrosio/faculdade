@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.mediator;
+package br.com.leonardovieira.padroes.comportamentais.mediator;
 
 /**
  *
- * @author villaca
  *
  *
  * O padrão de projeto Mediator é utilizado para reduzir as dependências entre

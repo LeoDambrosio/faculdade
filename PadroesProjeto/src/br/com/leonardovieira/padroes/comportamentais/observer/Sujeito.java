@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.observer;
+package br.com.leonardovieira.padroes.comportamentais.observer;
 
-/**
- *
- * @author villaca
- */
+
 // Interface Sujeito que define métodos para gerenciar observadores
 public interface Sujeito {
 

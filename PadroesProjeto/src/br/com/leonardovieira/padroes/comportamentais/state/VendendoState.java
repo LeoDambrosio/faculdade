@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
-/**
- *
- * @author villaca
- */
+
 // Estado Vendendo: A máquina está processando a venda
 public class VendendoState implements State {
     private MaquinaVenda maquinaVenda;

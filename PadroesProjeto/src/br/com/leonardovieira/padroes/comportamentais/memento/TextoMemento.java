@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.memento;
+package br.com.leonardovieira.padroes.comportamentais.memento;
 
-/**
- *
- * @author villaca
- */
+
 // Memento armazena o estado do objeto
 public class TextoMemento {
 

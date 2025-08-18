@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.templatemethod;
+package br.com.leonardovieira.padroes.comportamentais.templatemethod;
 
 /**
  *
- * @author villaca
  *
  * O padrão Template Method define o esqueleto de um algoritmo em uma operação,
  * postergando a definição de alguns passos para subclasses. O padrão permite

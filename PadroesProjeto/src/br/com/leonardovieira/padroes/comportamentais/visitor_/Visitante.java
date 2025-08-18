@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.visitor_;
+package br.com.leonardovieira.padroes.comportamentais.visitor_;
 
-/**
- *
- * @author guilherme.villaca
- */
+ 
 public interface Visitante {
 
     void visitar(Livro livro);

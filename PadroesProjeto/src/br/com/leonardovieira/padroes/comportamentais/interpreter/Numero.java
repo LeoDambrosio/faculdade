@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.interpreter;
+package br.com.leonardovieira.padroes.comportamentais.interpreter;
 
 // Expressão para números (valores fixos)
 public class Numero implements Expressao {

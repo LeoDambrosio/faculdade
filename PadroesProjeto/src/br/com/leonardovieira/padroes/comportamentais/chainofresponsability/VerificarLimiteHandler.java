@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 // Handler para verificar limite do usuário
 public class VerificarLimiteHandler extends AbstractHandler {

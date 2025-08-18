@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.visitor_;
+package br.com.leonardovieira.padroes.comportamentais.visitor_;
 
-/**
- *
- * @author guilherme.villaca
- */
+
 public class Fruta implements Item {
 
     private String nome;

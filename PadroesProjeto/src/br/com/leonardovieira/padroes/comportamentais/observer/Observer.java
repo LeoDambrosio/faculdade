@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.observer;
+package br.com.leonardovieira.padroes.comportamentais.observer;
 
-/**
- *
- * @author villaca
- */
+
 // Interface Observer que define o método de notificação
 public interface Observer {
 

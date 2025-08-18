@@ -1,9 +1,5 @@
-package br.com.guilhermevillaca.padroes.criacionais.exercicios.atv1;
-
-/**
- *
- * @author villaca
- */
+package br.com.leonardovieira.padroes.criacionais.exercicios.atv1;
+ 
 public class FabricaVeiculosEletricos implements FabricaVeiculo{
 
     @Override

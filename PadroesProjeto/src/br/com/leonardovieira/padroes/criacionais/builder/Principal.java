@@ -1,10 +1,5 @@
-package br.com.guilhermevillaca.padroes.criacionais.builder;
-
-/**
- *
- * @author villaca
- */
-
+package br.com.leonardovieira.padroes.criacionais.builder;
+ 
 /*
 
 

@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 /**
  *
- * @author villaca
  *
  * padrão de projeto Chain of Responsibility é utilizado quando você deseja
  * passar uma solicitação ao longo de uma cadeia de manipuladores até que um

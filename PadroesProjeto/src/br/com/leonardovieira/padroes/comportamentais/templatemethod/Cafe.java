@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.templatemethod;
+package br.com.leonardovieira.padroes.comportamentais.templatemethod;
 
-/**
- *
- * @author villaca
- */
+
 // Subclasse concreta para preparar café
 public class Cafe extends Bebida {
 

@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.memento;
+package br.com.leonardovieira.padroes.comportamentais.memento;
 
-/**
- *
- * @author villaca
- */
+
 // Originator - Classe que deseja salvar e restaurar seu estado
 public class EditorTexto {
 

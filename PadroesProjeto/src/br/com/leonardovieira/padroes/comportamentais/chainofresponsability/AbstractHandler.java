@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 // Handler base que implementa o encadeamento
 public abstract class AbstractHandler implements Handler {

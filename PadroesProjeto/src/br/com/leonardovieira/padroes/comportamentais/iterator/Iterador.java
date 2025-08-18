@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.iterator;
+package br.com.leonardovieira.padroes.comportamentais.iterator;
 
-/**
- *
- * @author villaca
- */
+
 public interface Iterador<T> {
 
     boolean temProximo();

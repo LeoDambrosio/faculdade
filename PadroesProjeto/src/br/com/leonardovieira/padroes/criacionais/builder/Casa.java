@@ -1,9 +1,5 @@
-package br.com.guilhermevillaca.padroes.criacionais.builder;
-
-/**
- *
- * @author villaca
- */
+package br.com.leonardovieira.padroes.criacionais.builder;
+ 
 public class Casa {
     private String paredes;
     private String telhado;

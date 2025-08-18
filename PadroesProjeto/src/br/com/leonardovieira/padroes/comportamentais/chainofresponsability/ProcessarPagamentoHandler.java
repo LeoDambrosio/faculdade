@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 // Handler final que processa o pagamento
 public class ProcessarPagamentoHandler extends AbstractHandler {

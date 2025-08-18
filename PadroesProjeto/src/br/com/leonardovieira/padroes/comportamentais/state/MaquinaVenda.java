@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
-/**
- *
- * @author villaca
- */
+
 // Classe MaquinaVenda que mantém o estado atual da máquina
 public class MaquinaVenda {
 

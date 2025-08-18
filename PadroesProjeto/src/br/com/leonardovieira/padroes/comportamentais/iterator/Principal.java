@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.iterator;
+package br.com.leonardovieira.padroes.comportamentais.iterator;
 
 /**
  *
- * @author villaca
  *
  * O padrão de projeto Iterator é utilizado para fornecer uma maneira de acessar
  * os elementos de um objeto agregado sequencialmente, sem expor sua

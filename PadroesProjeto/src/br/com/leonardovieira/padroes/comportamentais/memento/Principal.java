@@ -1,9 +1,5 @@
-package br.com.guilhermevillaca.padroes.comportamentais.memento;
+package br.com.leonardovieira.padroes.comportamentais.memento;
 
-/**
- *
- * @author villaca
- */
 /**
  *
  * O padrão de projeto Memento é usado para capturar e restaurar o estado

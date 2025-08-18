@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.strategy;
+package br.com.leonardovieira.padroes.comportamentais.strategy;
 
-/**
- *
- * @author villaca
- */
+
 // Classe concreta que implementa pagamento via PayPal
 public class PagamentoPayPal implements PagamentoStrategy {
 

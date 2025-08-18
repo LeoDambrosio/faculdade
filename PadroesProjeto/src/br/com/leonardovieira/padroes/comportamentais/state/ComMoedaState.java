@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
-/**
- *
- * @author villaca
- */
+
 // Estado ComMoeda: A máquina recebeu uma moeda
 public class ComMoedaState implements State {
     private MaquinaVenda maquinaVenda;

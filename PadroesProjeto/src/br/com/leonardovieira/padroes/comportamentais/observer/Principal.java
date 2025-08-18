@@ -1,8 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.observer;
+package br.com.leonardovieira.padroes.comportamentais.observer;
 
 /**
  *
- * @author villaca
  *
  * O padrão de projeto Observer define uma dependência um-para-muitos entre
  * objetos, de modo que quando um objeto muda de estado, todos os seus

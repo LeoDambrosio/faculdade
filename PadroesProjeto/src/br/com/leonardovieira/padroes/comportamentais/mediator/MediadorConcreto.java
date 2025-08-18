@@ -1,12 +1,8 @@
-package br.com.guilhermevillaca.padroes.comportamentais.mediator;
+package br.com.leonardovieira.padroes.comportamentais.mediator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author villaca
- */
 public class MediadorConcreto implements Mediador {
     private List<Colaborador> colaboradores;
 

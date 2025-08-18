@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.observer;
+package br.com.leonardovieira.padroes.comportamentais.observer;
 
-/**
- *
- * @author villaca
- */
+
 // Classe Cliente que implementa Observer
 public class Cliente implements Observer {
 

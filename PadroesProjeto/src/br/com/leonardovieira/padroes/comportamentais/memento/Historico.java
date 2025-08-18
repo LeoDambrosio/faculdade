@@ -1,11 +1,7 @@
-package br.com.guilhermevillaca.padroes.comportamentais.memento;
+package br.com.leonardovieira.padroes.comportamentais.memento;
 
 import java.util.Stack;
 
-/**
- *
- * @author villaca
- */
 public class Historico {
 
     private Stack<TextoMemento> historico = new Stack<>();

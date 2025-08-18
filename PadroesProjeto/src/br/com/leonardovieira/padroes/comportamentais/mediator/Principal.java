@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.mediator;
+package br.com.leonardovieira.padroes.comportamentais.mediator;
 
-/**
- *
- * @author villaca
- */
+
 public class Principal {
 
     public static void main(String[] args) {

@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.templatemethod;
+package br.com.leonardovieira.padroes.comportamentais.templatemethod;
 
-/**
- *
- * @author villaca
- */
+
 // Classe abstrata Bebida que define o esqueleto para preparar uma bebida
 public abstract class Bebida {
 

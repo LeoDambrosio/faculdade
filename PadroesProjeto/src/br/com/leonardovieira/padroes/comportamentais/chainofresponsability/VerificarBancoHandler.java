@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.padroes.comportamentais.chainofresponsability;
 
 // Handler para verificar se o banco está disponível
 public class VerificarBancoHandler extends AbstractHandler {

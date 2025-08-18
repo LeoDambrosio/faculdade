@@ -1,9 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.iterator;
+package br.com.leonardovieira.padroes.comportamentais.iterator;
 
-/**
- *
- * @author villaca
- */
+
 public class ColecaoDeNomes implements ColecaoAgregada<String> {
 
     private String[] nomes;

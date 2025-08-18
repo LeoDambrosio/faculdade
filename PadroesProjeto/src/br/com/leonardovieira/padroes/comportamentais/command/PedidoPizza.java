@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.comportamentais.command;
+package br.com.leonardovieira.padroes.comportamentais.command;
 
 public class PedidoPizza implements Pedido {
     private Cozinheiro cozinheiro;

@@ -1,8 +1,6 @@
-package br.com.guilhermevillaca.padroes.comportamentais.state;
+package br.com.leonardovieira.padroes.comportamentais.state;
 
 /**
- *
- * @author villaca
  *
  * O padrão State é utilizado para permitir que um objeto altere seu
  * comportamento quando seu estado interno muda. Ele é muito útil quando um
