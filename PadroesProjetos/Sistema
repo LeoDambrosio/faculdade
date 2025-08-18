@@ -1,9 +1,0 @@
-public class Sistema {
-    public void executar() {
-        Logger logger1 = new Logger();
-        logger1.log("Iniciando o sistema...");
-
-        Logger logger2 = new Logger();
-        logger2.log("Processando dados...");
-    }
-}
