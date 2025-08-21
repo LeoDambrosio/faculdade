@@ -18,7 +18,7 @@ public class MediadorConcreto implements Mediador {
     @Override
     public void enviarMensagem(String mensagem, Colaborador remetente) {
         for (Colaborador colaborador : colaboradores) {
-            // Não envie a mensagem de volta para o remetente
+            //nao envie a mensagem de volta para o remetente
             if (colaborador != remetente) {
                 colaborador.receberMensagem(mensagem);
             }

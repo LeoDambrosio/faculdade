@@ -1,6 +1,5 @@
 package br.com.leonardovieira.padroes.comportamentais.mediator;
 
-
 public abstract class Colaborador {
     protected Mediador mediador;
     protected String nome;
