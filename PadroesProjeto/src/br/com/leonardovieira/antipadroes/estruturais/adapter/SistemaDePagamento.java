@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.adapter;
+package br.com.leonardovieira.antipadroes.estruturais.adapter;
 
-// 🛑 Tentativa errada de integrar os dois sistemas manualmente
 class SistemaDePagamento {
     private boolean usarSistemaNovo;
     private PagamentoAntigo sistemaAntigo = new PagamentoAntigo();

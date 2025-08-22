@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.bridge;
+package br.com.leonardovieira.antipadroes.estruturais.bridge;
 
-// 📺 Classe TV com controle básico
 public class TVComControleBasico {
     public void ligar() {
         System.out.println("TV ligada");

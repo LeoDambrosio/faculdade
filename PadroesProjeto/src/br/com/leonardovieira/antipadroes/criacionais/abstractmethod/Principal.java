@@ -1,5 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.abstractmethod;
-// Uso da fábrica
+package br.com.leonardovieira.antipadroes.criacionais.abstractmethod;
+
 public class Principal {
     public static void main(String[] args) {
         FabricaBrinquedos fabrica = new FabricaBrinquedos();

@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.flyweight;
+package br.com.leonardovieira.antipadroes.estruturais.flyweight;
 
 public class Caractere {
 

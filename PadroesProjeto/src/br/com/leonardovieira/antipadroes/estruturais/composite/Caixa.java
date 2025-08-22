@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.composite;
+package br.com.leonardovieira.antipadroes.estruturais.composite;
 
-// Caixa com múltiplos produtos individuais (ex: 12 caixas de leite)
 public class Caixa {
     private String nome;
     private Produto produto;

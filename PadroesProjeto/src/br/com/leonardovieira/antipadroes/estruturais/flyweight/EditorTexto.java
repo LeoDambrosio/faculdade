@@ -1,13 +1,8 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.flyweight;
+package br.com.leonardovieira.antipadroes.estruturais.flyweight;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * 
- * Problema: Cada instância de Caractere ocupa espaço individualmente, mesmo que os caracteres tenham a mesma formatação.
- * 
- */
 public class EditorTexto {
 
     public static void main(String[] args) {

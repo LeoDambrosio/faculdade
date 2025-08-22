@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.composite;
+package br.com.leonardovieira.antipadroes.estruturais.composite;
 
-// Produto individual (ex: 1 litro de leite)
 public class Produto {
     private String nome;
     private double preco;

@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.factorymethod;
+package br.com.leonardovieira.antipadroes.criacionais.factorymethod;
 
 public class Transporte {
     public void entregar() {

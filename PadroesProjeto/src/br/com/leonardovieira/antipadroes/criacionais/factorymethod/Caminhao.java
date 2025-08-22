@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.factorymethod;
+package br.com.leonardovieira.antipadroes.criacionais.factorymethod;
 
-// Implementação específica para transporte via caminhão
 public class Caminhao extends Transporte {
     @Override
     public void entregar() {

@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.comportamentais.chainofresponsability;
+package br.com.leonardovieira.antipadroes.comportamentais.chainofresponsability;
 
 class PagamentoProcessor {
 

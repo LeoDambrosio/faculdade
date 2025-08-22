@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.comportamentais.command;
+package br.com.leonardovieira.antipadroes.comportamentais.command;
 
 public class Cozinheiro {
 

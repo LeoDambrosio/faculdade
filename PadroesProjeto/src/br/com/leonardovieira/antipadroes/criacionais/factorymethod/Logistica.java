@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.criacionais.factorymethod;
+package br.com.leonardovieira.antipadroes.criacionais.factorymethod;
 
-// Gerenciador de Logística que lida apenas com caminhões
 class Logistica {
     private Caminhao caminhao;
     private Trem trem;

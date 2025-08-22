@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.comportamentais.interpreter;
+package br.com.leonardovieira.antipadroes.comportamentais.interpreter;
 
 public class Interpretador {
     public int interpretar(String expressao) {

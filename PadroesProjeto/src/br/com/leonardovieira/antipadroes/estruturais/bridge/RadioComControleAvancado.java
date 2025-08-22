@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.bridge;
+package br.com.leonardovieira.antipadroes.estruturais.bridge;
 
-// 📻📡 Rádio com controle avançado
 public class RadioComControleAvancado {
     public void ligar() {
         System.out.println("Rádio ligado");

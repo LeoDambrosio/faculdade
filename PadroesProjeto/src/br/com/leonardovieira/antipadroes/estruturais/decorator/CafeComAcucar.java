@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.decorator;
+package br.com.leonardovieira.antipadroes.estruturais.decorator;
 
-// ☕ Café com açúcar
 public class CafeComAcucar extends Cafe {
     @Override
     public double getPreco() {

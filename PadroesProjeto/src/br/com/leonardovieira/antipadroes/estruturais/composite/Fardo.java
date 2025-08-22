@@ -1,6 +1,5 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.composite;
+package br.com.leonardovieira.antipadroes.estruturais.composite;
 
-// Fardo que contém várias caixas (ex: 6 caixas de 12 leites cada)
 public class Fardo {
     private String nome;
     private Caixa caixa;

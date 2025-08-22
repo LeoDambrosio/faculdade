@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.antipadroes.estruturais.proxy;
+package br.com.leonardovieira.antipadroes.estruturais.proxy;
 
 public class Banco {
 
