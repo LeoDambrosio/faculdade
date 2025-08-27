@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,88 +7,244 @@
   <link rel="stylesheet" href="LadyCar.css">
 </head>
 <body>
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Lady Car</h1>
-      <p>A Oficina da Mulher</p>
-      <a href="#contato" class="btn">Agende seu serviço</a>
+  <!-- Tela de Login (inicialmente visível) -->
+  <div id="loginScreen" class="login-container">
+    <div class="login-box">
+      <h2>Login - Lady Car</h2>
+      <form class="form-login" id="loginForm">
+        <div>
+          <label for="loginEmail">E-mail</label>
+          <input type="email" id="loginEmail" name="email" placeholder="Digite seu e-mail" required>
+        </div>
+        
+        <div>
+          <label for="loginSenha">Senha</label>
+          <input type="password" id="loginSenha" name="senha" placeholder="Digite sua senha" required>
+        </div>
+
+        <button type="submit" class="btn">Entrar</button>
+      </form>
+
+      <div class="login-links">
+        <p>Ainda não tem conta? <a href="#" id="goToRegister">Cadastre-se</a></p>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <!-- Problema -->
-  <section class="problema">
-    <h2>Por que existimos?</h2>
-    <p>Muitas mulheres se sentem inseguras em oficinas tradicionais. Falta de transparência, medo de serem enganadas e ambientes pouco acolhedores afastam o público feminino.</p>
-    <ul class="dados">
-      <li><strong>43%</strong> Falta de conhecimento</li>
-      <li><strong>23%</strong> Falta de tempo</li>
-      <li><strong>10%</strong> Medo de serem enganadas</li>
-      <li><strong>10%</strong> Ambientes masculinos</li>
-      <li><strong>14%</strong> Outros</li>
-    </ul>
-  </section>
+  <!-- Tela de Cadastro (inicialmente oculta) -->
+  <div id="registerScreen" class="login-container hidden">
+    <div class="login-box">
+      <h2>Cadastro - Lady Car</h2>
+      <form class="form-login" id="registerForm">
+        <div>
+          <label for="registerNome">Nome completo</label>
+          <input type="text" id="registerNome" name="nome" placeholder="Digite seu nome" required>
+        </div>
+        
+        <div>
+          <label for="registerEmail">E-mail</label>
+          <input type="email" id="registerEmail" name="email" placeholder="Digite seu e-mail" required>
+        </div>
+        
+        <div>
+          <label for="registerSenha">Senha</label>
+          <input type="password" id="registerSenha" name="senha" placeholder="Crie uma senha" required>
+        </div>
+        
+        <div>
+          <label for="registerConfirmaSenha">Confirmar Senha</label>
+          <input type="password" id="registerConfirmaSenha" name="confirmaSenha" placeholder="Confirme sua senha" required>
+        </div>
 
-  <!-- Serviços -->
-  <section class="servicos">
-    <h2>Nossos Serviços</h2>
-    <div class="grid">
-      <div class="card">🔧 Troca de óleo</div>
-      <div class="card">⚡ Troca de bateria</div>
-      <div class="card">💨 Calibragem de pneus</div>
-      <div class="card">🌬️ Limpeza de ar-condicionado</div>
-      <div class="card">🧼 Lavagem a seco</div>
-      <div class="card">🚗 Instalação de acessórios</div>
-      <div class="card">🛢️ Verificação de fluidos</div>
-      <div class="card">🛠️ Reparo de pneus</div>
+        <button type="submit" class="btn">Cadastrar</button>
+      </form>
+
+      <div class="login-links">
+        <p>Já tem cadastro? <a href="#" id="goToLogin">Fazer login</a></p>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Como Funciona -->
-  <section class="como-funciona">
-    <h2>Como Funciona</h2>
-    <ol>
-      <li>Você escolhe o serviço no site</li>
-      <li>Nossa equipe vai até você</li>
-      <li>Pagamento transparente e seguro</li>
-    </ol>
-  </section>
+  <!-- Conteúdo Principal (inicialmente oculto) -->
+  <div id="mainContent" class="hidden">
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Lady Car</h1>
+        <p>A Oficina da Mulher</p>
+        <a href="#contato" class="btn">Agende seu serviço</a>
+        <button class="btn" id="logoutBtn" style="margin-left: 10px;">Sair</button>
+      </div>
+    </header>
 
-  <!-- Escalabilidade -->
-  <section class="futuro">
-    <h2>Nosso Futuro</h2>
-    <ul>
-      <li>Unidade física especializada</li>
-      <li>Expansão em franquias</li>
-      <li>Capacitação de mecânicas mulheres</li>
-    </ul>
-  </section>
+    <!-- Problema -->
+    <section class="problema">
+      <h2>Por que existimos?</h2>
+      <p>Muitas mulheres se sentem inseguras em oficinas tradicionais. Falta de transparência, medo de serem enganadas e ambientes pouco acolhedores afastam o público feminino.</p>
+      <ul class="dados">
+        <li><strong>43%</strong> Falta de conhecimento</li>
+        <li><strong>23%</strong> Falta de tempo</li>
+        <li><strong>10%</strong> Medo de serem enganadas</li>
+        <li><strong>10%</strong> Ambientes masculinos</li>
+        <li><strong>14%</strong> Outros</li>
+      </ul>
+    </section>
 
-  <!-- Equipe -->
-  <section class="equipe">
-    <h2>Nossa Equipe</h2>
-    <div class="grid">
-      <div class="card">Leonardo Vieira Dambrosio</div>
-      <div class="card">Andre Capellesso Luzzi</div>
-      <div class="card">Henrique Gil Moura Morais</div>
-      <div class="card">Leiticia Cezar Vieira</div>
-      <div class="card">Alan Alves do Nascimento</div>
-    </div>
-  </section>
+    <!-- Serviços -->
+    <section class="servicos">
+      <h2>Nossos Serviços</h2>
+      <div class="grid">
+        <div class="card">🔧 Troca de óleo</div>
+        <div class="card">⚡ Troca de bateria</div>
+        <div class="card">💨 Calibragem de pneus</div>
+        <div class="card">🌬️ Limpeza de ar-condicionado</div>
+        <div class="card">🧼 Lavagem a seco</div>
+        <div class="card">🚗 Instalação de acessórios</div>
+        <div class="card">🛢️ Verificação de fluidos</div>
+        <div class="card">🛠️ Reparo de pneus</div>
+      </div>
+    </section>
 
-  <!-- Contato -->
-  <section id="contato" class="contato">
-    <h2>Fale Conosco</h2>
-    <form>
-      <input type="text" placeholder="Seu nome" required>
-      <input type="email" placeholder="Seu e-mail" required>
-      <textarea placeholder="Sua mensagem"></textarea>
-      <button type="submit" class="btn">Enviar</button>
-    </form>
-  </section>
+    <!-- Como Funciona -->
+    <section class="como-funciona">
+      <h2>Como Funciona</h2>
+      <ol>
+        <li>Você escolhe o serviço no site</li>
+        <li>Nossa equipe vai até você</li>
+        <li>Pagamento transparente e seguro</li>
+      </ol>
+    </section>
 
-  <footer>
-    <p>Lady Car © 2025 - A Oficina da Mulher</p>
-  </footer>
+    <!-- Escalabilidade -->
+    <section class="futuro">
+      <h2>Nosso Futuro</h2>
+      <ul>
+        <li>Unidade física especializada</li>
+        <li>Expansão em franquias</li>
+        <li>Capacitação de mecânicas mulheres</li>
+      </ul>
+    </section>
+
+    <!-- Equipe -->
+    <section class="equipe">
+      <h2>Nossa Equipe</h2>
+      <div class="grid">
+        <div class="card">Leonardo Vieira Dambrosio</div>
+        <div class="card">Andre Capellesso Luzzi</div>
+        <div class="card">Henrique Gil Moura Morais</div>
+        <div class="card">Leiticia Cezar Vieira</div>
+        <div class="card">Alan Alves do Nascimento</div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Lady Car © 2025 - A Oficina da Mulher</p>
+    </footer>
+  </div>
+
+  <script>
+    // Verificar se o usuário já está logado
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('ladycar_loggedin');
+      if (isLoggedIn === 'true') {
+        showMainContent();
+      }
+      
+      // Configurar eventos dos formulários
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleLogin();
+      });
+      
+      document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleRegister();
+      });
+      
+      // Configurar navegação entre login e cadastro
+      document.getElementById('goToRegister').addEventListener('click', function(e) {
+        e.preventDefault();
+        showRegisterScreen();
+      });
+      
+      document.getElementById('goToLogin').addEventListener('click', function(e) {
+        e.preventDefault();
+        showLoginScreen();
+      });
+      
+      // Configurar botão de logout
+      document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('ladycar_loggedin');
+        showLoginScreen();
+      });
+    });
+
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const senha = document.getElementById('loginSenha').value;
+      
+      // Verificar se as credenciais existem no localStorage
+      const users = JSON.parse(localStorage.getItem('ladycar_users') || '[]');
+      const user = users.find(u => u.email === email && u.senha === senha);
+      
+      if (user) {
+        // Login bem-sucedido
+        localStorage.setItem('ladycar_loggedin', 'true');
+        localStorage.setItem('ladycar_user', JSON.stringify(user));
+        showMainContent();
+      } else {
+        alert('E-mail ou senha incorretos. Tente novamente.');
+      }
+    }
+
+    function handleRegister() {
+      const nome = document.getElementById('registerNome').value;
+      const email = document.getElementById('registerEmail').value;
+      const senha = document.getElementById('registerSenha').value;
+      const confirmaSenha = document.getElementById('registerConfirmaSenha').value;
+      
+      // Verificar se as senhas coincidem
+      if (senha !== confirmaSenha) {
+        alert('As senhas não coincidem. Tente novamente.');
+        return;
+      }
+      
+      // Verificar se o usuário já existe
+      const users = JSON.parse(localStorage.getItem('ladycar_users') || '[]');
+      if (users.find(u => u.email === email)) {
+        alert('Este e-mail já está cadastrado. Faça login ou use outro e-mail.');
+        return;
+      }
+      
+      // Adicionar novo usuário
+      users.push({ nome, email, senha });
+      localStorage.setItem('ladycar_users', JSON.stringify(users));
+      
+      // Fazer login automaticamente
+      localStorage.setItem('ladycar_loggedin', 'true');
+      localStorage.setItem('ladycar_user', JSON.stringify({ nome, email }));
+      
+      alert('Cadastro realizado com sucesso!');
+      showMainContent();
+    }
+
+    function showLoginScreen() {
+      document.getElementById('loginScreen').classList.remove('hidden');
+      document.getElementById('registerScreen').classList.add('hidden');
+      document.getElementById('mainContent').classList.add('hidden');
+    }
+
+    function showRegisterScreen() {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('registerScreen').classList.remove('hidden');
+      document.getElementById('mainContent').classList.add('hidden');
+    }
+
+    function showMainContent() {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('registerScreen').classList.add('hidden');
+      document.getElementById('mainContent').classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
