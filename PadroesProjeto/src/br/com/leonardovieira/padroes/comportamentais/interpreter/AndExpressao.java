@@ -1,5 +1,4 @@
-
-import br.com.leonardovieira.padroes.comportamentais.interpreter.Expressao;
+package br.com.leonardovieira.padroes.comportamentais.interpreter;
 
 public class AndExpressao implements Expressao{
 
