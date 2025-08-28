@@ -12,8 +12,7 @@ public class OrExpressao implements Expressao{
 
     @Override
     public boolean interpretar(Artigo artigo){
-        return esquerda.interpretar(artigo) && direita.interpretar(artigo);
-    } {
+        return esquerda.interpretar(artigo) || direita.interpretar(artigo);
+    } 
 
-    }
 }
