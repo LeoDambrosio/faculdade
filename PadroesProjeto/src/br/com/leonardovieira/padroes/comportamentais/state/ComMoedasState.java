@@ -9,13 +9,13 @@ public class ComMoedasState implements State {
 
     @Override
     public void inserirMoeda() {
-        System.out.println("Já existe uma moeda inserida.");
+        System.out.println("Ja existe uma moeda inserida.");
     }
 
     @Override
     public void ejetarMoeda() {
         System.out.println("Moeda ejetada.");
-        maquinaVenda.setEstado(maquinaVenda.getSemMoedasState());
+        maquinaVenda.setEstado(maquinaVenda.getSemMoedaState());
     }
 
     @Override

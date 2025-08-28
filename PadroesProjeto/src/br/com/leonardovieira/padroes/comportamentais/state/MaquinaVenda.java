@@ -2,23 +2,23 @@ package br.com.leonardovieira.padroes.comportamentais.state;
 
 public class MaquinaVenda {
 
-    private State semMoedasState;
-    private State comMoedasState;
-    private State vendendoState;
+    private State semMoedaState;
     private State semEstoqueState;
-
+    private State comMoedaState;
+    private State vendendoState;
+    
     private State estadoAtual;
     private int quantidade;
 
     public MaquinaVenda(int quantidade) {
-        semMoedasState = new SemMoedasState(this);
-        comMoedasState = new ComMoedasState(this);
-        vendendoState = new VendendoState(this);
-        semEstoqueState = new SemEstoqueState(this);
-
         this.quantidade = quantidade;
+        semMoedaState = new SemMoedasState(this);
+        semEstoqueState = new SemEstoqueState(this);
+        comMoedaState = new ComMoedasState(this);
+        vendendoState = new VendendoState(this);
+        
         if (quantidade > 0) {
-            estadoAtual = semMoedasState;
+            estadoAtual = semMoedaState;
         } else {
             estadoAtual = semEstoqueState;
         }
@@ -43,7 +43,7 @@ public class MaquinaVenda {
 
     public void liberarProduto() {
         if (quantidade > 0) {
-            System.out.println("Um produto foi dispensado.");
+            System.out.println("Um produto foi dispensado");
             quantidade--;
         }
     }
@@ -53,11 +53,11 @@ public class MaquinaVenda {
     }
 
     public State getSemMoedaState() {
-        return semMoedasState;
+        return semMoedaState;
     }
 
     public State getComMoedaState() {
-        return comMoedasState;
+        return comMoedaState;
     }
 
     public State getVendendoState() {

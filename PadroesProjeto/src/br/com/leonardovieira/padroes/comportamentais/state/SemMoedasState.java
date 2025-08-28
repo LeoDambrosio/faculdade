@@ -11,7 +11,7 @@ public class SemMoedasState implements State {
     @Override
     public void inserirMoeda() {
         System.out.println("Moeda inserida.");
-        maquinaVenda.setEstado(maquinaVenda.getComMoedasState());
+        maquinaVenda.setEstado(maquinaVenda.getComMoedaState());
     }
 
     @Override
@@ -21,7 +21,7 @@ public class SemMoedasState implements State {
 
     @Override
     public void acionarAlavanca() {
-        System.out.println("Você precisa inserir uma moeda primeiro.");
+        System.out.println("Voce precisa inserir uma moeda primeiro.");
     }
 
     @Override

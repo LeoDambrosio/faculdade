@@ -27,9 +27,9 @@ public class VendendoState implements State {
     public void dispensarProduto() {
         maquinaVenda.liberarProduto();
         if (maquinaVenda.getQuantidade() > 0) {
-            maquinaVenda.setEstado(maquinaVenda.getSemMoedasState());
+            maquinaVenda.setEstado(maquinaVenda.getSemMoedaState());
         } else {
-            System.out.println("Produto esgotado!");
+            System.out.println("Produto esgotado");
             maquinaVenda.setEstado(maquinaVenda.getSemEstoqueState());
         }
     }
