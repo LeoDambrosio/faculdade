@@ -1,9 +1,5 @@
 package br.com.leonardovieira.padroes.comportamentais.interpreter;
 
-import java.util.function.BooleanSupplier;
-
-import br.com.leonardovieira.padroes.comportamentais.interpreter.Expressao;
-
 public class Palavra implements Expressao {
 
     private String termo;

@@ -8,7 +8,7 @@ public class AndExpressao implements Expressao{
 
     public AndExpressao(Expressao esquerda, Expressao direita){
         this.esquerda = esquerda;
-        this.direita =direita;
+        this.direita = direita;
     }
 
     @Override

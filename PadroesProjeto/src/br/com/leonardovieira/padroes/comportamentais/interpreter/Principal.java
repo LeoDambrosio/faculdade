@@ -1,23 +1,24 @@
 package br.com.leonardovieira.padroes.comportamentais.interpreter;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class Principal {
 
     public static void main(String[] args) {
-        
-        List<Artigo> artigo = Array.asList(
-            new Artigo(titulo:"Aquitetura de Sofware Moderna"),
-            new Artigo(titulo:"Padrao MVC na Web"),
-            new Artigo(titulo:"Padroes de Projeto e Arquitetura"),
-            new Artigo(titulo:"Introducao a Inteligencia Artificial"),
-            new Artigo(titulo:"Model View Controller na Pratica")
+        List<Artigo> artigos = Arrays.asList(
+            new Artigo("Aquitetura de Software Moderna"),
+            new Artigo("Padrao MVC na Web"),
+            new Artigo("Padroes de Projeto e Arquitetura"),
+            new Artigo("Introducao a Inteligencia Artificial"),
+            new Artigo("Model View Controller na Pratica"),
+            new Artigo("Arquitetura de Software e Model View Controller"),
+            new Artigo("Arquitetura de Software e MVC")
         );
 
-        Expressao termo1 = new Palavra(termo:"arquitetura de sofware");
-        Expressao termo2 = new Palavra(termo:"mvc");
-        Expressao termo3 = new Palavra(termo:"model view controller");
+        Expressao termo1 = new Palavra("arquitetura de software");
+        Expressao termo2 = new Palavra("mvc");
+        Expressao termo3 = new Palavra("model view controller");
 
         Expressao or = new OrExpressao(termo2, termo3);
         Expressao query = new AndExpressao(termo1, or);
