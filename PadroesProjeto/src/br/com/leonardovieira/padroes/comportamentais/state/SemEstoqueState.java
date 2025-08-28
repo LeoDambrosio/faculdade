@@ -1,7 +1,5 @@
 package br.com.leonardovieira.padroes.comportamentais.state;
 
-
-// Estado SemEstoque: A máquina está sem produtos
 public class SemEstoqueState implements State {
     private MaquinaVenda maquinaVenda;
 
@@ -11,7 +9,7 @@ public class SemEstoqueState implements State {
 
     @Override
     public void inserirMoeda() {
-        System.out.println("Produto esgotado. Não é possível inserir moeda.");
+        System.out.println("Produto esgotado. Nao e possivel inserir moeda.");
     }
 
     @Override
@@ -26,6 +24,6 @@ public class SemEstoqueState implements State {
 
     @Override
     public void dispensarProduto() {
-        System.out.println("Nenhum produto dispensado.");
+        System.out.println("Nenhum produto disponivel para ser dispensado.");
     }
 }

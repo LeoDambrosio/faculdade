@@ -3,8 +3,7 @@ package br.com.leonardovieira.padroes.comportamentais.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-// Classe Produto que implementa Subject
-public class Produto implements Sujeito {
+public class Produto implements Subject {
 
     private String nome;
     private int quantidade;
@@ -41,8 +40,8 @@ public class Produto implements Sujeito {
 
     @Override
     public void notificarObservadores() {
-        for (Observer observador : observadores) {
-            observador.atualizar(nome, quantidade);
+        for (Observer observer : observadores) {
+            observer.atualizar(nome, quantidade);
         }
     }
 }

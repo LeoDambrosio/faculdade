@@ -1,8 +1,7 @@
 package br.com.leonardovieira.padroes.comportamentais.state;
 
-
-// Estado Vendendo: A máquina está processando a venda
 public class VendendoState implements State {
+
     private MaquinaVenda maquinaVenda;
 
     public VendendoState(MaquinaVenda maquinaVenda) {
@@ -28,7 +27,7 @@ public class VendendoState implements State {
     public void dispensarProduto() {
         maquinaVenda.liberarProduto();
         if (maquinaVenda.getQuantidade() > 0) {
-            maquinaVenda.setEstado(maquinaVenda.getSemMoedaState());
+            maquinaVenda.setEstado(maquinaVenda.getSemMoedasState());
         } else {
             System.out.println("Produto esgotado!");
             maquinaVenda.setEstado(maquinaVenda.getSemEstoqueState());

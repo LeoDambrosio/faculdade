@@ -1,11 +1,9 @@
 package br.com.leonardovieira.padroes.comportamentais.state;
 
-
-// Estado ComMoeda: A máquina recebeu uma moeda
-public class ComMoedaState implements State {
+public class ComMoedasState implements State {
     private MaquinaVenda maquinaVenda;
 
-    public ComMoedaState(MaquinaVenda maquinaVenda) {
+    public ComMoedasState(MaquinaVenda maquinaVenda) {
         this.maquinaVenda = maquinaVenda;
     }
 
@@ -17,7 +15,7 @@ public class ComMoedaState implements State {
     @Override
     public void ejetarMoeda() {
         System.out.println("Moeda ejetada.");
-        maquinaVenda.setEstado(maquinaVenda.getSemMoedaState());
+        maquinaVenda.setEstado(maquinaVenda.getSemMoedasState());
     }
 
     @Override

@@ -1,18 +1,17 @@
 package br.com.leonardovieira.padroes.comportamentais.state;
 
-
-// Estado SemMoeda: A máquina está esperando uma moeda
-public class SemMoedaState implements State {
+public class SemMoedasState implements State {
+    
     private MaquinaVenda maquinaVenda;
 
-    public SemMoedaState(MaquinaVenda maquinaVenda) {
+    public SemMoedasState(MaquinaVenda maquinaVenda) {
         this.maquinaVenda = maquinaVenda;
     }
 
     @Override
     public void inserirMoeda() {
         System.out.println("Moeda inserida.");
-        maquinaVenda.setEstado(maquinaVenda.getComMoedaState());
+        maquinaVenda.setEstado(maquinaVenda.getComMoedasState());
     }
 
     @Override

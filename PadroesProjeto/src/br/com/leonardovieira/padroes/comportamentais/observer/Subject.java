@@ -1,8 +1,6 @@
 package br.com.leonardovieira.padroes.comportamentais.observer;
 
-
-// Interface Sujeito que define métodos para gerenciar observadores
-public interface Sujeito {
+public interface Subject {
 
     void adicionarObservador(Observer observador);
 

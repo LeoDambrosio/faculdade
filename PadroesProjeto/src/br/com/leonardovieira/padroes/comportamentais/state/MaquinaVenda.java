@@ -1,11 +1,9 @@
 package br.com.leonardovieira.padroes.comportamentais.state;
 
-
-// Classe MaquinaVenda que mantém o estado atual da máquina
 public class MaquinaVenda {
 
-    private State semMoedaState;
-    private State comMoedaState;
+    private State semMoedasState;
+    private State comMoedasState;
     private State vendendoState;
     private State semEstoqueState;
 
@@ -13,14 +11,14 @@ public class MaquinaVenda {
     private int quantidade;
 
     public MaquinaVenda(int quantidade) {
-        semMoedaState = new SemMoedaState(this);
-        comMoedaState = new ComMoedaState(this);
+        semMoedasState = new SemMoedasState(this);
+        comMoedasState = new ComMoedasState(this);
         vendendoState = new VendendoState(this);
         semEstoqueState = new SemEstoqueState(this);
 
         this.quantidade = quantidade;
         if (quantidade > 0) {
-            estadoAtual = semMoedaState;
+            estadoAtual = semMoedasState;
         } else {
             estadoAtual = semEstoqueState;
         }
@@ -55,11 +53,11 @@ public class MaquinaVenda {
     }
 
     public State getSemMoedaState() {
-        return semMoedaState;
+        return semMoedasState;
     }
 
     public State getComMoedaState() {
-        return comMoedaState;
+        return comMoedasState;
     }
 
     public State getVendendoState() {

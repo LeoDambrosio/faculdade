@@ -1,7 +1,5 @@
 package br.com.leonardovieira.padroes.comportamentais.observer;
 
-
-// Classe Cliente que implementa Observer
 public class Cliente implements Observer {
 
     private String nome;
