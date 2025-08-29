@@ -9,6 +9,7 @@ app.use(express.static("public"));
 // Middleware para permitir JSON no body das requisições
 app.use(express.json());
 
+
 // Conexão com PostgreSQL
 const conexao = new Pool({
   host: "localhost",
@@ -52,22 +53,24 @@ inicializarBanco();
 
 // Rota inicial
 app.get("/", (req, res) => {
+  console.log("entrou na rota ...")
   res.send("Servidor rodando!");
 });
 
-// Listar todos os usuários
 app.get("/professor", (req, res) => {
   let resposta = [
     {
+      id: 1,
       nome: "Leonardo",
       profissao: "Analista"
-    
     },
     {
+      id: 2,
       nome: "Andre",
       profissao:"Analista"
     },
     {
+      id: 3,
       nome: "Henrique",
       profissao: "Analista"
     }

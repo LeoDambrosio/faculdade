@@ -8,9 +8,13 @@ function buscarProfessor(){
         let div = document.querySelector('.professor');
         data.forEach(professor => {
             div.innerHTML += `
-               <p>${professor.nome} tem a profissao ${professor.profissao}</p>
+            <tr>
+                    <th scope="row">${professor.id}</th>
+                    <td>${professor.nome}</td>
+                    <td>${professor.profissao}</td>
+            </tr>
             `;
-            console.log(buscarProfessor.nome + " tem a profissao: " + professor.profissao);
+            console.log$(professor.nome + "tem a profissao" + professor.profissao);
         });
     })
     .catch((error) => {
