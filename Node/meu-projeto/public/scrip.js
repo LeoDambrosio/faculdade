@@ -5,7 +5,7 @@ function buscarProfessor(){
     fetch(url)
     .then((response) => response.json())
     .then((data) => {
-        let div = document.querySelector('.professor');
+        let div = document.querySelector('#conteudo-tabela');
         data.forEach(professor => {
             div.innerHTML += `
             <tr>
@@ -14,7 +14,7 @@ function buscarProfessor(){
                     <td>${professor.profissao}</td>
             </tr>
             `;
-            console.log$(professor.nome + "tem a profissao" + professor.profissao);
+            console.log(professor.nome + "tem a profissao" + professor.profissao);
         });
     })
     .catch((error) => {
