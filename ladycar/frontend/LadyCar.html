@@ -211,6 +211,58 @@
         document.getElementById('registerScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
       }
+      // Trocar de tela (login <-> cadastro)
+      document.getElementById("goToRegister").addEventListener("click", (e) => {
+        e.preventDefault(); // impede recarregar a página
+        showRegisterScreen();
+      });
+
+      document.getElementById("goToLogin").addEventListener("click", (e) => {
+        e.preventDefault();
+        showLoginScreen();
+      });
+
+      // Captura os submits
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleLogin();
+      });
+
+      document.getElementById("registerForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleRegister();
+      });
+
+           // Ativa os botões de troca de tela
+      document.getElementById("goToRegister").addEventListener("click", (e) => {
+        e.preventDefault();
+        showRegisterScreen();
+      });
+
+      document.getElementById("goToLogin").addEventListener("click", (e) => {
+        e.preventDefault();
+        showLoginScreen();
+      });
+
+      // Quando clicar em Cadastrar
+      document.getElementById("registerForm").addEventListener("submit", (e) => {
+        e.preventDefault(); // não recarrega a página
+        handleRegister();
+      });
+
+      // Quando clicar em Login
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleLogin();
+      });
+
+      // Botão de sair
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("ladycar_loggedin");
+        localStorage.removeItem("ladycar_user");
+        showLoginScreen();
+      });
+
     </script>
   </body>
 </html>
