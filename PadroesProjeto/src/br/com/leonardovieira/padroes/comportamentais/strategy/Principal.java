@@ -1,8 +1,6 @@
 package br.com.leonardovieira.padroes.comportamentais.strategy;
 
 /**
- *
- *
  * O padrão Strategy define uma família de algoritmos, encapsula cada um deles e
  * os torna intercambiáveis. O padrão permite que o algoritmo varie
  * independentemente dos clientes que o utilizam.
@@ -25,16 +23,16 @@ public class Principal {
     public static void main(String[] args) {
         CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 
-        // Define e usa a estratégia de pagamento com cartão de crédito
-        carrinho.setEstrategiaDePagamento(new PagamentoCartaoCredito("1234-5678-9101-1121", "João Silva"));
-        carrinho.pagar(250.0);
+        PagamentoStrategy debito = new PagamentoCartaoDebito("Leonardo Vieira Dambrosio", "1234-5678-9012-3456");
+        carrinho.setEstrategiaDePagamento(debito);
+        carrinho.pagar(750.0);
 
-        // Muda a estratégia para pagamento via PayPal
-        carrinho.setEstrategiaDePagamento(new PagamentoPayPal("joao.silva@exemplo.com"));
-        carrinho.pagar(150.0);
+        PagamentoStrategy credito = new PagamentoCartaoCredito("1234-5678-9101-1121", "Leonardo Vieira Dambrosio");
+        carrinho.setEstrategiaDePagamento(credito);
+        carrinho.pagar(467.0);
 
-        // Muda a estratégia para pagamento por transferência bancária
-        carrinho.setEstrategiaDePagamento(new PagamentoTransferenciaBancaria("987654321"));
-        carrinho.pagar(500.0);
+        PagamentoStrategy pix = new PagamentoPix("45999103671", "Leonardo Vieira Dambrosio");
+        carrinho.setEstrategiaDePagamento(pix);
+        carrinho.pagar(80.0);
     }
 }

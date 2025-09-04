@@ -11,7 +11,7 @@ public class PagamentoCartaoDebito implements PagamentoStrategy {
     }
 
     @Override
-    public void pagar(double valor){
+    public void pagar(double valor) {
         System.out.println("Pagamento de R$ " + valor + "realizardo com Debito." + "Titular: " + nomeTitular + ". Conta " + numeroConta);
     }
 }
