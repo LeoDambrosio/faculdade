@@ -1,4 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.strategy;
+package br.com.leonardovieira.padroesprojeto.comportamentais.strategy;
 
 public class CarrinhoDeCompras {
 
@@ -8,6 +8,7 @@ public class CarrinhoDeCompras {
         this.estrategiaDePagamento = estrategiaDePagamento;
     }
 
+    
     public void pagar(double valor) {
         estrategiaDePagamento.pagar(valor);
     }
