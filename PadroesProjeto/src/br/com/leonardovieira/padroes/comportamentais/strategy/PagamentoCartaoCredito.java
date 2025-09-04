@@ -1,7 +1,5 @@
 package br.com.leonardovieira.padroes.comportamentais.strategy;
 
-
-// Classe concreta que implementa pagamento por cartão de crédito
 public class PagamentoCartaoCredito implements PagamentoStrategy {
 
     private String numeroCartao;
@@ -14,6 +12,6 @@ public class PagamentoCartaoCredito implements PagamentoStrategy {
 
     @Override
     public void pagar(double valor) {
-        System.out.println("Pagamento de R$" + valor + " realizado com cartão de crédito. Titular: " + nomeTitular);
+        System.out.println("Pagamento de R$" + valor + " realizado com cartao de credito. Titular: " + nomeTitular);
     }
 }
