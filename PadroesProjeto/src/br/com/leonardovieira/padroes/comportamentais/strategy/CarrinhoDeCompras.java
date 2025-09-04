@@ -8,6 +8,7 @@ public class CarrinhoDeCompras {
         this.estrategiaDePagamento = estrategiaDePagamento;
     }
 
+    @Override
     public void pagar(double valor) {
         estrategiaDePagamento.pagar(valor);
     }
