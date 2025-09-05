@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.estruturais.decorator;
+package br.com.leonardovieira.padroes.estruturais.decorator;
 
 // 🎨 Decorador abstrato para ingredientes adicionais
 public abstract class CafeDecorator implements Cafe {

@@ -1,14 +1,5 @@
-package br.com.guilhermevillaca.padroes.estruturais.decorator;
+package br.com.leonardovieira.padroes.estruturais.decorator;
 
-/*
- * Benefícios do Padrão Decorator
-✔ Código flexível e modular → Podemos adicionar novos ingredientes sem modificar as classes existentes.
-✔ Evita a explosão de subclasses → Não precisamos criar várias combinações de café.
-✔ Ordem dinâmica → Podemos decorar o café em qualquer ordem.
-
-Agora conseguimos montar qualquer tipo de café sem precisar criar subclasses para cada variação
- */
-// 🚀 Testando a solução correta
 public class Principal {
     public static void main(String[] args) {
         // Café simples

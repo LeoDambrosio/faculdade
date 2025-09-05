@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.estruturais.decorator;
+package br.com.leonardovieira.padroes.estruturais.decorator;
 
 // ☕ Implementação básica do café
 public class CafeSimples implements Cafe {

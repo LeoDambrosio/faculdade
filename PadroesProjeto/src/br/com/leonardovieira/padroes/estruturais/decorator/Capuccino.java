@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.estruturais.decorator;
+package br.com.leonardovieira.padroes.estruturais.decorator;
 
 // ☕ Decorador para Capuccino
 public class Capuccino extends CafeDecorator {

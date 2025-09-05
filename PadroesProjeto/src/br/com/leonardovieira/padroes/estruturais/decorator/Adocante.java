@@ -1,4 +1,4 @@
-package br.com.guilhermevillaca.padroes.estruturais.decorator;
+package br.com.leonardovieira.padroes.estruturais.decorator;
 
 // 🌿 Decorador para adoçante
 public class Adocante extends CafeDecorator {
