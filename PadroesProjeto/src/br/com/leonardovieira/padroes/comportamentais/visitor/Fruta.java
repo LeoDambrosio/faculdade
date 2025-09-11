@@ -1,5 +1,4 @@
-package br.com.leonardovieira.padroes.comportamentais.visitor_;
-
+package br.com.leonardovieira.padroes.comportamentais.visitor;
 
 public class Fruta implements Item {
 
