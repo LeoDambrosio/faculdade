@@ -3,10 +3,11 @@
         "Poo/Lista2/src",
         "Poo/Interface01/src/br/com/leonardovieira/exercicio3",
         "PadroesProjetos",
+        "PadroesProjeto/src/br/com/leonardovieira/padroes/comportamentais/strategy",
         "PadroesProjeto/src/br/com/leonardovieira/padroes/comportamentais/interpreter",
         "NetBeansProjects/agenda/src",
         "Aula da Roberta/agenda/src",
-        "PadroesProjeto/src/br/com/leonardovieira/padroes/comportamentais/strategy"
+        "PadroesProjeto/src/br/com/leonardovieira/padroes/comportamentais/visitor"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
