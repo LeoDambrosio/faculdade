@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+create table usuario (
+	matricula serial primary key,
+	nome varchar(200),
+	email varchar(200)
+);
+
+create table endereco (
+=======
 create table usuario(
 	id_usuario serial primary key,
 	matricula int,
@@ -25,11 +34,30 @@ create table tipoendereco(
 );
 
 create table endereco(
+>>>>>>> 7d6678a47627a908230a9a314078b8054f46a55d
 	id_endereco serial primary key,
 	rua varchar(200),
 	numero numeric,
 	bairro varchar(200),
+<<<<<<< HEAD
 	descricao varchar(200),
+=======
+	complemento varchar(200),
+<<<<<<< HEAD
+	longitude int,
+	latitude int
+);
+
+create table telefone (
+	id_telefone serial primary key,
+	matricula int,
+	numero numeric,
+	ddd numeric
+);
+
+create table sessao (
+=======
+>>>>>>> 5db8ca4156dd29d638c55f242ce21640bb5815ca
 	longitude numeric,
 	latitude numeric,
 	id_tipoendereco int,
@@ -60,6 +88,47 @@ create table livro(
 	constraint fk_sessao foreign key (id_sessao) references sessao(id_sessao)
 );
 
+<<<<<<< HEAD
+=======
+create table sessao(
+>>>>>>> 7d6678a47627a908230a9a314078b8054f46a55d
+	id_sessao serial primary key,
+	descricao varchar(200),
+	localizacao varchar(200)
+);
+
+<<<<<<< HEAD
+create table livro (
+	id_livro serial primary key,
+	codigo int,
+	titulo varchar(200),
+	autor varchar(200)
+);
+
+create table emprestimo (
+	id_emprestimo serial primary key,
+	data date,
+	hora time
+);
+
+create table multa (
+	id_multa serial primary key,
+	valor int,
+	data date,
+	hora time
+);
+
+insert into usuario (nome, email) values 
+('Leonardo', 'leonardo@gmail.com'),
+('Andre', 'andre@gmail.com'),
+('Henrique', 'henrique@gmail.com'),
+('Leleo', 'leleo@gmail.com'),
+('Leozin', 'leozin@gmail.com');
+
+insert into endereco (matricula, rua, numero, bairro, complemento, longitute, latitude) values
+(01, 'Condor', 925, 'Floresta', 'Penultima casa',  )
+=======
+>>>>>>> 5db8ca4156dd29d638c55f242ce21640bb5815ca
 create table emprestimo(
 	id_emprestimo serial primary key,
 	data date,
@@ -80,6 +149,7 @@ create table multa(
 	data date,
 	hora time
 );
+<<<<<<< HEAD
 
 create table emprestimousuario(
 	id_emprestimousuario serial primary key,
@@ -241,3 +311,6 @@ group by u.matricula
 order by total_pago desc;
 
 
+=======
+>>>>>>> 7d6678a47627a908230a9a314078b8054f46a55d
+>>>>>>> 5db8ca4156dd29d638c55f242ce21640bb5815ca
