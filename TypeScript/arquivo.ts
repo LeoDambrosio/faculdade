@@ -1,4 +1,4 @@
-function soma(a: number, b: number): number {
- return a + b;
+function greet(name: string): string {
+return `Olá, ${name}! Bem-vindo ao TypeScript.`;
 }
-console.log(soma(5, 10));
+console.log(greet("Aluno"));

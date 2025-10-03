@@ -1,4 +1,4 @@
-function soma(a, b) {
-    return a + b;
+function greet(name) {
+    return "Ol\u00E1, ".concat(name, "! Bem-vindo ao TypeScript.");
 }
-console.log(soma(5, 10));
+console.log(greet("Aluno"));
