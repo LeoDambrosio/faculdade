@@ -1,4 +1,4 @@
-export class Tipos {
+export class Exercicio1 {
     nome: string;
     idade: number;
     maiorIdade: boolean;
