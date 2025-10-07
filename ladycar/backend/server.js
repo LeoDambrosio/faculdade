@@ -21,18 +21,21 @@ app.get("/", (req, res) => {
   res.send("Servidor backend rodando 🚗🌸");
 });
 
-// ✅ Rota de Cadastro
+// ✅ Rota de cadastro
 app.post("/register", async (req, res) => {
   const { nome, email, senha } = req.body;
 
   try {
+    // Verificar se o email já existe
     const check = await pool.query("SELECT * FROM cliente WHERE email=$1", [email]);
     if (check.rows.length > 0) {
       return res.status(400).json({ error: "E-mail já cadastrado" });
     }
 
+    // Hash da senha
     const hash = await bcrypt.hash(senha, 10);
 
+    // Inserir no banco
     const result = await pool.query(
       "INSERT INTO cliente (nome, email, senha) VALUES ($1, $2, $3) RETURNING id_cliente, nome, email",
       [nome, email, hash]
@@ -45,7 +48,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// ✅ Rota de Login
+// ✅ Rota de login
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
@@ -68,8 +71,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
-// 🗓️ ✅ Rota para AGENDAR
+// ✅ Rota de agendamento
 app.post("/agendar", async (req, res) => {
   const { id_cliente, data, hora, descricao } = req.body;
 
@@ -85,7 +87,7 @@ app.post("/agendar", async (req, res) => {
   }
 });
 
-// 📋 ✅ Rota para LISTAR AGENDAMENTOS
+// ✅ Rota para listar agendamentos de um cliente
 app.get("/agendamentos/:id_cliente", async (req, res) => {
   const { id_cliente } = req.params;
 
@@ -101,24 +103,7 @@ app.get("/agendamentos/:id_cliente", async (req, res) => {
   }
 });
 
-// ✅ Rota para criar um agendamento
-//app.post("/agendar", async (req, res) => {
-  //const { id_cliente, data_agendamento, hora_agendamento, servico, observacoes } = req.body;
-
-  //try {
-    //const result = await pool.query(
-      //"INSERT INTO agendamento (id_cliente, data_agendamento, hora_agendamento, servico, observacoes) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      //[id_cliente, data_agendamento, hora_agendamento, servico, observacoes]
-    //);
-
-    //res.json(result.rows[0]);
- // } //catch (err) {
-   // console.error("Erro ao agendar:", err);
-    //res.status(500).json({ error: "Erro ao criar agendamento" });
- // }
-//});
-
 // ✅ Inicia o servidor
 app.listen(3000, () => {
-  console.log("🚀 Servidor rodando em http://localhost:3000");
+  console.log("Servidor rodando em http://localhost:3000");
 });
