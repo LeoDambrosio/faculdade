@@ -72,3 +72,100 @@ a:hover {
 .hidden {
   display: none;
 }
+
+/* ======== TELA PRINCIPAL (Home após login) ======== */
+
+#homeScreen,
+#agendarScreen,
+#servicosScreen {
+  background: linear-gradient(to bottom, #ff4da6, #ff99cc);
+  color: #fff;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(255, 77, 166, 0.5);
+}
+
+#homeScreen h2,
+#agendarScreen h2,
+#servicosScreen h2 {
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Botões principais da Home */
+.pink-button {
+  background: #fff;
+  color: #ff4da6;
+  border: none;
+  padding: 15px;
+  width: 80%;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 12px 0;
+  transition: 0.3s;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pink-button:hover {
+  background: #ffe6f0;
+  transform: scale(1.03);
+}
+
+/* Container dos botões na Home */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Formulário de agendamento */
+#agendarForm input,
+#agendarForm button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+#agendarForm input {
+  background-color: #fff;
+  color: #333;
+}
+
+#agendarForm button {
+  background-color: #fff;
+  color: #ff4da6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#agendarForm button:hover {
+  background-color: #ffe6f0;
+}
+
+/* Botão voltar */
+#voltarHome1,
+#voltarHome2 {
+  background: #fff;
+  color: #ff4da6;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#voltarHome1:hover,
+#voltarHome2:hover {
+  background: #ffe6f0;
+}
+

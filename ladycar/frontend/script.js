@@ -4,19 +4,19 @@ const API_URL = "http://localhost:3000";
 function showLogin() {
   document.getElementById("loginScreen").classList.remove("hidden");
   document.getElementById("registerScreen").classList.add("hidden");
-  document.getElementById("mainContent").classList.add("hidden");
+  document.getElementById("homeScreen").classList.add("hidden");
 }
 
 function showRegister() {
   document.getElementById("loginScreen").classList.add("hidden");
   document.getElementById("registerScreen").classList.remove("hidden");
-  document.getElementById("mainContent").classList.add("hidden");
+  document.getElementById("homeScreen").classList.add("hidden");
 }
 
 function showMain() {
   document.getElementById("loginScreen").classList.add("hidden");
   document.getElementById("registerScreen").classList.add("hidden");
-  document.getElementById("mainContent").classList.remove("hidden");
+  document.getElementById("homeScreen").classList.remove("hidden");
 }
 
 // Login
@@ -32,6 +32,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   });
 
   const data = await res.json();
+  console.log(data); // para debug
   if (res.ok) {
     alert("Login realizado com sucesso!");
     localStorage.setItem("user", JSON.stringify(data));
@@ -61,6 +62,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   });
 
   const data = await res.json();
+  console.log(data); // para debug
   if (res.ok) {
     alert("Cadastro realizado com sucesso!");
     localStorage.setItem("user", JSON.stringify(data));
@@ -70,19 +72,33 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   }
 });
 
-// Trocar entre login e cadastro
-document.getElementById("goToRegister").addEventListener("click", (e) => {
-  e.preventDefault();
-  showRegister();
-});
-
-document.getElementById("goToLogin").addEventListener("click", (e) => {
-  e.preventDefault();
-  showLogin();
-});
+// Trocar telas
+document.getElementById("goToRegister").addEventListener("click", (e) => { e.preventDefault(); showRegister(); });
+document.getElementById("goToLogin").addEventListener("click", (e) => { e.preventDefault(); showLogin(); });
 
 // Logout
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
   showLogin();
+});
+
+// Ações da tela principal
+document.getElementById("btnAgendar").addEventListener("click", () => {
+  document.getElementById("homeScreen").classList.add("hidden");
+  document.getElementById("agendarScreen").classList.remove("hidden");
+});
+
+document.getElementById("btnServicos").addEventListener("click", () => {
+  document.getElementById("homeScreen").classList.add("hidden");
+  document.getElementById("servicosScreen").classList.remove("hidden");
+});
+
+document.getElementById("voltarHome1").addEventListener("click", () => {
+  document.getElementById("agendarScreen").classList.add("hidden");
+  document.getElementById("homeScreen").classList.remove("hidden");
+});
+
+document.getElementById("voltarHome2").addEventListener("click", () => {
+  document.getElementById("servicosScreen").classList.add("hidden");
+  document.getElementById("homeScreen").classList.remove("hidden");
 });

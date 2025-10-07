@@ -47,13 +47,35 @@
     </div>
   </div>
 
-  <!-- Conteúdo Principal -->
-  <div id="mainContent" class="container hidden">
-    <div class="box">
-      <h2>Bem-vinda à Lady Car 🚗🌸</h2>
-      <p>Login realizado com sucesso!</p>
-      <button id="logoutBtn">Sair</button>
+  <!-- Tela Principal (após login) -->
+  <div id="homeScreen" class="hidden">
+    <h2>Bem-vinda à Lady Car </h2>
+    <div class="menu-buttons">
+      <button id="btnAgendar" class="pink-button">Agendar</button>
+      <button id="btnServicos" class="pink-button">Serviços realizados</button>
+      <button id="logoutBtn" class="pink-button">Sair</button>
     </div>
+  </div>
+
+  <!-- Tela de Agendamento -->
+  <div id="agendarScreen" class="hidden">
+    <h2>Agendar revisão</h2>
+    <form id="agendarForm">
+      <input type="date" id="dataAgendamento" required>
+      <input type="time" id="horaAgendamento" required>
+      <input type="text" id="descricaoServico" placeholder="Descrição do serviço" required>
+      <button type="submit">Confirmar Agendamento</button>
+    </form>
+    <button id="voltarHome1">Voltar</button>
+  </div>
+
+  <!-- Tela de Serviços Realizados -->
+  <div id="servicosScreen" class="hidden">
+    <h2>Serviços realizados</h2>
+    <div id="listaServicos">
+      <p>Ainda não há serviços cadastrados.</p>
+    </div>
+    <button id="voltarHome2">Voltar</button>
   </div>
 
   <script src="script.js"></script>

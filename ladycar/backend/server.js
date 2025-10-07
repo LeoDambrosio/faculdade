@@ -9,16 +9,16 @@ app.use(express.json());
 
 // Conexão com PostgreSQL
 const pool = new Pool({
-  user: "postgres",     // seu usuário do banco
-  host: "localhost",    // onde o banco está rodando
-  database: "LadyCar",  // nome do banco
-  password: "123",      // sua senha do PostgreSQL
-  port: 5432,           // porta padrão do Postgres
+  user: "postgres",     
+  host: "localhost",    
+  database: "LadyCar",  
+  password: "123",      
+  port: 5432,           
 });
 
 // Teste inicial
 app.get("/", (req, res) => {
-  res.send("Servidor backend rodando 🚀");
+  res.send("Servidor backend rodando 🚗🌸");
 });
 
 // ✅ Rota de Cadastro
@@ -26,16 +26,13 @@ app.post("/register", async (req, res) => {
   const { nome, email, senha } = req.body;
 
   try {
-    // Verifica se já existe esse e-mail
     const check = await pool.query("SELECT * FROM cliente WHERE email=$1", [email]);
     if (check.rows.length > 0) {
       return res.status(400).json({ error: "E-mail já cadastrado" });
     }
 
-    // Criptografa a senha
     const hash = await bcrypt.hash(senha, 10);
 
-    // Insere no banco
     const result = await pool.query(
       "INSERT INTO cliente (nome, email, senha) VALUES ($1, $2, $3) RETURNING id_cliente, nome, email",
       [nome, email, hash]
@@ -53,21 +50,17 @@ app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    // Busca usuário pelo email
     const result = await pool.query("SELECT * FROM cliente WHERE email=$1", [email]);
     if (result.rows.length === 0) {
       return res.status(400).json({ error: "Usuário não encontrado" });
     }
 
     const user = result.rows[0];
-
-    // Compara senha digitada com a senha criptografada do banco
     const valid = await bcrypt.compare(senha, user.senha);
     if (!valid) {
       return res.status(400).json({ error: "Senha incorreta" });
     }
 
-    // Retorna apenas dados básicos
     res.json({ id: user.id_cliente, nome: user.nome, email: user.email });
   } catch (err) {
     console.error("Erro no login:", err);
@@ -75,7 +68,57 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
+// 🗓️ ✅ Rota para AGENDAR
+app.post("/agendar", async (req, res) => {
+  const { id_cliente, data, hora, descricao } = req.body;
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO agendamento (id_cliente, data, hora, descricao) VALUES ($1, $2, $3, $4) RETURNING *",
+      [id_cliente, data, hora, descricao]
+    );
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Erro ao agendar:", err);
+    res.status(500).json({ error: "Erro ao criar agendamento" });
+  }
+});
+
+// 📋 ✅ Rota para LISTAR AGENDAMENTOS
+app.get("/agendamentos/:id_cliente", async (req, res) => {
+  const { id_cliente } = req.params;
+
+  try {
+    const result = await pool.query(
+      "SELECT * FROM agendamento WHERE id_cliente=$1 ORDER BY data DESC, hora DESC",
+      [id_cliente]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Erro ao listar agendamentos:", err);
+    res.status(500).json({ error: "Erro ao listar agendamentos" });
+  }
+});
+
+// ✅ Rota para criar um agendamento
+//app.post("/agendar", async (req, res) => {
+  //const { id_cliente, data_agendamento, hora_agendamento, servico, observacoes } = req.body;
+
+  //try {
+    //const result = await pool.query(
+      //"INSERT INTO agendamento (id_cliente, data_agendamento, hora_agendamento, servico, observacoes) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      //[id_cliente, data_agendamento, hora_agendamento, servico, observacoes]
+    //);
+
+    //res.json(result.rows[0]);
+ // } //catch (err) {
+   // console.error("Erro ao agendar:", err);
+    //res.status(500).json({ error: "Erro ao criar agendamento" });
+ // }
+//});
+
 // ✅ Inicia o servidor
 app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
+  console.log("🚀 Servidor rodando em http://localhost:3000");
 });
