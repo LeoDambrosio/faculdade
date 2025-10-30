@@ -1,3 +1,5 @@
+package br.com.leonardo.filmes.cors;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
