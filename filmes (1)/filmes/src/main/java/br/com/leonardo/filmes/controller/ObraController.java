@@ -14,7 +14,7 @@ import br.com.leonardo.filmes.model.Obra;
 import br.com.leonardo.filmes.repository.ObraRepository;
 
 @RestController
-@RequestMapping(value = "Obra")
+@RequestMapping(value = "obra")
 public class ObraController {
     
     /*

@@ -14,7 +14,7 @@ import br.com.leonardo.filmes.model.Avaliacao;
 import br.com.leonardo.filmes.repository.AvaliacaoRepository;
 
 @RestController
-@RequestMapping(value = "Avaliacao")
+@RequestMapping(value = "avaliacao")
 public class AvaliacaoController {
     
     /*

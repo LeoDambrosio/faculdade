@@ -27,6 +27,7 @@ public class Obra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
+    @Column(length=1000)
     private String descricao;
     private Integer anoLancamento;
     private String imagemURL;
@@ -34,8 +35,8 @@ public class Obra {
     @Column(nullable= false, length = 20)
     private TipoObra tipo;
     @ManyToOne
-    @JoinColumn(name="avaliacao_id", referencedColumnName= "id")
-    private Avaliacao avaliacao;
+    @JoinColumn(name="genero_id", referencedColumnName= "id")
+    private Genero genero;
 
 
 

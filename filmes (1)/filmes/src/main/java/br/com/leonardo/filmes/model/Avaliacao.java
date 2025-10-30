@@ -29,9 +29,13 @@ public class Avaliacao {
     private Integer id;
     @Column (name="nota", nullable = false)
     private Integer nota;
+    @Column(length=2000)
     private String comentario;
     private LocalDateTime dataAvaliacao;
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "obra_id", referencedColumnName = "id")
+    private Obra obra;
 }
