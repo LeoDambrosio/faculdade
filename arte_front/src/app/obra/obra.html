@@ -1,5 +1,7 @@
 <h1>Lista de Obras</h1>
 
+<h2></h2>
+
 <table>
     <thead>
         <tr>
@@ -8,16 +10,21 @@
             <th>Ano</th>
             <th>Tipo</th>
             <th>Genero</th>
+            <th>Acões</th>
         </tr>
     </thead>
     <tbody>
         @for(obra of obra$; track obra.id){
-            <tr>
+            <tr >
                 <th>{{obra.id}}</th>
                 <th>{{obra.titulo}}</th>
                 <th>{{obra.ano}}</th>
                 <th>{{obra.tipo}}</th>
                 <th>{{obra.genero?.nome}}</th>
+                <th>
+                    <a (click)="editar(obra.id)">Editar</a>
+                    <a (click)="excluir(obra.id)">Excluir</a>
+                </th>
             </tr>
         }
     </tbody>
