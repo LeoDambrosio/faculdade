@@ -2,9 +2,9 @@
 
 <h2></h2>
 
-<table>
+<table class="table table-bordered border-primary" >
     <thead>
-        <tr>
+        <tr class="table-primary" >
             <th>ID</th>
             <th>Título</th>
             <th>Ano</th>
@@ -15,10 +15,10 @@
     </thead>
     <tbody>
         @for(obra of obra$; track obra.id){
-            <tr >
+            <tr class="table-secondary" >
                 <th>{{obra.id}}</th>
                 <th>{{obra.titulo}}</th>
-                <th>{{obra.ano}}</th>
+                <th>{{obra.anoLancamento}}</th>
                 <th>{{obra.tipo}}</th>
                 <th>{{obra.genero?.nome}}</th>
                 <th>
