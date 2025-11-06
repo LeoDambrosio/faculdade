@@ -5,9 +5,8 @@ import { ObraServices } from './services/obra-services';
 import { ObraForm } from './obra/obra-form/obra-form';
 
 
-const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
+export const routes: Routes = [
+    
     { path: '', redirectTo: 'form', pathMatch: 'full' },
     { path: 'form', component: FormComponent },
     { path: 'obra', component: ObraServices },
