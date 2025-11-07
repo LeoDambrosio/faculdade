@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 export class GeneroServices {
   
   //listar 
-  url = 'http://localhost:8080/obra/';
+  url = 'http://localhost:8080/genero/';
 
   private http: HttpClient;
   constructor(handler: HttpBackend){
