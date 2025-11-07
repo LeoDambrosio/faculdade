@@ -37,10 +37,14 @@
             <option value="DOCUMENTARIO">Documentario</option>
         </select>
     </div>
-    <div class="mb-3" >
+    <div class="col-mb-6" >
         <label for="genero">Genero</label>
-        <input type="text" id="genero" placeholder="genero"
-        [formControl]="form.controls.genero">
+        <select name="genero" id="genero" [formControl]="form.controls.genero" class="form-select">
+            <option value="">Selecione...</option>
+            @for (genero of genero$; track genero.id) {
+                <option value="{{genero.id}}">{{genero.nome}}</option>
+            }
+        </select>
     </div>
     <button class="btn btn-primary" (click)="salvar()">Salvar</button>
 </form>
