@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ObraServices } from '../../services/obra-services';
 import { lastValueFrom } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GeneroServices } from '../../services/GeneroService';
 
 @Component({
   selector: 'app-obra-form',
@@ -15,10 +16,12 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class ObraForm {
 
+  genero$: any
   id: any;
   private activateRoute = inject(ActivatedRoute);
   private obraService = inject(ObraServices);
   private route = inject(Router);
+  private generoService = inject(GeneroServices);
   obra: any;
 
 
@@ -41,8 +44,14 @@ export class ObraForm {
     if(this.id){
       this.getById();
     }
+    this.getGeneros();
+
   }
   
+  public async getGeneros(){
+    this.genero$ = await lastValueFrom(this.generoService.getGenero());
+  }
+
   public async getById(){
     this.obra = await lastValueFrom(this.obraService.getObraById(this.id));
     //popular campos do formulário
