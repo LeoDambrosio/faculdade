@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("Servidor backend rodando 🚗🌸");
 });
 
-// ✅ Rota de cadastro
+// Rota de cadastro
 app.post("/register", async (req, res) => {
   const { nome, email, senha } = req.body;
 
@@ -48,7 +48,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// ✅ Rota de login
+// Rota de login
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
@@ -71,7 +71,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// ✅ Rota de agendamento
+// Rota de agendamento
 app.post("/agendar", async (req, res) => {
   const { id_cliente, data, hora, descricao } = req.body;
 
@@ -87,7 +87,7 @@ app.post("/agendar", async (req, res) => {
   }
 });
 
-// ✅ Rota para listar agendamentos de um cliente
+// Rota para listar agendamentos de um cliente
 app.get("/agendamentos/:id_cliente", async (req, res) => {
   const { id_cliente } = req.params;
 
@@ -103,7 +103,7 @@ app.get("/agendamentos/:id_cliente", async (req, res) => {
   }
 });
 
-// ✅ Inicia o servidor
+// Inicia o servidor
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
 });

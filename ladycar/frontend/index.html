@@ -7,20 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Tela de Login -->
+ <!-- Tela de Login -->
   <div id="loginScreen" class="container">
-    <div class="box">
-      <h2>Login - Lady Car</h2>
+    <div class="login-box">
+      <img src="ladycar.png" alt="Lady Car" class="logo" />
+
       <form id="loginForm">
-        <label for="loginEmail">E-mail</label>
-        <input type="email" id="loginEmail" required>
+        <input type="email" id="loginEmail" placeholder="Login" required />
+        <input type="password" id="loginSenha" placeholder="Senha" required />
 
-        <label for="loginSenha">Senha</label>
-        <input type="password" id="loginSenha" required>
+        <button type="submit" class="btn-primary">Entrar</button>
 
-        <button type="submit">Entrar</button>
+        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+
+        <p class="register-text">Não possui conta?</p>
+        <button type="button" id="goToRegister" class="btn-secondary">Cadastrar</button>
       </form>
-      <p>Ainda não tem conta? <a href="#" id="goToRegister">Cadastre-se</a></p>
     </div>
   </div>
 

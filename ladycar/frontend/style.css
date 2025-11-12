@@ -1,3 +1,7 @@
+/* =========================
+   ESTILO ATUAL (mantido)
+========================= */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -167,5 +171,155 @@ a:hover {
 #voltarHome1:hover,
 #voltarHome2:hover {
   background: #ffe6f0;
+}
+
+/* =========================
+   NOVO ESTILO - TELA DE LOGIN (Figma)
+========================= */
+
+/* =========================
+   TELA DE LOGIN (Figma) - RESPONSIVA
+========================= */
+
+#loginScreen {
+  background-color: #fdfdfd;
+  color: #000;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#loginScreen .login-box {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  padding: 40px 30px;
+  text-align: center;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+#loginScreen .logo {
+  width: 230px;
+  max-width: 80%;
+  margin-bottom: 25px;
+}
+
+#loginScreen input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #333;
+  background: #fff;
+  outline: none;
+}
+
+#loginScreen input:focus {
+  border-color: #f8b4d9;
+  box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
+}
+
+#loginScreen .btn-primary {
+  width: 100%;
+  background-color: #f8b4d9;
+  border: none;
+  padding: 12px 0;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#loginScreen .btn-primary:hover {
+  background-color: #f49cc7;
+}
+
+#loginScreen .btn-secondary {
+  width: 100%;
+  background-color: white;
+  border: 1.5px solid #f8b4d9;
+  padding: 12px 0;
+  color: #f49cc7;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#loginScreen .btn-secondary:hover {
+  background-color: #fef1f7;
+}
+
+#loginScreen .forgot-password {
+  display: block;
+  margin: 12px 0;
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#loginScreen .forgot-password:hover {
+  text-decoration: underline;
+}
+
+#loginScreen .register-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+/* Tablets e telas médias */
+@media (max-width: 768px) {
+  #loginScreen .login-box {
+    padding: 30px 20px;
+    max-width: 320px;
+  }
+
+  #loginScreen .logo {
+    width: 180px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  #loginScreen {
+    padding: 15px;
+  }
+
+  #loginScreen .login-box {
+    box-shadow: none;
+    border-radius: 12px;
+    padding: 25px 18px;
+  }
+
+  #loginScreen .btn-primary,
+  #loginScreen .btn-secondary {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  #loginScreen input {
+    font-size: 14px;
+  }
 }
 
