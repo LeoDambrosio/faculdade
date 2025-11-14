@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ObraServices } from '../../services/obra-services';
 import { lastValueFrom } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GeneroServices } from '../../services/GeneroService';
+import { ObraServices } from '../../../services/obra-services';
+import { GeneroServices } from '../../../services/GeneroService';
 
 @Component({
   selector: 'app-obra-form',

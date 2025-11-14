@@ -49,6 +49,14 @@ public class Dbinsert implements CommandLineRunner{
         LocalDateTime.now());
         usuarioRepository.save(usuario);
 
+        Usuario usuario2 = new Usuario(
+        null, 
+        "Andre", 
+        "andre@gmail.com", 
+        "456", 
+        LocalDateTime.now());
+        usuarioRepository.save(usuario2);
+
         //inserindo Genero
         Genero genero1 = new Genero(null, "Ação");
         generoRepository.save(genero1);

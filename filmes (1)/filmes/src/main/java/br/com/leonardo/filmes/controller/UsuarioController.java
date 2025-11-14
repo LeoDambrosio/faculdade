@@ -74,4 +74,17 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @RequestMapping(value="login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+
+    Optional<Usuario> user = usuarioRepository.findByEmail(usuario.getEmail());
+
+    if (user.isPresent() && user.get().getSenha().equals(usuario.getSenha())) {
+        return ResponseEntity.ok(user.get()); // Login OK
+    }
+
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+}
+
 }

@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginServices } from '../services/LoginServices';
+import { LoginServices } from '../../services/LoginServices';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   imports: [
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    NgIf
+],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -16,6 +18,8 @@ export class Login {
 
   private loginService = inject(LoginServices);
   private route = inject(Router);
+
+  mensagemErro: String = '';
 
   formLogin = new FormGroup({
     login: new FormControl<string>(''),
@@ -30,8 +34,10 @@ export class Login {
     const senha = this.formLogin.get('senha')?.value;
 
     this.loginService.entrar(login, senha).subscribe({
-      next: () => this.route.navigate(['/painel']),
-      error: (err) => console.error(err)
+      next: () => this.route.navigate(['/obra']),
+      error: (err) => {
+      this.mensagemErro = err.error; // <- mensagem do backend
+      }
     });
 
   }

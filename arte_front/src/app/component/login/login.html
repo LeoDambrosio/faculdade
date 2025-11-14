@@ -15,7 +15,7 @@
           type="text"
           id="usuario"
           class="form-control form-control-lg"
-          placeholder="Digite seu usuário"
+          placeholder="Digite seu email"
           [formControl]="formLogin.controls.login"
         />
       </div>
@@ -36,6 +36,11 @@
       <div class="text-center mt-3">
         <a href="#" class="text-muted small text-decoration-none">Esqueceu a senha?</a>
       </div>
+
+      <div *ngIf="mensagemErro" class="alert alert-danger text-center">
+      {{ mensagemErro }}
+      </div>
+
     </form>
   </div>
 </div>

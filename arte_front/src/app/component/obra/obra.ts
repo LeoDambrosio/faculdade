@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ObraServices } from '../services/obra-services';
 import { last, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { ObraServices } from '../../services/obra-services';
 
 
 @Component({

@@ -21,7 +21,7 @@ export class LoginServices {
   }
 
   public entrar(login: any, senha: any) {
-    let usuario = { login, senha };
+    let usuario = {email: login, senha: senha };
 
     return this.http.post(this.url + 'entrar', usuario, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })

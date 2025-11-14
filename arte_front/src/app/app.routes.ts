@@ -1,8 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
-import { ObraForm } from './obra/obra-form/obra-form';
-import { Obra } from './obra/obra';
-import { Login } from './login/login';
-import { Painel } from './painel/painel';
+import { Login } from './component/login/login';
+import { Painel } from './component/painel/painel';
+import { Obra } from './component/obra/obra';
+import { ObraForm } from './component/obra/obra-form/obra-form';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch:'full'},

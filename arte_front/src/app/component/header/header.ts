@@ -1,7 +1,6 @@
 import { Component, inject, } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
-import { LoginServices } from '../services/LoginServices';
-
+import { LoginServices } from '../../services/LoginServices';
 
 @Component({
   selector: 'app-header',
