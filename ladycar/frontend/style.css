@@ -268,4 +268,232 @@ body {
     left: 50%;
     transform: translateX(-50%);
 
-    height: 6
+    height: 60px;
+    background-color: #fff;
+    /* Linha corrigida */
+    border-top: 1px solid #eee; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    /* Linha corrigida */
+    align-items: center; 
+    z-index: 100;
+}
+
+.nav-item {
+    font-size: 24px;
+    color: #aaa;
+    text-decoration: none;
+    padding: 5px 10px;
+    line-height: 1; 
+}
+
+.nav-item.active {
+    color: #f8b4d9;
+}
+
+/* =======================================
+   5. TELA DE SELEÇÃO DE SERVIÇOS
+======================================= */
+
+.header-internal {
+    background-color: #f8b4d9;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.header-internal h2 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+}
+
+.service-list {
+    padding: 0 20px;
+    overflow-y: auto; 
+    flex-grow: 1;
+}
+
+.service-button {
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.service-button:hover, .service-button.selected {
+    border-color: #f8b4d9;
+    box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
+}
+
+
+/* =======================================
+   6. TELA DE DESCRIÇÃO/CONFIRMAÇÃO
+======================================= */
+
+.small-header {
+    background-color: #f8b4d9;
+    color: white;
+    padding: 12px 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.small-header h2 {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.back-arrow {
+    font-size: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.service-details {
+    padding: 20px;
+}
+
+.selected-service-box {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.service-description-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    min-height: 150px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.service-description-box p {
+    margin: 0;
+    color: #555;
+    font-size: 15px;
+}
+
+/* Botão "SELECIONAR SERVIÇO" */
+#selectServiceBtn {
+    padding: 15px 0;
+    margin-top: 0;
+}
+
+
+/* =======================================
+   7. SERVIÇOS REALIZADOS (Histórico)
+======================================= */
+
+#servicosScreen {
+    padding: 20px;
+    text-align: left;
+}
+
+#servicosScreen h2 {
+    color: #000;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#listaServicos {
+    padding: 10px 0;
+}
+
+.servico-item {
+    text-align: left;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.servico-item p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+.servico-item strong {
+    font-weight: bold;
+    color: #f49cc7;
+}
+
+.servico-item:last-child {
+    border-bottom: none;
+}
+
+/* Botão Voltar */
+.voltar-btn {
+    width: 100%;
+    background: white;
+    color: #f49cc7;
+    border: 1.5px solid #f8b4d9;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.voltar-btn:hover {
+    background: #fef1f7;
+}
+
+
+/* =======================================
+   8. RESPONSIVIDADE
+======================================= */
+
+@media (max-width: 768px) {
+  .login-box {
+    padding: 30px 20px;
+    max-width: 320px;
+  }
+
+  .logo {
+    width: 180px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #loginScreen,
+  #registerScreen {
+    padding: 15px;
+  }
+
+  .login-box {
+    box-shadow: none;
+    border-radius: 12px;
+    padding: 25px 18px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}
