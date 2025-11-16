@@ -1,187 +1,52 @@
-/* =========================
-   ESTILO ATUAL (mantido)
-========================= */
+/* =======================================
+   1. ESTILOS GLOBAIS (Tema Claro e App-like)
+======================================= */
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #fff;
+  /* Fundo claro padrão para todas as telas */
+  background-color: #fdfdfd;
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.box {
-  background: #1a1a1a;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #ff4da6;
-  width: 320px;
-  text-align: center;
-}
-
-h2 {
-  color: #ff4da6;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-  text-align: left;
-}
-
-input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ff4da6;
-  border-radius: 5px;
-  background: #111;
-  color: #fff;
+  min-height: 100vh;
 }
 
-button {
+/* Base para todas as telas internas (Mobile-first, layout de app) */
+.app-screen {
+  background: #fdfdfd;
+  color: #000;
   width: 100%;
-  padding: 10px;
-  background: #ff4da6;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #e60073;
-}
-
-a {
-  color: #ff4da6;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  max-width: 500px; /* Limite de largura para simular um celular */
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px; /* Espaço para a barra de navegação inferior */
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-/* ======== TELA PRINCIPAL (Home após login) ======== */
+/* =======================================
+   2. TELA DE LOGIN & CADASTRO (Estilo Unificado)
+======================================= */
 
-#homeScreen,
-#agendarScreen,
-#servicosScreen {
-  background: linear-gradient(to bottom, #ff4da6, #ff99cc);
-  color: #fff;
-  text-align: center;
-  padding: 30px;
-  border-radius: 20px;
-  width: 350px;
-  box-shadow: 0 0 20px rgba(255, 77, 166, 0.5);
-}
-
-#homeScreen h2,
-#agendarScreen h2,
-#servicosScreen h2 {
-  color: #fff;
-  margin-bottom: 25px;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* Botões principais da Home */
-.pink-button {
-  background: #fff;
-  color: #ff4da6;
-  border: none;
-  padding: 15px;
-  width: 80%;
-  border-radius: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 12px 0;
-  transition: 0.3s;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-.pink-button:hover {
-  background: #ffe6f0;
-  transform: scale(1.03);
-}
-
-/* Container dos botões na Home */
-.menu-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Formulário de agendamento */
-#agendarForm input,
-#agendarForm button {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-#agendarForm input {
-  background-color: #fff;
-  color: #333;
-}
-
-#agendarForm button {
-  background-color: #fff;
-  color: #ff4da6;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#agendarForm button:hover {
-  background-color: #ffe6f0;
-}
-
-/* Botão voltar */
-#voltarHome1,
-#voltarHome2 {
-  background: #fff;
-  color: #ff4da6;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-#voltarHome1:hover,
-#voltarHome2:hover {
-  background: #ffe6f0;
-}
-
-/* =========================
-   NOVO ESTILO - TELA DE LOGIN (Figma)
-========================= */
-
-/* =========================
-   TELA DE LOGIN (Figma) - RESPONSIVA
-========================= */
-
-#loginScreen {
+/* A tela de login/cadastro funciona como uma página completa */
+#loginScreen,
+#registerScreen {
   background-color: #fdfdfd;
   color: #000;
   min-height: 100vh;
@@ -193,7 +58,7 @@ a:hover {
   box-sizing: border-box;
 }
 
-#loginScreen .login-box {
+.login-box {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
@@ -207,13 +72,17 @@ a:hover {
   transition: all 0.3s ease;
 }
 
-#loginScreen .logo {
+.logo {
   width: 230px;
   max-width: 80%;
   margin-bottom: 25px;
 }
 
-#loginScreen input {
+/* Inputs (Reutilizados em Login, Cadastro e Formulários) */
+#loginScreen input,
+#registerScreen input,
+#serviceDescriptionScreen input,
+#agendarScreen input { 
   width: 100%;
   padding: 12px;
   margin-bottom: 14px;
@@ -226,12 +95,16 @@ a:hover {
   outline: none;
 }
 
-#loginScreen input:focus {
+/* Foco nos Inputs */
+#loginScreen input:focus,
+#registerScreen input:focus,
+#serviceDescriptionScreen input:focus {
   border-color: #f8b4d9;
   box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
 }
 
-#loginScreen .btn-primary {
+/* Botão Primário (Rosa - Entrar, Cadastrar, Selecionar Serviço) */
+.btn-primary {
   width: 100%;
   background-color: #f8b4d9;
   border: none;
@@ -242,13 +115,15 @@ a:hover {
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
+  margin-bottom: 10px;
 }
 
-#loginScreen .btn-primary:hover {
+.btn-primary:hover {
   background-color: #f49cc7;
 }
 
-#loginScreen .btn-secondary {
+/* Botão Secundário (Borda Rosa - Botão "Cadastrar" na tela de Login) */
+.btn-secondary {
   width: 100%;
   background-color: white;
   border: 1.5px solid #f8b4d9;
@@ -261,11 +136,12 @@ a:hover {
   transition: 0.3s;
 }
 
-#loginScreen .btn-secondary:hover {
+.btn-secondary:hover {
   background-color: #fef1f7;
 }
 
-#loginScreen .forgot-password {
+/* Links e textos menores (Esqueceu a senha?, Já tem conta?) */
+.forgot-password {
   display: block;
   margin: 12px 0;
   color: #555;
@@ -273,53 +149,123 @@ a:hover {
   text-decoration: none;
 }
 
-#loginScreen .forgot-password:hover {
+.forgot-password:hover {
   text-decoration: underline;
 }
 
-#loginScreen .register-text {
+.register-text {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
 }
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-/* Tablets e telas médias */
-@media (max-width: 768px) {
-  #loginScreen .login-box {
-    padding: 30px 20px;
-    max-width: 320px;
-  }
-
-  #loginScreen .logo {
-    width: 180px;
-    margin-bottom: 20px;
-  }
+.register-text a {
+    color: #f49cc7;
+    text-decoration: none;
 }
 
-/* Celulares pequenos */
-@media (max-width: 480px) {
-  #loginScreen {
+/* Ajuste de margem do botão 'Cadastrar' na tela de Cadastro */
+#registerScreen .btn-primary {
+    margin-top: 25px; 
+}
+
+
+/* =======================================
+   3. TELA PRINCIPAL (Home / Manutenção)
+======================================= */
+
+.maintenance-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.maintenance-section h2 {
+    color: #4b0082; /* Roxo */
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+
+.maintenance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background-color: #fff;
     padding: 15px;
-  }
-
-  #loginScreen .login-box {
-    box-shadow: none;
-    border-radius: 12px;
-    padding: 25px 18px;
-  }
-
-  #loginScreen .btn-primary,
-  #loginScreen .btn-secondary {
-    font-size: 14px;
-    padding: 10px 0;
-  }
-
-  #loginScreen input {
-    font-size: 14px;
-  }
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
+.maint-card {
+    background-color: #fff;
+    padding: 15px 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.icon-maint {
+    font-size: 40px;
+    color: #ff4da6; /* Rosa */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.maint-card p {
+    margin: 5px 0 2px 0;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.maint-card small {
+    display: block;
+    color: #888;
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+/* Botões de Ação na Home */
+.home-action-btn {
+    width: 100%;
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.primary-pink { /* AGENDAR SERVIÇOS */
+    background-color: #f8b4d9; 
+    color: white;
+}
+
+.secondary-pink { /* SERVIÇOS REALIZADOS */
+    background-color: #ffe6f0; 
+    color: #f49cc7;
+    border: 1px solid #f8b4d9;
+}
+
+/* =======================================
+   4. BARRA DE NAVEGAÇÃO INFERIOR (Corrigido)
+======================================= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    /* Centraliza a nav no limite de largura da tela do celular */
+    width: 100%; 
+    max-width: 500px; 
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 6

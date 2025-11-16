@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lady Car - Login</title>
+  <title>Lady Car - App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <!-- Tela de Login -->
-  <div id="loginScreen" class="container">
+ <div id="loginScreen" class="container">
     <div class="login-box">
-      <img src="ladycar.png" alt="Lady Car" class="logo" />
+      <img src="ladycar.png" alt="Lady Car" class="logo" /> 
 
       <form id="loginForm">
-        <input type="email" id="loginEmail" placeholder="Login" required />
+        <input type="email" id="loginEmail" placeholder="E-mail" required />
         <input type="password" id="loginSenha" placeholder="Senha" required />
 
         <button type="submit" class="btn-primary">Entrar</button>
@@ -26,59 +25,131 @@
     </div>
   </div>
 
-  <!-- Tela de Cadastro -->
   <div id="registerScreen" class="container hidden">
-    <div class="box">
-      <h2>Cadastro - Lady Car</h2>
+    <div class="login-box"> 
+      <img src="ladycar.png" alt="Lady Car" class="logo" /> 
+
       <form id="registerForm">
-        <label for="registerNome">Nome</label>
-        <input type="text" id="registerNome" required>
-
-        <label for="registerEmail">E-mail</label>
-        <input type="email" id="registerEmail" required>
-
-        <label for="registerSenha">Senha</label>
-        <input type="password" id="registerSenha" required>
-
-        <label for="registerConfirmaSenha">Confirmar Senha</label>
-        <input type="password" id="registerConfirmaSenha" required>
-
-        <button type="submit">Cadastrar</button>
+        <input type="text" id="registerNome" placeholder="Nome completo*" required>
+        <input type="email" id="registerEmail" placeholder="E-mail*" required>
+        <input type="text" id="registerDocumento" placeholder="CPF*" required> 
+        <input type="password" id="registerSenha" placeholder="Senha*" required>
+        <button type="submit" class="btn-primary">Cadastrar</button>
       </form>
-      <p>Já tem conta? <a href="#" id="goToLogin">Fazer login</a></p>
+      <p class="register-text">
+        <a href="#" id="goToLogin">Já tem conta? Fazer login</a>
+      </p>
     </div>
   </div>
 
-  <!-- Tela Principal (após login) -->
-  <div id="homeScreen" class="hidden">
-    <h2>Bem-vinda à Lady Car </h2>
-    <div class="menu-buttons">
-      <button id="btnAgendar" class="pink-button">Agendar</button>
-      <button id="btnServicos" class="pink-button">Serviços realizados</button>
-      <button id="logoutBtn" class="pink-button">Sair</button>
+  <div id="homeScreen" class="hidden app-screen">
+    
+    <div class="maintenance-section">
+        <h2>MANUTENÇÃO PREVENTIVA</h2>
+        <div class="maintenance-grid">
+            <div class="maint-card">
+                <span class="icon-maint">⚙️</span>
+                <p>Troca de óleo</p>
+                <small>verifique o nível a cada 1.000 km</small>
+            </div>
+            <div class="maint-card">
+                <span class="icon-maint">⚫</span>
+                <p>Pneus</p>
+                <small>calibre toda semana e faça rodízio</small>
+            </div>
+            <div class="maint-card">
+                <span class="icon-maint">🛑</span>
+                <p>Freios</p>
+                <small>ficar atento a ruídos e perda de eficiência</small>
+            </div>
+            <div class="maint-card">
+                <span class="icon-maint">🔋</span>
+                <p>Bateria</p>
+                <small>cheque os terminais regularmente</small>
+            </div>
+        </div>
+        
+        <button id="btnAgendar" class="home-action-btn primary-pink">AGENDAR SERVIÇOS</button>
+        <button id="btnServicos" class="home-action-btn secondary-pink">SERVIÇOS REALIZADOS</button>
     </div>
+    
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item nav-home active">🏠</a>
+        <a href="#" class="nav-item nav-search">🔍</a>
+        <a href="#" id="navAgendar" class="nav-item nav-cart">🛒</a>
+        <a href="#" class="nav-item nav-chat">💬</a>
+        <a href="#" class="nav-item nav-profile">👤</a> 
+    </nav>
   </div>
 
-  <!-- Tela de Agendamento -->
-  <div id="agendarScreen" class="hidden">
-    <h2>Agendar revisão</h2>
-    <form id="agendarForm">
-      <input type="date" id="dataAgendamento" required>
-      <input type="time" id="horaAgendamento" required>
-      <input type="text" id="descricaoServico" placeholder="Descrição do serviço" required>
-      <button type="submit">Confirmar Agendamento</button>
-    </form>
-    <button id="voltarHome1">Voltar</button>
+  <div id="agendarSelectionScreen" class="hidden app-screen">
+    <div class="header-internal">
+        <h2>SELECIONE O SERVIÇO DESEJADO:</h2>
+    </div>
+    
+    <div class="service-list">
+        <button class="service-button" data-service="Troca de Fusíveis">TROCA DE FUSÍVEIS</button>
+        <button class="service-button" data-service="Calibragem de Pneus">CALIBRAGEM DE PNEUS</button>
+        <button class="service-button" data-service="Recarga e Troca de Bateria">RECARGA E TROCA DE BATERIA</button>
+        <button class="service-button" data-service="Troca de Óleo">TROCA DE ÓLEO</button>
+        <button class="service-button" data-service="Instalação de Acessórios">INSTALAÇÃO DE ACESSÓRIOS</button>
+        <button class="service-button" data-service="Limpeza de Ar-Condicionado">LIMPEZA DE AR-CONDICIONADO</button>
+        <button class="service-button" data-service="Verificação de Nível de Fluídos">VERIFICAÇÃO DE NÍVEL DE FLUÍDOS</button>
+        <button class="service-button" data-service="Reparo de Pneus">REPARO DE PNEUS</button>
+        <button class="service-button" data-service="Lavagem a Seco">LAVAGEM A SECO</button>
+    </div>
+    
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item nav-home">🏠</a>
+        <a href="#" class="nav-item nav-search">🔍</a>
+        <a href="#" class="nav-item nav-cart active">🛒</a>
+        <a href="#" class="nav-item nav-chat">💬</a>
+        <a href="#" class="nav-item nav-profile">👤</a>
+    </nav>
   </div>
 
-  <!-- Tela de Serviços Realizados -->
-  <div id="servicosScreen" class="hidden">
-    <h2>Serviços realizados</h2>
+  <div id="serviceDescriptionScreen" class="hidden app-screen">
+    <div class="header-internal small-header">
+        <span class="back-arrow" id="voltarParaSelecao">⬅</span>
+        <h2>DESCRIÇÃO DO SERVIÇO:</h2>
+    </div>
+    
+    <div class="service-details">
+        <div id="serviceNameBox" class="selected-service-box">TROCA DE FUSÍVEIS</div>
+        
+        <div class="service-description-box">
+            <p id="serviceDescriptionText">Detalhes sobre o serviço de Troca de Fusíveis...</p>
+        </div>
+        
+        <button id="selectServiceBtn" class="btn-primary full-width">SELECIONAR SERVIÇO</button>
+    </div>
+    
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item nav-home">🏠</a>
+        <a href="#" class="nav-item nav-search">🔍</a>
+        <a href="#" class="nav-item nav-cart active">🛒</a>
+        <a href="#" class="nav-item nav-chat">💬</a>
+        <a href="#" class="nav-item nav-profile">👤</a>
+    </nav>
+  </div>
+
+  <div id="servicosScreen" class="hidden app-screen">
+    <h2>SERVIÇOS REALIZADOS</h2>
     <div id="listaServicos">
       <p>Ainda não há serviços cadastrados.</p>
     </div>
-    <button id="voltarHome2">Voltar</button>
+    
+    <button id="voltarHome2" class="voltar-btn">Voltar</button>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item nav-home">🏠</a>
+        <a href="#" class="nav-item nav-search">🔍</a>
+        <a href="#" class="nav-item nav-cart">🛒</a>
+        <a href="#" class="nav-item nav-chat">💬</a>
+        <a href="#" class="nav-item nav-profile">👤</a>
+    </nav>
   </div>
+
 
   <script src="script.js"></script>
 </body>
