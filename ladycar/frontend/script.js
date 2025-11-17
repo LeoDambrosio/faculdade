@@ -7,7 +7,7 @@ let SELECTED_SERVICE = null;
 // FUNÇÕES DE EXIBIÇÃO DE TELA (Mantido)
 // ===================================
 function hideAllScreens() {
-  document.querySelectorAll('.container, .app-screen').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.container, .app-screen').forEach(el => el.classList.add('hidden'));
 }
 
 function showLogin() {

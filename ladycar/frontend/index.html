@@ -32,9 +32,9 @@
 
       <form id="registerForm">
         <input type="text" id="registerNome" placeholder="Nome completo*" required>
-        <input type="email" id="registerEmail" placeholder="E-mail*" required>
+        <input type="email"id="registerEmail" placeholder="E-mail*" required>
         <input type="text" id="registerDocumento" placeholder="CPF*" required>
-        <input type="tel" id="registerTelefone" placeholder="Telefone*" required>
+        <input type="tel"  id="registerTelefone" placeholder="Telefone*" required>
         <input type="text" id="registerCEP" placeholder="CEP" >
         <input type="text" id="registerEndereco" placeholder="Endereço (Rua/Av.)" >
         <input type="text" id="registerNumero" placeholder="Número" >
@@ -59,22 +59,22 @@
             <div class="maint-card">
                 <span class="icon-maint">⚙️</span>
                 <p>Troca de óleo</p>
-                <small>verifique o nível a cada 1.000 km</small>
+                <small>Verifique o nível a cada 1.000 km</small>
             </div>
             <div class="maint-card">
                 <span class="icon-maint">⚫</span>
                 <p>Pneus</p>
-                <small>calibre toda semana e faça rodízio</small>
+                <small>Calibre toda semana e faça rodízio</small>
             </div>
             <div class="maint-card">
                 <span class="icon-maint">🛑</span>
                 <p>Freios</p>
-                <small>ficar atento a ruídos e perda de eficiência</small>
+                <small>Ficar atento a ruídos e perda de eficiência</small>
             </div>
             <div class="maint-card">
                 <span class="icon-maint">🔋</span>
                 <p>Bateria</p>
-                <small>cheque os terminais regularmente</small>
+                <small>Cheque os terminais regularmente</small>
             </div>
         </div>
         
@@ -109,63 +109,32 @@
     </nav>
   </div>
 
-  <div id="serviceDescriptionScreen" class="hidden app-screen">
-    <div class="header-internal small-header">
-        <span class="back-arrow" id="voltarParaSelecao">⬅</span>
-        <h2>DESCRIÇÃO DO SERVIÇO:</h2>
-    </div>
-    
-    <div class="service-details">
-        <div id="serviceNameBox" class="selected-service-box">TROCA DE FUSÍVEIS</div>
-        
-        <div class="service-description-box">
-            <p id="serviceDescriptionText">Detalhes sobre o serviço de Troca de Fusíveis...</p>
+    <div id="serviceDescriptionScreen" class="hidden app-screen">
+        <div class="header-internal small-header">
+            <span class="back-arrow" id="voltarParaSelecao">⬅</span>
+            <h2>DESCRIÇÃO DO SERVIÇO:</h2>
         </div>
         
-        <button id="selectServiceBtn" class="btn-primary full-width">SELECIONAR SERVIÇO</button>
-        <button id="voltarParaSelecaoDeServicos" class="btn-secondary full-width margin-top-10">Voltar para Seleção de Serviços</button>
-    </div>
-    
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item nav-home">🏠</a>
-        <a href="#" class="nav-item nav-search">🔍</a>
-        <a href="#" class="nav-item nav-cart active">🛒</a>
-        <a href="#" class="nav-item nav-chat">💬</a>
-        <a href="#" class="nav-item nav-profile">👤</a>
-    </nav>
-  </div>
-
-  <div id="agendarFinalScreen" class="hidden app-screen">
-    <div class="header-internal small-header">
-        <span class="back-arrow" id="voltarParaDescricao">⬅</span>
-        <h2>FINALIZAR AGENDAMENTO:</h2>
-    </div>
-    
-    <div class="service-details">
-        <div id="finalServiceNameBox" class="selected-service-box"></div> 
+        <div class="service-details">
+            <div id="serviceNameBox" class="selected-service-box">TROCA DE FUSÍVEIS</div>
+            
+            <div class="service-description-box">
+                <p id="serviceDescriptionText">Detalhes sobre o serviço de Troca de Fusíveis...</p>
+            </div>
+            
+            <button id="selectServiceBtn" class="btn-primary full-width">SELECIONAR SERVIÇO</button>
+            <button id="voltarParaSelecaoDeServicos" class="btn-secondary full-width margin-top-10">Voltar para Seleção de Serviços</button>
+        </div>
         
-        <form id="finalAgendamentoForm">
-            <label for="agendarData">Data:</label>
-            <input type="date" id="agendarData" required>
-            
-            <label for="agendarHora">Hora:</label>
-            <input type="time" id="agendarHora" required>
-            
-            <label for="agendarLocal">Local de Atendimento:</label>
-            <input type="text" id="agendarLocal" placeholder="Ex: Av. Brasil, 100 - Bairro X" required>
-            
-            <button type="submit" id="confirmAgendamentoBtn" class="btn-primary full-width">CONFIRMAR AGENDAMENTO</button>
-        </form>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item nav-home">🏠</a>
+            <a href="#" class="nav-item nav-search">🔍</a>
+            <a href="#" class="nav-item nav-cart active">🛒</a>
+            <a href="#" class="nav-item nav-chat">💬</a>
+            <a href="#" class="nav-item nav-profile">👤</a>
+        </nav>
     </div>
-    
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item nav-home">🏠</a>
-        <a href="#" class="nav-item nav-search">🔍</a>
-        <a href="#" class="nav-item nav-cart active">🛒</a>
-        <a href="#" class="nav-item nav-chat">💬</a>
-        <a href="#" class="nav-item nav-profile">👤</a>
-    </nav>
-  </div>
+
   <div id="servicosScreen" class="hidden app-screen">
     <h2>SERVIÇOS REALIZADOS</h2>
     <div id="listaServicos">
