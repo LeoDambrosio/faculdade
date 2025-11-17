@@ -3,41 +3,43 @@
 ======================================= */
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  /* Fundo claro padrão para todas as telas */
-  background-color: #fdfdfd;
-  color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    /* Fundo claro padrão para todas as telas */
+    background-color: #fdfdfd;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }
 
 /* Base para todas as telas internas (Mobile-first, layout de app) */
 .app-screen {
-  background: #fdfdfd;
-  color: #000;
-  width: 100%;
-  max-width: 500px; /* Limite de largura para simular um celular */
-  min-height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 70px; /* Espaço para a barra de navegação inferior */
+    background: #fdfdfd;
+    color: #000;
+    width: 100%;
+    max-width: 500px; /* Limite de largura para simular um celular */
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 70px; /* **CRUCIAL:** Espaço para a barra de navegação inferior (60px + margem) */
+    position: relative; /* Para a barra de navegação funcionar */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* Sombra para simular o device */
 }
 
 .hidden {
-  display: none !important;
+    display: none !important;
 }
 
 /* =======================================
@@ -47,145 +49,153 @@ body {
 /* A tela de login/cadastro funciona como uma página completa */
 #loginScreen,
 #registerScreen {
-  background-color: #fdfdfd;
-  color: #000;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+    background-color: #fdfdfd;
+    color: #000;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .login-box {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-  padding: 40px 30px;
-  text-align: center;
-  width: 100%;
-  max-width: 360px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.3s ease;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    padding: 40px 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
 }
 
 .logo {
-  width: 230px;
-  max-width: 80%;
-  margin-bottom: 25px;
+    width: 230px;
+    max-width: 80%;
+    margin-bottom: 25px;
 }
 
 /* Inputs (Reutilizados em Login, Cadastro e Formulários) */
-#loginScreen input,
-#registerScreen input,
-#serviceDescriptionScreen input,
-#agendarScreen input { 
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  box-sizing: border-box;
-  color: #333;
-  background: #fff;
-  outline: none;
+.login-box input,
+.app-screen input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border: 1px solid #ddd; /* Borda mais suave */
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    color: #333;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 /* Foco nos Inputs */
-#loginScreen input:focus,
-#registerScreen input:focus,
-#serviceDescriptionScreen input:focus {
-  border-color: #f8b4d9;
-  box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
+.login-box input:focus,
+.app-screen input:focus {
+    border-color: #f8b4d9;
+    box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
 }
 
 /* Botão Primário (Rosa - Entrar, Cadastrar, Selecionar Serviço) */
 .btn-primary {
-  width: 100%;
-  background-color: #f8b4d9;
-  border: none;
-  padding: 12px 0;
-  color: white;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-bottom: 10px;
+    width: 100%;
+    background-color: #f8b4d9;
+    border: none;
+    padding: 12px 0;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
 }
 
 .btn-primary:hover {
-  background-color: #f49cc7;
+    background-color: #f49cc7;
 }
 
 /* Botão Secundário (Borda Rosa - Botão "Cadastrar" na tela de Login) */
 .btn-secondary {
-  width: 100%;
-  background-color: white;
-  border: 1.5px solid #f8b4d9;
-  padding: 12px 0;
-  color: #f49cc7;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
+    width: 100%;
+    background-color: white;
+    border: 1.5px solid #f8b4d9;
+    padding: 12px 0;
+    color: #f49cc7;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .btn-secondary:hover {
-  background-color: #fef1f7;
+    background-color: #fef1f7;
 }
 
 /* Links e textos menores (Esqueceu a senha?, Já tem conta?) */
 .forgot-password {
-  display: block;
-  margin: 12px 0;
-  color: #555;
-  font-size: 14px;
-  text-decoration: none;
+    display: block;
+    margin: 12px 0;
+    color: #555;
+    font-size: 14px;
+    text-decoration: none;
 }
 
 .forgot-password:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .register-text {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #555;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
 }
 
 .register-text a {
     color: #f49cc7;
     text-decoration: none;
+    font-weight: 600;
 }
 
 /* Ajuste de margem do botão 'Cadastrar' na tela de Cadastro */
 #registerScreen .btn-primary {
-    margin-top: 25px; 
+    margin-top: 25px;
 }
 
 
 /* =======================================
-   3. TELA PRINCIPAL (Home / Manutenção)
+   3. TELA PRINCIPAL (Home)
 ======================================= */
+
+#homeScreen {
+    padding: 0; /* O header e a nav já controlam o espaço */
+    /* Remove a necessidade de `min-height: 100vh` aqui, pois `.app-screen` já faz isso */
+}
 
 .maintenance-section {
     padding: 20px;
     text-align: center;
+    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço disponível */
+    display: flex;
+    flex-direction: column;
 }
 
 .maintenance-section h2 {
-    color: #4b0082; /* Roxo */
+    color: #333;
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     font-weight: bold;
     padding-top: 15px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .maintenance-grid {
@@ -244,39 +254,36 @@ body {
 }
 
 .primary-pink { /* AGENDAR SERVIÇOS */
-    background-color: #f8b4d9; 
+    background-color: #f8b4d9;
     color: white;
 }
 
-.secondary-pink { /* SERVIÇOS REALIZADOS */
-    background-color: #ffe6f0; 
+.secondary-pink { /* SERVIÇOS REALIZADOS e SAIR */
+    background-color: #ffe6f0;
     color: #f49cc7;
     border: 1px solid #f8b4d9;
 }
 
 /* =======================================
-   4. BARRA DE NAVEGAÇÃO INFERIOR (Corrigido)
+   4. BARRA DE NAVEGAÇÃO INFERIOR
 ======================================= */
 
 .bottom-nav {
     position: fixed;
     bottom: 0;
-    left: 0;
-    /* Centraliza a nav no limite de largura da tela do celular */
-    width: 100%; 
-    max-width: 500px; 
+    /* Centraliza a nav no limite de largura da tela do celular (max-width: 500px) */
+    width: 100%;
+    max-width: 500px;
     left: 50%;
     transform: translateX(-50%);
 
     height: 60px;
     background-color: #fff;
-    /* Linha corrigida */
-    border-top: 1px solid #eee; 
+    border-top: 1px solid #eee;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-around;
-    /* Linha corrigida */
-    align-items: center; 
+    align-items: center;
     z-index: 100;
 }
 
@@ -285,7 +292,8 @@ body {
     color: #aaa;
     text-decoration: none;
     padding: 5px 10px;
-    line-height: 1; 
+    line-height: 1;
+    transition: color 0.2s;
 }
 
 .nav-item.active {
@@ -293,7 +301,7 @@ body {
 }
 
 /* =======================================
-   5. TELA DE SELEÇÃO DE SERVIÇOS
+   5. HEADERS DE TELAS INTERNAS (Agendar/Serviços)
 ======================================= */
 
 .header-internal {
@@ -304,6 +312,8 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
     font-weight: bold;
+    position: relative; /* Para posicionar o ícone de perfil se necessário */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-internal h2 {
@@ -312,129 +322,32 @@ body {
     font-size: 16px;
 }
 
-.service-list {
+/* Conteúdo de Agendar/Serviços Realizados */
+.service-details {
     padding: 0 20px;
-    overflow-y: auto; 
+    overflow-y: auto;
     flex-grow: 1;
 }
 
-.service-button {
-    width: 100%;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
-    padding: 15px 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-}
-
-.service-button:hover, .service-button.selected {
-    border-color: #f8b4d9;
-    box-shadow: 0 0 5px rgba(248, 180, 217, 0.6);
-}
-
-
-/* =======================================
-   6. TELA DE DESCRIÇÃO/CONFIRMAÇÃO
-======================================= */
-
-.small-header {
-    background-color: #f8b4d9;
-    color: white;
-    padding: 12px 20px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-}
-
-.small-header h2 {
-    color: white;
-    margin: 0;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.back-arrow {
-    font-size: 18px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.service-details {
-    padding: 20px;
-}
-
-.selected-service-box {
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.service-description-box {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    min-height: 150px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.service-description-box p {
-    margin: 0;
-    color: #555;
-    font-size: 15px;
-}
-
-/* Botão "SELECIONAR SERVIÇO" */
-#selectServiceBtn {
-    padding: 15px 0;
-    margin-top: 0;
-}
-
-
-/* =======================================
-   7. SERVIÇOS REALIZADOS (Histórico)
-======================================= */
-
-#servicosScreen {
-    padding: 20px;
-    text-align: left;
-}
-
-#servicosScreen h2 {
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-#listaServicos {
-    padding: 10px 0;
+#servicosScreen .service-details {
+    padding-top: 10px;
 }
 
 .servico-item {
     text-align: left;
-    padding: 10px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .servico-item p {
     margin: 5px 0;
     font-size: 14px;
+    line-height: 1.4;
 }
 .servico-item strong {
     font-weight: bold;
@@ -445,55 +358,156 @@ body {
     border-bottom: none;
 }
 
-/* Botão Voltar */
-.voltar-btn {
-    width: 100%;
-    background: white;
-    color: #f49cc7;
-    border: 1.5px solid #f8b4d9;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.voltar-btn:hover {
-    background: #fef1f7;
-}
-
-
 /* =======================================
-   8. RESPONSIVIDADE
+   6. RESPONSIVIDADE
 ======================================= */
 
 @media (max-width: 768px) {
-  .login-box {
-    padding: 30px 20px;
-    max-width: 320px;
-  }
+    .login-box {
+        padding: 30px 20px;
+        max-width: 320px;
+    }
 
-  .logo {
-    width: 180px;
-    margin-bottom: 20px;
-  }
+    .logo {
+        width: 180px;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
-  #loginScreen,
-  #registerScreen {
+    #loginScreen,
+    #registerScreen {
+        padding: 15px;
+    }
+
+    .login-box {
+        box-shadow: none;
+        border-radius: 12px;
+        padding: 25px 18px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+/* =======================================
+   7. TELA DE PERFIL (DADOS CADASTRAIS)
+======================================= */
+
+#profileScreen {
+    background-color: #f0f8ff; /* Fundo azul claro para a tela */
+    padding: 0; /* Remove padding do app-screen para que o header ocupe toda a largura */
+}
+
+/* Centralização do Título (Dados cadastrais) */
+.profile-header-centralized {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-header-centralized h2 {
+    color: #333 !important;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    text-transform: none;
+}
+
+.profile-header-icon {
+    color: #f8b4d9;
+    font-size: 26px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.profile-content {
+    padding: 0 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Estilo para os inputs do perfil (Usando a classe reutilizável, mas com visual específico) */
+.profile-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    color: #333;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.profile-content input::placeholder {
+    color: #888;
+}
+
+.profile-content input:focus {
+    box-shadow: 0 0 0 3px rgba(248, 180, 217, 0.5);
+}
+
+/* Títulos de seção como "Endereço" */
+.endereco-title {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.endereco-icon {
+    color: #f8b4d9;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Botões de Ação na tela de Perfil */
+.profile-action-btn {
+    width: 100%;
     padding: 15px;
-  }
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-top: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+}
 
-  .login-box {
-    box-shadow: none;
-    border-radius: 12px;
-    padding: 25px 18px;
-  }
+.profile-action-btn.primary {
+    background-color: #f8b4d9;
+    color: white;
+}
 
-  .btn-primary,
-  .btn-secondary {
-    font-size: 14px;
-    padding: 10px 0;
-  }
+.profile-action-btn.primary:hover {
+    background-color: #f49cc7;
+}
+
+.profile-action-btn.secondary {
+    background-color: #ffeff4;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    margin-top: 15px;
+    margin-bottom: 20px; /* Adiciona margem para não encostar na nav */
+}
+
+.profile-action-btn.secondary:hover {
+    background-color: #ffe6eb;
 }
