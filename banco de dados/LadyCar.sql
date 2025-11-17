@@ -14,6 +14,7 @@ ALTER TABLE cliente ADD COLUMN complemento VARCHAR(100);
 ALTER TABLE cliente ADD COLUMN cidade_estado VARCHAR(100);
 
 select * from cliente
+	
 
 CREATE TABLE servicos (
     id_servico SERIAL PRIMARY KEY,
@@ -25,10 +26,10 @@ CREATE TABLE servicos (
 CREATE TABLE agendamento (
     id_agendamento SERIAL PRIMARY KEY,
     id_cliente INT REFERENCES cliente(id_cliente) NOT NULL,
-    -- id_servico INT REFERENCES servicos(id_servico), -- FUTURA MUDANÇA RECOMENDADA
+    id_servico INT REFERENCES servicos(id_servico), 
     data DATE NOT NULL,
     hora TIME NOT NULL,
-    descricao VARCHAR(255) NOT NULL, -- Mantido como string para compatibilidade com o front/back atual
+    descricao VARCHAR(255) NOT NULL, 
     status VARCHAR(50) DEFAULT 'Pendente', 
     data_agendamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
