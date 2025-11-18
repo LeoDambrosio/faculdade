@@ -198,6 +198,38 @@ app.get("/agendamentos/:id_cliente", async (req, res) => {
   }
 });
 
+// ⭐️ NOVO: Rota de Esqueceu a Senha ⭐️
+app.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const result = await pool.query("SELECT id_cliente, nome FROM cliente WHERE email=$1", [email]);
+    
+    // 1. Segurança: Sempre retorna sucesso para o cliente, mesmo se o e-mail não existir.
+    if (result.rows.length === 0) {
+        // Em produção, você logaria isso, mas para o cliente retorna sucesso.
+        return res.status(200).json({ message: "Se o e-mail estiver cadastrado, as instruções foram enviadas." });
+    }
+
+    const user = result.rows[0];
+    
+    // 2. Aqui, em uma aplicação real, você faria:
+    // a) **Geração de Token:** Gerar um token único e seguro (ex: JWT ou token aleatório).
+    // b) **Salvar no DB:** Salvar este token no banco de dados, associado ao user.id_cliente, com um prazo de validade (ex: 1 hora).
+    // c) **Envio de E-mail:** Usar um serviço de envio (como Nodemailer, SendGrid, etc.) para enviar um e-mail para 'user.email' contendo um link de redefinição (ex: 'http://seuapp.com/reset?token=SEU_TOKEN').
+
+    // Por enquanto, apenas simulamos o envio:
+    console.log(`[SIMULAÇÃO] Instruções de recuperação enviadas para: ${user.nome} (${email})`);
+
+    // Retorna o sucesso.
+    res.status(200).json({ message: "Se o e-mail estiver cadastrado, as instruções foram enviadas." });
+
+  } catch (err) {
+    console.error("Erro na rota /forgot-password:", err);
+    res.status(500).json({ error: "Erro interno do servidor." });
+  }
+});
+
 // Inicia o servidor
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");

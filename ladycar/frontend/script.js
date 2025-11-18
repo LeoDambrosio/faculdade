@@ -36,6 +36,11 @@ function showAgendarSelection() {
   document.getElementById("agendarSelectionScreen").classList.remove("hidden");
   loadServices();
 }
+// ⭐️ NOVA: Função para exibir a tela de Esqueci a Senha
+function showForgotPassword() {
+    hideAllScreens();
+    document.getElementById("forgotPasswordScreen").classList.remove("hidden");
+}
 
 function showServiceDescription(serviceName) {
     // ⭐️ ATUALIZAÇÃO: Armazena o serviço selecionado globalmente
@@ -142,6 +147,45 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
 document.getElementById("logoutBtn") && document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
   showLogin();
+});
+// ⭐️ LIGAÇÃO: Link "Esqueceu a senha?" (Leva para a nova tela)
+document.getElementById("forgotPasswordLink") && document.getElementById("forgotPasswordLink").addEventListener("click", (e) => {
+    e.preventDefault();
+    showForgotPassword();
+});
+
+// ⭐️ VOLTAR: Botão Voltar da tela de recuperação
+document.getElementById("backToLoginFromForgot") && document.getElementById("backToLoginFromForgot").addEventListener("click", (e) => {
+    e.preventDefault();
+    showLogin();
+});
+
+
+// ⭐️ ENVIO: Submissão do formulário de recuperação de senha
+document.getElementById("forgotPasswordForm") && document.getElementById("forgotPasswordForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("resetEmail").value;
+
+    try {
+        const res = await fetch(`${API_URL}/forgot-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+        });
+
+        // NOTA DE SEGURANÇA: Retornar uma mensagem genérica evita que invasores
+        // descubram quais e-mails estão cadastrados no sistema.
+        if (res.ok) {
+            alert("Se o e-mail estiver cadastrado, as instruções de recuperação foram enviadas. Verifique sua caixa de entrada.");
+            showLogin(); // Volta para o login após o envio
+        } else {
+            // Em caso de erro de rede ou servidor
+            alert("Erro ao solicitar recuperação. Tente novamente mais tarde.");
+        }
+    } catch (err) {
+        alert("Erro ao conectar com o servidor para recuperar a senha.");
+        console.error(err);
+    }
 });
 
 // Troca de telas (Login/Cadastro)
