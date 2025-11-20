@@ -34,12 +34,21 @@ export class Login {
     const senha = this.formLogin.get('senha')?.value;
 
     this.loginService.entrar(login, senha).subscribe({
-      next: () => this.route.navigate(['/obra']),
+      next: (resp) => {
+        // Login sucesso!
+        console.log("Login Back funcionou");
+        this.route.navigate(['/painel']); // <--- MUDADO PARA PAINEL
+      },
       error: (err) => {
-      this.mensagemErro = err.error; // <- mensagem do backend
+        console.error("Erro no login:", err);
+        this.mensagemErro = "Erro ao logar (Backend offline?)";
+        
+        // DICA: Descomente a linha abaixo para forçar a entrada mesmo com erro
+        // this.route.navigate(['/painel']); 
       }
     });
-
+    
+    // Se quiser testar SEM backend nenhum, apague tudo acima e deixe só:
+    // this.route.navigate(['/painel']);
   }
-
 }
