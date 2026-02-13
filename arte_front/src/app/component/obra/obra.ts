@@ -1,36 +1,57 @@
-import { Component } from '@angular/core';
-import { last, lastValueFrom } from 'rxjs';
-import { Router } from '@angular/router';
-import { ObraServices } from '../../services/obra-services';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import { ObraService } from '../../services/obra-services';
+import { CommonModule } from '@angular/common'; 
+import { AvaliacaoComponent } from '../avaliacao/avaliacao.component'; // Importe o componente de avaliação
+
+// NOTA: Crie esta interface em src/app/model/obra.model.ts ou defina como 'any'
+interface Obra {
+    id: number;
+    titulo: string;
+    descricao: string;
+    anoLancamento: string;
+    imagem: string;
+    tipo: string;
+    genero?: { id: number, nome: string };
+    notaMedia?: number;
+    avaliacoes?: any[];
+}
 
 
 @Component({
   selector: 'app-obra',
+  standalone: true,
+  // O CommonModule é necessário para o *ngIf e o AvaliacaoComponent é o formulário
+  imports: [CommonModule, RouterModule, AvaliacaoComponent], 
   templateUrl: './obra.html',
-  styleUrls: ['./obra.css']
+  styleUrl: './obra.css',
 })
-export class Obra {
-
-  obra$: any;
-
-  constructor(private obraService: ObraServices, private route: Router){}
+export class ObraComponent implements OnInit {
   
-  ngOnInit(): void{
-    this.getObra();
+  private route = inject(ActivatedRoute);
+  private obraService = inject(ObraService);
+
+  obra: Obra | undefined;
+  idObra: number = 0;
+  
+  ngOnInit(): void {
+    // 1. Pega o ID da URL (obra/detalhe/5)
+    this.route.params.subscribe(params => {
+      this.idObra = +params['id']; 
+      if (this.idObra) {
+        this.carregarObra(this.idObra);
+      }
+    });
   }
 
-  public async getObra(){
-    this.obra$ = await lastValueFrom(this.obraService.getObras());
+  // Busca os dados da obra no backend
+  async carregarObra(id: number): Promise<void> {
+    try {
+      this.obra = await lastValueFrom(this.obraService.buscarPorId(id));
+    } catch (error) {
+      console.error("Erro ao carregar detalhes da obra:", error);
+      this.obra = undefined; // Garante que a mensagem de não encontrado apareça
+    }
   }
-
-  //redireciona para componente de edicao de obra
-  public editar(id:number){
-    this.route.navigate(['obra/editar', id]);
-  }
-
-  //chamar um metodo do service que sera excluido 
-  public excluir(id:number){
-
-  }
-
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ObraServices } from './obra-services';
+import { ObraService } from './obra-services';
 
 describe('ObraServices', () => {
-  let service: ObraServices;
+  let service: ObraService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ObraServices);
+    service = TestBed.inject(ObraService);
   });
 
   it('should be created', () => {

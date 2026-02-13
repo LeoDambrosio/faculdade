@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ObraServices } from '../../../services/obra-services';
+import { ObraService } from '../../../services/obra-services';
 import { GeneroServices } from '../../../services/GeneroService';
 
 @Component({
@@ -19,7 +19,7 @@ export class ObraForm {
   genero$: any
   id: any;
   private activateRoute = inject(ActivatedRoute);
-  private obraService = inject(ObraServices);
+  private obraService = inject(ObraService);
   private route = inject(Router);
   private generoService = inject(GeneroServices);
   obra: any;
@@ -53,7 +53,7 @@ export class ObraForm {
   }
 
   public async getById(){
-    this.obra = await lastValueFrom(this.obraService.getObraById(this.id));
+    this.obra = await lastValueFrom(this.obraService.getObraByid(this.id));
     //popular campos do formulário
     this.form.controls.id.setValue(this.obra.id);
     this.form.controls.titulo.setValue(this.obra.titulo);
