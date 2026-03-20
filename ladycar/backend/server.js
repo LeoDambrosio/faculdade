@@ -198,6 +198,47 @@ app.get("/agendamentos/:id_cliente", async (req, res) => {
   }
 });
 
+app.delete("/cancelar-agendamento/:id_agendamento", async (req, res) => {
+  const { id_agendamento } = req.params;
+
+  try {
+    const result = await pool.query(
+      "DELETE FROM agendamento WHERE id_agendamento=$1 RETURNING *",
+      [id_agendamento]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Agendamento não encontrado" });
+    }
+
+    res.json({ message: "Agendamento cancelado com sucesso" });
+  } catch (err) {
+    console.error("Erro ao cancelar agendamento:", err);
+    res.status(500).json({ error: "Erro ao cancelar agendamento" });
+  }
+});
+
+app.put("/editar-agendamento/:id_agendamento", async (req, res) => {
+  const { id_agendamento } = req.params;
+  const { data, hora } = req.body;
+
+  try {
+    const result = await pool.query(
+      "UPDATE agendamento SET data=$1, hora=$2 WHERE id_agendamento=$3 RETURNING *",
+      [data, hora, id_agendamento]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Agendamento não encontrado" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Erro ao editar agendamento:", err);
+    res.status(500).json({ error: "Erro ao editar agendamento" });
+  }
+});
+
 // ⭐️ NOVO: Rota de Esqueceu a Senha ⭐️
 app.post("/forgot-password", async (req, res) => {
   const { email } = req.body;

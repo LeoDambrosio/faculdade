@@ -1,7 +1,13 @@
 const API_URL = "http://localhost:3000";
 
 // ⭐️ NOVO: Variável global para guardar o serviço selecionado temporariamente (CRUCIAL PARA AGENDAMENTO)
-let SELECTED_SERVICE = null; 
+let SELECTED_SERVICE = null;
+
+// ⭐️ NOVA: Lista de serviços para pesquisa
+let AVAILABLE_SERVICES = [];
+
+// ⭐️ NOVO: Variável global para rastrear o agendamento em edição
+let AGENDAMENTO_EDITANDO = null;
 
 // ===================================
 // FUNÇÕES DE EXIBIÇÃO DE TELA (Mantido)
@@ -26,15 +32,112 @@ function showMain() {
 }
 
 function showServicos() {
-  hideAllScreens();
-  document.getElementById("servicosScreen").classList.remove("hidden");
-  loadServicos();
+  hideAllScreens();
+  document.getElementById("servicosScreen").classList.remove("hidden");
+  loadServicos();
+}
+
+function renderSearchResults(servicos) {
+  const resultsDiv = document.getElementById("searchResults");
+  if (!resultsDiv) return;
+
+  if (!Array.isArray(servicos) || servicos.length === 0) {
+    resultsDiv.innerHTML = "<p>Nenhum serviço disponível no momento.</p>";
+    return;
+  }
+
+  resultsDiv.innerHTML = "";
+  servicos.forEach(servico => {
+    const item = document.createElement("div");
+    item.className = "service-item";
+    item.innerHTML = `
+      <div>
+        <strong>${servico.nome_servico}</strong>
+        <p>${servico.descricao_servico || "Sem descrição"}</p>
+      </div>
+      <button class="service-button" type="button">Agendar</button>
+    `;
+
+    item.querySelector("button").addEventListener("click", () => {
+      SELECTED_SERVICE = servico.nome_servico;
+      showServiceDescription(servico.nome_servico);
+    });
+
+    resultsDiv.appendChild(item);
+  });
+}
+
+function getNomeServico(servico) {
+  if (!servico) return "";
+  return (servico.nome_servico || servico.nome || servico.descricao || "").toString();
+}
+
+function normalizarTexto(texto) {
+  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function showSearch() {
+  hideAllScreens();
+  document.getElementById("searchScreen").classList.remove("hidden");
+  const input = document.getElementById("searchInput");
+  input.value = "";
+  document.getElementById("searchResults").innerHTML = "<p>Digite o nome do serviço para pesquisar.</p>";
+
+  input.removeEventListener("input", onSearchInputChange);
+  input.addEventListener("input", onSearchInputChange);
+
+  loadServices().then(() => {
+    if (AVAILABLE_SERVICES.length > 0) {
+      renderSearchResults(AVAILABLE_SERVICES);
+    } else {
+      document.getElementById("searchResults").innerHTML = "<p>Nenhum serviço disponível para pesquisa.</p>";
+    }
+  }).catch(err => {
+    console.error("Erro ao carregar serviços para pesquisa:", err);
+    document.getElementById("searchResults").innerHTML = "<p>Erro ao carregar serviços para pesquisa.</p>";
+  });
+}
+
+function onSearchInputChange(e) {
+  const termo = e.target.value;
+  pesquisarServicos(termo);
+}
+
+function pesquisarServicos(query) {
+  const resultsDiv = document.getElementById("searchResults");
+  if (!resultsDiv) return;
+
+  const termo = String(query || "").trim();
+
+  if (!termo) {
+    renderSearchResults(AVAILABLE_SERVICES);
+    return;
+  }
+
+  if (!Array.isArray(AVAILABLE_SERVICES) || AVAILABLE_SERVICES.length === 0) {
+    resultsDiv.innerHTML = "<p>Carregando serviços...</p>";
+    loadServices().then(() => pesquisarServicos(query));
+    return;
+  }
+
+  const termoNormalizado = normalizarTexto(termo);
+  const filtrados = AVAILABLE_SERVICES.filter(servico => {
+    const nome = normalizarTexto(getNomeServico(servico));
+    return nome.includes(termoNormalizado);
+  });
+
+  if (filtrados.length === 0) {
+    resultsDiv.innerHTML = `<p>Nenhum serviço encontrado para "${query}".</p>`;
+    return;
+  }
+
+  renderSearchResults(filtrados);
 }
 
 function showAgendarSelection() {
-  hideAllScreens();
-  document.getElementById("agendarSelectionScreen").classList.remove("hidden");
-  loadServices();
+  hideAllScreens();
+  document.getElementById("agendarSelectionScreen").classList.remove("hidden");
+  loadServices();
 }
 // ⭐️ NOVA: Função para exibir a tela de Esqueci a Senha
 function showForgotPassword() {
@@ -68,11 +171,74 @@ function showAgendarFinal() {
 
 
 function showProfile() {
-    hideAllScreens();
-    document.getElementById("profileScreen").classList.remove("hidden");
-    loadUserProfile();
+    hideAllScreens();
+    document.getElementById("profileScreen").classList.remove("hidden");
+    loadUserProfile();
 }
 
+// ⭐️ NOVO: Mostrar tela de edição de agendamento
+function showEditarAgendamento() {
+    hideAllScreens();
+    document.getElementById("editarAgendamentoScreen").classList.remove("hidden");
+}
+
+function abrirTelaEdicao(id_agendamento, descricao, data, hora) {
+    console.log("Abrindo tela de edição:", { id_agendamento, descricao, data, hora });
+    AGENDAMENTO_EDITANDO = id_agendamento;
+    showEditarAgendamento();
+    document.getElementById("editarServiceName").textContent = `Serviço: ${descricao}`;
+    document.getElementById("editarData").value = data;
+    document.getElementById("editarHora").value = hora;
+    console.log("Campos preenchidos:", {
+        serviceName: document.getElementById("editarServiceName").textContent,
+        data: document.getElementById("editarData").value,
+        hora: document.getElementById("editarHora").value
+    });
+}
+
+async function salvarEdicaoAgendamento(novaData, novaHora) {
+    if (!AGENDAMENTO_EDITANDO) {
+        alert("Nenhum agendamento selecionado para edição.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/editar-agendamento/${AGENDAMENTO_EDITANDO}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ data: novaData, hora: novaHora }),
+        });
+
+        if (res.ok) {
+            alert("Agendamento atualizado com sucesso!");
+            AGENDAMENTO_EDITANDO = null;
+            showServicos();
+        } else {
+            const err = await res.json();
+            alert("Erro ao atualizar agendamento: " + err.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Erro ao conectar com o servidor ao atualizar agendamento.");
+    }
+}
+
+async function cancelarAgendamento(id_agendamento) {
+    if (!confirm("Deseja cancelar este agendamento?")) return;
+    try {
+        const res = await fetch(`${API_URL}/cancelar-agendamento/${id_agendamento}`, { method: "DELETE" });
+        if (res.ok) {
+            alert("Agendamento cancelado com sucesso");
+            showServicos();
+        } else {
+            const err = await res.json();
+            alert("Erro ao cancelar: " + err.error);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao conectar com o servidor.");
+    }
+}
 
 // ===================================
 // 1. EVENTOS DE LOGIN/CADASTRO (Mantido)
@@ -383,6 +549,7 @@ async function loadServices() {
     try {
         const res = await fetch(`${API_URL}/services`);
         const services = await res.json();
+        AVAILABLE_SERVICES = Array.isArray(services) ? services : [];
 
         if (res.ok && services.length > 0) {
             serviceListDiv.innerHTML = "";
@@ -409,7 +576,7 @@ async function loadServices() {
     }
 }
 
-document.getElementById("btnServicos").addEventListener("click", showServicos);
+document.getElementById("btnServicos") && document.getElementById("btnServicos").addEventListener("click", showServicos);
 
 async function loadServicos() {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -439,6 +606,10 @@ async function loadServicos() {
             <p><strong>Data:</strong> ${dataFormatada}</p>
             <p><strong>Hora:</strong> ${ag.hora}</p>
             <p><strong>Serviço:</strong> ${ag.descricao}</p>
+            <div class="servico-actions">
+              <button class="btn-editar" onclick="abrirTelaEdicao(${ag.id_agendamento}, '${ag.descricao}', '${ag.data}', '${ag.hora}')">✏️ Editar</button>
+              <button class="btn-cancelar" onclick="cancelarAgendamento(${ag.id_agendamento})">❌ Cancelar</button>
+            </div>
             <hr>
           `;
           lista.appendChild(div);
@@ -454,7 +625,33 @@ async function loadServicos() {
 }
 
 // Navegação pela barra inferior e botões
-document.getElementById("voltarHome2").addEventListener("click", showMain);
-document.querySelectorAll(".nav-home").forEach(el => el.addEventListener("click", showMain));
-document.querySelectorAll(".nav-cart").forEach(el => el.addEventListener("click", showAgendarSelection));
-document.querySelectorAll(".nav-profile").forEach(el => el.addEventListener("click", showProfile));
+document.getElementById("voltarHome2") && document.getElementById("voltarHome2").addEventListener("click", showMain);
+document.querySelectorAll(".nav-home").forEach(el => el.addEventListener("click", (e) => { e.preventDefault(); showMain(); }));
+document.querySelectorAll(".nav-search").forEach(el => el.addEventListener("click", (e) => { e.preventDefault(); showSearch(); }));
+document.querySelectorAll(".nav-cart").forEach(el => el.addEventListener("click", (e) => { e.preventDefault(); showServicos(); }));
+document.querySelectorAll(".nav-chat").forEach(el => el.addEventListener("click", (e) => { e.preventDefault(); alert("Chat em desenvolvimento"); }));
+document.querySelectorAll(".nav-profile").forEach(el => el.addEventListener("click", (e) => { e.preventDefault(); showProfile(); }));
+
+document.getElementById("searchInput") && document.getElementById("searchInput").addEventListener("keyup", (e) => {
+    pesquisarServicos(e.target.value);
+});
+
+document.getElementById("agendarCarrinhoBtn") && document.getElementById("agendarCarrinhoBtn").addEventListener("click", showAgendarSelection);
+
+// Tela de edição
+document.getElementById("cancelarEdicaoBtn") && document.getElementById("cancelarEdicaoBtn").addEventListener("click", () => {
+    AGENDAMENTO_EDITANDO = null;
+    showServicos();
+});
+
+document.getElementById("voltarParaServicos") && document.getElementById("voltarParaServicos").addEventListener("click", () => {
+    AGENDAMENTO_EDITANDO = null;
+    showServicos();
+});
+
+document.getElementById("editarAgendamentoForm") && document.getElementById("editarAgendamentoForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const novaData = document.getElementById("editarData").value;
+    const novaHora = document.getElementById("editarHora").value;
+    await salvarEdicaoAgendamento(novaData, novaHora);
+});

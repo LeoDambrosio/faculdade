@@ -91,6 +91,25 @@
     </nav>
   </div>
 
+  <div id="searchScreen" class="hidden app-screen">
+    <div class="header-internal">
+      <h2>PESQUISAR SERVIÇOS</h2>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Digite o nome do serviço..." autocomplete="off" />
+    </div>
+    <div id="searchResults" class="service-list">
+      <p>Digite o nome do serviço para pesquisar.</p>
+    </div>
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item nav-home">🏠</a>
+      <a href="#" class="nav-item nav-search active">🔍</a>
+      <a href="#" class="nav-item nav-cart">🛒</a>
+      <a href="#" class="nav-item nav-chat">💬</a>
+      <a href="#" class="nav-item nav-profile">👤</a>
+    </nav>
+  </div>
+
   <div id="agendarSelectionScreen" class="hidden app-screen">
     <div class="header-internal">
         <h2>SERVIÇOS DISPONÍVEIS:</h2>
@@ -236,6 +255,37 @@
         <a href="#" class="nav-item nav-cart">🛒</a>
         <a href="#" class="nav-item nav-chat">💬</a>
         <a href="#" class="nav-item nav-profile active">👤</a>
+    </nav>
+  </div>
+
+  <div id="editarAgendamentoScreen" class="hidden app-screen">
+    <div class="header-internal">
+        <span class="back-arrow" id="voltarParaServicos">⬅</span>
+        <h2>EDITAR AGENDAMENTO</h2>
+    </div>
+    
+    <div class="service-details">
+        <h3 class="selected-service-box" id="editarServiceName">Serviço: TROCA DE ÓLEO</h3>
+        
+        <form id="editarAgendamentoForm">
+            <h4 class="form-section-title">Editar Data e Hora</h4>
+            
+            <input type="date" id="editarData" required>
+            <input type="time" id="editarHora" required>
+            
+            <p class="agendamento-info">⚠️ *As alterações serão salvas após confirmação.</p>
+
+            <button type="submit" class="btn-primary full-width" id="salvarEdicaoBtn">SALVAR ALTERAÇÕES</button>
+            <button type="button" id="cancelarEdicaoBtn" class="btn-secondary full-width margin-top-10">CANCELAR</button>
+        </form>
+    </div>
+    
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item nav-home">🏠</a>
+        <a href="#" class="nav-item nav-search">🔍</a>
+        <a href="#" class="nav-item nav-cart active">🛒</a>
+        <a href="#" class="nav-item nav-chat">💬</a>
+        <a href="#" class="nav-item nav-profile">👤</a>
     </nav>
   </div>
 
