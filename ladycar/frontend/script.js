@@ -477,7 +477,7 @@ document.getElementById("backToHomeBtn") && document.getElementById("backToHomeB
 // ===================================
 
 // ⭐️ CORREÇÃO PRINCIPAL: Evento para o botão "AGENDAR SERVIÇOS" na Home. (Se o ID for 'btnAgendar')
-document.getElementById("btnAgendar") && document.getElementById("btnAgendar").addEventListener("click", showAgendarSelection); 
+document.getElementById("btnAgendar") && document.getElementById("btnAgendar").addEventListener("click", showSearch); 
 // ... (outros listeners)
 
 // ⭐️ NOVO: Botão Voltar da Descrição de Serviço para a Lista de Serviços
