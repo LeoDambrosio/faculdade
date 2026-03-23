@@ -607,8 +607,8 @@ async function loadServicos() {
             <p><strong>Hora:</strong> ${ag.hora}</p>
             <p><strong>Serviço:</strong> ${ag.descricao}</p>
             <div class="servico-actions">
-              <button class="btn-editar" onclick="abrirTelaEdicao(${ag.id_agendamento}, '${ag.descricao}', '${ag.data}', '${ag.hora}')">✏️ Editar</button>
-              <button class="btn-cancelar" onclick="cancelarAgendamento(${ag.id_agendamento})">❌ Cancelar</button>
+              <button class="btn-editar btn-primary" onclick="abrirTelaEdicao(${ag.id_agendamento}, '${ag.descricao}', '${ag.data}', '${ag.hora}')">✏️ Editar</button>
+              <button class="btn-cancelar btn-secondary" onclick="cancelarAgendamento(${ag.id_agendamento})">❌ Cancelar</button>
             </div>
             <hr>
           `;
